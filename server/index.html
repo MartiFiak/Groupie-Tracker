@@ -20,17 +20,14 @@
             <div class="content">
                 <h2>Event</h2>
                 <ul>
-                    <li><p>Locations</p></li>
-                    <li><p>Date</p></li>
-                    <li><p>Date</p></li>
-                    <li><p>Date</p></li>
+                    {{ range $key, $value := .Relations }}
+                        <li><p>{{ $key }}</p></li>
+                        {{ range $v := $value }}
+                        <li><p>{{ $v }}</p></li>
+                        {{ end}}
+                    {{ end }}
                 </ul>
-                <ul>
-                    <li><p>Locations</p></li>
-                    <li><p>Date</p></li>
-                    <li><p>Date</p></li>
-                    <li><p>Date</p></li>
-                </ul>
+
             </div>
         </div>
         <div class="rightbox">
