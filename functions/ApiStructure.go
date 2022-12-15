@@ -1,5 +1,13 @@
 package groupietrackers
 
+type CurrentBand struct {
+	Name         string
+	Image        string
+	Member       []string
+	CreationDate int
+	Relations    map[string][]string
+}
+
 type apiData struct {
 	Artist    string `json:"artists"`
 	Locations string `json:"locations"`
@@ -12,7 +20,7 @@ type artistStruct struct {
 	Image        string   `json:"image"`
 	Name         string   `json:"name"`
 	Member       []string `json:"members"`
-	CreationDate int      `json:"creationdate"`
+	CreationDate int   `json:"creationdate"`
 	FirstAlbum   string   `json:"firstAlbum"`
 	Locations    string   `json:"locations"`
 	ConcertDate  string   `json:"concertDates"`
@@ -22,7 +30,7 @@ type artistStruct struct {
 type locationsStruct struct {
 	Id        int      `json:"id"`
 	Locations []string `json:"locations"`
-	Dates     string      `json:"dates"`
+	Dates     string   `json:"dates"`
 }
 
 type datesStruct struct {
