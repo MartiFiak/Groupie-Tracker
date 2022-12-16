@@ -1,0 +1,104 @@
+* {
+    color: rgba(255, 255, 255, 0.88);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    z-index: 1;
+    user-select: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: #000000e7;
+    margin: 0 auto;
+    width: 100vw;
+}
+
+title {
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+}
+
+h1 {
+    color: rgba(255, 255, 255, 0);
+    font-size: 80px;
+}
+
+h2 {
+    color: white;
+    font-size: 40px;
+}
+
+.sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 15px;
+    width: 23%;
+    height: 100%;
+    background-color: #8f8f8fce;
+    z-index: 3;
+    border: none;
+    cursor: pointer;
+}
+
+li a {
+    display: block;
+    padding: 16px 23%;
+    color: rgba(255, 255, 255, 0.754);
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.1s ease;
+}
+
+li a:hover {
+    color: white;
+    background-color: rgba(240, 255, 255, 0.012);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.middiv {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 77%;
+    height: 43%;
+    background-color: #575757;
+    z-index: 1;
+}
+
+.drop_btn { /* This is for styling the dropdown button */
+    background-color: #8842d5;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+.drop { 
+    display: inline-block;
+    position: relative;
+}
+   
+.drop-content { /* For styling the content itself */
+    background-color: #868686ab;
+    left: 0;
+    display: none;
+    position: absolute;
+}
+  
+.drop-content a { /* For styling the links inside the content */
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+}
+.drop-content a:hover { /* Change the color of the dropdown links when they are hovered on */    
+    background-color: #8f8f8f5d;
+}
+.drop:hover .drop-content { /* Shows the dropdown menu list when hovered on */
+    display: block;
+}
