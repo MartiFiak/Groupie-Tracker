@@ -8,6 +8,18 @@ type CurrentBand struct {
 	Relations    map[string][][]string
 }
 
+type PageData struct {
+	Currentband CurrentBand
+	Artists     []Artist
+}
+
+type Artist struct {
+	Id           int    `json:"id"`
+	Image        string `json:"image"`
+	Name         string `json:"name"`
+	CreationDate int    `json:"creationdate"`
+}
+
 type apiData struct {
 	Artist    string `json:"artists"`
 	Locations string `json:"locations"`

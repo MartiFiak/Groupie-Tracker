@@ -8,13 +8,28 @@
     <title>Groupie Tracker</title>
 </head>
 <body>
+    <div class="sidebar">
+        <div class="header">
+            <img src="none" alt="">
+            <h1>Groupie-Tracker</h1>
+            <input type="text" name="" id="" placeholder="Schearch an artist" class="shearch">
+        </div>
+        <div class="content">
+            <ul>
+                {{ range $artist := .Artists }}
+                <li><a href="?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
+                {{ end }}
+            </ul>
+
+        </div>
+    </div>
     <div class="sect1">
-        <img class="bg-image" src="{{ .Image }}" alt="">
+        <img class="bg-image" src="{{ .Currentband.Image }}" alt="">
         <div class="content">
             <div class="leftbox">
                 <div class="content">
-                    <h1>{{ .Name }}</h1>
-                    <h2>Create in {{ .CreationDate }}</h2>
+                    <h1>{{ .Currentband.Name }}</h1>
+                    <h2>Create in {{ .Currentband.CreationDate }}</h2>
                     <div class="btnlst">
                         <a href="#event" class="btn">Event</a>
                         <a href="" class="btn2">About us</a>
@@ -22,7 +37,7 @@
                 </div>
             </div>
             <div class="rightbox">
-                <img src="{{ .Image }}" alt="">
+                <img src="{{ .Currentband.Image }}" alt="">
             </div>
         </div>
     </div>
@@ -39,7 +54,7 @@
         <div class="leftbox">
             <div class="content">
                 <ul>
-                    {{ range $key, $value := .Relations }}
+                    {{ range $key, $value := .Currentband.Relations }}
                     <div class="dateloc">
                         <li><p class="location">{{ $key }}</p></li>
                         {{ range $v := $value }}
@@ -55,7 +70,7 @@
             </div>
         </div>
         <div class="rightbox">
-            <img src="{{ .Image }}" alt="" class="map">
+            <img src="{{ .Currentband.Image }}" alt="" class="map">
         </div>
     </div>
 </body>

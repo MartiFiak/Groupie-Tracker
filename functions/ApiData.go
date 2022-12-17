@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"time"
+	"strconv"
+	"strings"
 )
 
 func GetAPIData(apiUrl string) []byte {
@@ -78,4 +80,78 @@ func SetRelationData(body []byte) relationStruct {
 		fmt.Println(jsonErr)
 	}
 	return relationdata
+}
+
+func SetArtistInfoData(body []byte) Artist {
+	artistdata := Artist{}
+	jsonErr := json.Unmarshal(body, &artistdata)
+	if jsonErr != nil {
+		fmt.Println(jsonErr)
+	}
+	return artistdata
+}
+
+func UpdateCurrentBand(apiArtist string) CurrentBand{
+	var cb CurrentBand
+	dataartist := SetArtistData(GetAPIData(apiArtist))
+	datadatelocation := SetRelationData(GetAPIData(dataartist.Relations))
+	cb.Image = dataartist.Image
+	cb.Name = dataartist.Name
+	cb.Member = dataartist.Member
+	cb.CreationDate = dataartist.CreationDate
+	cb.Relations = ChangeDateFormat(datadatelocation.DatesLocations)
+	return cb
+}
+
+
+func ChangeDateFormat(date map[string][]string) map[string][][]string {
+	nDate := make(map[string][][]string)
+
+	for location, ldate := range date {
+		if len(ldate) > 1 {
+			lDate := [][]string{}
+			var allDate [][]string
+			for _, d := range ldate {
+				allDate = append(allDate, strings.Split(d, "-"))
+			}
+			var day string
+			var mday string
+			var lday int
+			var month string
+			var year string
+
+			for i, d := range allDate {
+				if i == 0 {
+					day = d[0]
+					mday = d[0]
+					lday, _ = strconv.Atoi(day)
+					month = d[1]
+					year = d[2]
+				} else {
+					nlday, _ := strconv.Atoi(d[0])
+					if month == d[1] && year == d[2] && lday-1 == nlday {
+						day = d[0] + "-" + mday
+						lday--
+					} else {
+						imonth, _ := strconv.Atoi(month)
+						lDate = append(lDate, []string{day, []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth-1], year})
+						day = d[0]
+						mday = d[0]
+						lday, _ = strconv.Atoi(day)
+						month = d[1]
+						year = d[2]
+					}
+				}
+			}
+
+			nDate[location] = lDate
+		} else {
+			lDate := [][]string{}
+			imonth, _ := strconv.Atoi(strings.Split(ldate[0], "-")[1])
+			lDate = append(lDate, []string{strings.Split(ldate[0], "-")[0], []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth],strings.Split(ldate[0], "-")[2]})
+			nDate[location] = lDate
+		}
+	}
+
+	return nDate
 }

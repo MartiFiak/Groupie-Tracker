@@ -14,11 +14,100 @@
     text-decoration: none;
     color: white;
     list-style: none;
+    user-select: none;
 }
 
 body{
     background-color: var(--bla);
 }
+
+
+/*                        SIDE BAR                                    */
+
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    padding: 10px;
+    backdrop-filter: blur(6px);
+    background-color: #0d1321dc;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    box-shadow: 0 8px 32px rgb(2,4,24);
+    border-right: 2px solid rgba(255, 255, 255, 0.09);
+}
+
+.artist:hover ~ .sidebar{
+    background-color: #1D4C4F;
+}
+
+.sidebar .header {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar .header h1 {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 40px;
+}
+
+.sidebar .shearch {
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    border-radius: 0;
+    border-width: 1px;
+    padding: 5px;
+    text-align: center;
+
+    border-bottom-style: solid;
+    background-color: transparent;
+}
+
+.sidebar .content{
+    overflow-y: scroll;
+    height: 80vh;
+    width: 100%;  
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+.sidebar .content::-webkit-scrollbar {
+    display: none;
+  }
+
+.sidebar .artist {
+    margin: 20px 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar .artist img {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 25%;
+}
+
+.sidebar .artist div {
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar .artist h3 {
+    font-size: 1.2em;
+}
+
+.sidebar .artist p {
+    font-size: 0.8em;
+}
+
 
 
 /*                         SECT1                                      */
