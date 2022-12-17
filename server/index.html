@@ -9,29 +9,53 @@
 </head>
 <body>
     <div class="sect1">
+        <img class="bg-image" src="{{ .Image }}" alt="">
         <div class="content">
-            <img src="{{ .Image }}" alt="">
-            <h1>{{ .Name }}</h1>
-            <p>{{ .CreationDate }}</p>
+            <div class="leftbox">
+                <div class="content">
+                    <h1>{{ .Name }}</h1>
+                    <h2>Create in {{ .CreationDate }}</h2>
+                    <div class="btnlst">
+                        <a href="#event" class="btn">Event</a>
+                        <a href="" class="btn2">About us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rightbox">
+                <img src="{{ .Image }}" alt="">
+            </div>
         </div>
+    </div>
+    <div class="secttrans">
+        <div class="ocean">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+          </div>
+        <h2>Hurry up meet us !</h2>
+        <h1 id="event">Event</h1>
     </div>
     <div class="sect2">
         <div class="leftbox">
             <div class="content">
-                <h2>Event</h2>
                 <ul>
                     {{ range $key, $value := .Relations }}
-                        <li><p>{{ $key }}</p></li>
+                    <div class="dateloc">
+                        <li><p class="location">{{ $key }}</p></li>
                         {{ range $v := $value }}
-                        <li><p>{{ $v }}</p></li>
+                        <li class="event"><p class="date">{{ index $v 0 }} {{ index $v 1 }}</p>
+                            <p>{{ index $v 2 }}</p>
+                        </li>
                         {{ end}}
+                        
+                    </div>
                     {{ end }}
                 </ul>
 
             </div>
         </div>
         <div class="rightbox">
-
+            <img src="{{ .Image }}" alt="" class="map">
         </div>
     </div>
 </body>

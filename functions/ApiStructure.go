@@ -5,7 +5,7 @@ type CurrentBand struct {
 	Image        string
 	Member       []string
 	CreationDate int
-	Relations    map[string][]string
+	Relations    map[string][][]string
 }
 
 type apiData struct {
@@ -20,7 +20,7 @@ type artistStruct struct {
 	Image        string   `json:"image"`
 	Name         string   `json:"name"`
 	Member       []string `json:"members"`
-	CreationDate int   `json:"creationdate"`
+	CreationDate int      `json:"creationdate"`
 	FirstAlbum   string   `json:"firstAlbum"`
 	Locations    string   `json:"locations"`
 	ConcertDate  string   `json:"concertDates"`
