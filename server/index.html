@@ -12,12 +12,17 @@
         <div class="header">
             <img src="none" alt="">
             <h1>Groupie-Tracker</h1>
-            <input type="text" name="" id="" placeholder="Schearch an artist" class="shearch">
+            <form action="/" method="post">
+                <input type="text" name="shearch" placeholder="Schearch an artist" class="shearch">
+            </form>
+            <p>Show All</p>
         </div>
         <div class="content">
             <ul>
                 {{ range $artist := .Artists }}
-                <li><a href="?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
+                    {{ if ne ($artist.Id) 0 }}
+                        <li><a href="?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
+                    {{ end }}
                 {{ end }}
             </ul>
 

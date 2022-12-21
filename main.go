@@ -1,24 +1,38 @@
 package main
 
 import (
-	"fmt"
 	groupietrackers "groupie-tracker/functions"
 	"net/http"
 	"strconv"
 	"text/template"
+	"time"
+	"strings"
 )
 
 var currentband groupietrackers.CurrentBand
 var pageData groupietrackers.PageData
+var artistLoad []groupietrackers.Artist
+var artistFiltered []groupietrackers.Artist
 var currentID int
+var data groupietrackers.ApiData
 
 func main() {
 
+	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
+
+	go RealtimeData()   /*       Permet de récuperer les artists en arrière plan sans ralentir l'affichage de la page         */
 	fs := http.FileServer(http.Dir("./server"))
 	http.Handle("/server/", http.StripPrefix("/server/", fs))
 
 	http.HandleFunc("/", HomeHandler)
 	http.ListenAndServe(":8080", nil)
+}
+
+func RealtimeData() {
+	for {  /*       Regenere les données des artistes toutes les minutes        */
+		GetArtistXtoY(1, 52, data.Artist)
+		time.Sleep(60 * time.Second)
+	}
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -28,32 +42,53 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		currentID = 1
 	}
 
-	data := groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
-
 	switch r.Method {
 	case "GET":
 		if r.URL.Query().Get("id") != "" {
 			currentID, _ = strconv.Atoi(r.URL.Query().Get("id"))
-			fmt.Println()
 		}
+		pageData.Artists = artistLoad
+	case "POST":
+		shearchFilter := r.FormValue("shearch")
+		GetArtistWithStr(shearchFilter)
+		pageData.Artists = artistFiltered
 	}
-	/*dataartist := groupietrackers.SetArtistData(groupietrackers.GetAPIData(data.Artist + "/" + strconv.Itoa(currentID)))
-	datalocation := groupietrackers.SetLocationData(groupietrackers.GetAPIData(dataartist.Locations))
-	datadate := groupietrackers.SetDateData(groupietrackers.GetAPIData(dataartist.ConcertDate))
-	datadatelocation := groupietrackers.SetRelationData(groupietrackers.GetAPIData(dataartist.Relations))
-	fmt.Println("Logo :", dataartist.Image, "\nLe groupe : ", dataartist.Name, "\nCréé en : ", dataartist.CreationDate, "\nA pour membre :", dataartist.Member, "\nLeur premier album est paru en :", dataartist.FirstAlbum)
-	fmt.Println("Location : ", datalocation.Locations, "\nDate de Concert : ", datadate.Dates, "\nDateRelation : ", datadatelocation.DatesLocations)*/
-	GetArtistXtoY(1, 10, data.Artist)
 	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
 	pageData.Currentband = currentband
 
 	tmpl.Execute(w, pageData)
 }
 
+func GetArtistWithStr(shearchFilter string){
+	artistFiltered = []groupietrackers.Artist{}
+	for _, artist := range artistLoad{
+		if strings.Contains(TurnStringToShearch(artist.Name),TurnStringToShearch(shearchFilter)){
+			artistFiltered = append(artistFiltered, artist)
+		}
+	}
+}
+
+func TurnStringToShearch(str string) string {
+	/*       Turn :  fdsfKJHJUGKHLJ dsf ezrtf _è-'4941 into : fdsfkjhjugkhljdsfezrtf_è-'4941*/
+	var nstr string
+	for _, car := range str {
+		switch {
+		case 65 <= car && car <= 90:
+			nstr = nstr+string(car+32)
+		case car == 32:
+			continue
+		default:
+			nstr = nstr+string(car)
+		}
+	}
+	return nstr
+}
+
 func GetArtistXtoY(x, y int, apiArtist string) {
-	pageData.Artists = []groupietrackers.Artist{}
 	for i := x; i <= y; i++ {
-		artist := groupietrackers.SetArtistInfoData(groupietrackers.GetAPIData(apiArtist + "/" + strconv.Itoa(i)))
-		pageData.Artists = append(pageData.Artists, artist)
+		if i > len(artistLoad) {
+			artist := groupietrackers.SetArtistInfoData(groupietrackers.GetAPIData(apiArtist + "/" + strconv.Itoa(i)))
+			artistLoad = append(artistLoad, artist)
+		}
 	}
 }

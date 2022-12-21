@@ -1,6 +1,7 @@
 package groupietrackers
 
 type CurrentBand struct {
+	Id           int
 	Name         string
 	Image        string
 	Member       []string
@@ -20,7 +21,7 @@ type Artist struct {
 	CreationDate int    `json:"creationdate"`
 }
 
-type apiData struct {
+type ApiData struct {
 	Artist    string `json:"artists"`
 	Locations string `json:"locations"`
 	Dates     string `json:"dates"`

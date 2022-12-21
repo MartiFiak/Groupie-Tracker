@@ -31,15 +31,24 @@ body{
     padding: 10px;
     backdrop-filter: blur(6px);
     background-color: #0d1321dc;
-    left: 0;
+    left: -230px;
     top: 0;
     z-index: 3;
     box-shadow: 0 8px 32px rgb(2,4,24);
     border-right: 2px solid rgba(255, 255, 255, 0.09);
+    transition: all .5s ease;
 }
 
-.artist:hover ~ .sidebar{
-    background-color: #1D4C4F;
+.sidebar * {
+    visibility: hidden;
+}
+
+.sidebar:hover{
+    left: 0;
+}
+
+.sidebar:hover * {
+    visibility: visible;
 }
 
 .sidebar .header {
@@ -154,7 +163,7 @@ body{
 .sect1 .leftbox .content{
     display: flex;
     flex-direction: column;
-    margin: 10vh;
+    margin: 15vh;
     height: auto;
     width: auto;
 }
