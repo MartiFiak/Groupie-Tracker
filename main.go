@@ -4,9 +4,9 @@ import (
 	groupietrackers "groupie-tracker/functions"
 	"net/http"
 	"strconv"
+	"strings"
 	"text/template"
 	"time"
-	"strings"
 )
 
 var currentband groupietrackers.CurrentBand
@@ -20,23 +20,24 @@ func main() {
 
 	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
 
-	go RealtimeData()   /*       Permet de récuperer les artists en arrière plan sans ralentir l'affichage de la page         */
+	go RealtimeData() /*       Permet de récuperer les artists en arrière plan sans ralentir l'affichage de la page         */
 	fs := http.FileServer(http.Dir("./server"))
 	http.Handle("/server/", http.StripPrefix("/server/", fs))
 
 	http.HandleFunc("/", HomeHandler)
+	http.HandleFunc("/artist", ArtistHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
 func RealtimeData() {
-	for {  /*       Regenere les données des artistes toutes les minutes        */
+	for { /*       Regenere les données des artistes toutes les minutes        */
 		GetArtistXtoY(1, 52, data.Artist)
 		time.Sleep(60 * time.Second)
 	}
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("./server/index.html"))
+	tmpl := template.Must(template.ParseFiles("./server/index.html", "./server/component/sidebar.html"))
 
 	if currentID == 0 {
 		currentID = 1
@@ -59,10 +60,32 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, pageData)
 }
 
-func GetArtistWithStr(shearchFilter string){
+func ArtistHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("./server/artist.html", "./server/component/sidebar.html"))
+	if currentID == 0 {
+		currentID = 1
+	}
+
+	switch r.Method {
+	case "GET":
+		if r.URL.Query().Get("id") != "" {
+			currentID, _ = strconv.Atoi(r.URL.Query().Get("id"))
+		}
+		pageData.Artists = artistLoad
+	case "POST":
+		shearchFilter := r.FormValue("shearch")
+		GetArtistWithStr(shearchFilter)
+		pageData.Artists = artistFiltered
+	}
+	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
+	pageData.Currentband = currentband
+	tmpl.Execute(w, pageData)
+}
+
+func GetArtistWithStr(shearchFilter string) {
 	artistFiltered = []groupietrackers.Artist{}
-	for _, artist := range artistLoad{
-		if strings.Contains(TurnStringToShearch(artist.Name),TurnStringToShearch(shearchFilter)){
+	for _, artist := range artistLoad {
+		if strings.Contains(TurnStringToShearch(artist.Name), TurnStringToShearch(shearchFilter)) {
 			artistFiltered = append(artistFiltered, artist)
 		}
 	}
@@ -74,11 +97,11 @@ func TurnStringToShearch(str string) string {
 	for _, car := range str {
 		switch {
 		case 65 <= car && car <= 90:
-			nstr = nstr+string(car+32)
+			nstr = nstr + string(car+32)
 		case car == 32:
 			continue
 		default:
-			nstr = nstr+string(car)
+			nstr = nstr + string(car)
 		}
 	}
 	return nstr

@@ -5,78 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="server/css/style.css">
+    <link rel="stylesheet" href="server/css/style_index.css">
+    <link rel="stylesheet" href="server/css/style_sidebar.css">
     <title>Groupie Tracker</title>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="header">
-            <img src="none" alt="">
-            <h1>Groupie-Tracker</h1>
-            <form action="/" method="post">
-                <input type="text" name="shearch" placeholder="Schearch an artist" class="shearch">
-            </form>
-            <p>Show All</p>
-        </div>
-        <div class="content">
-            <ul>
-                {{ range $artist := .Artists }}
-                    {{ if ne ($artist.Id) 0 }}
-                        <li><a href="?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
-                    {{ end }}
-                {{ end }}
-            </ul>
-
-        </div>
-    </div>
+    {{ template "sidebar.html" . }}
     <div class="sect1">
-        <img class="bg-image" src="{{ .Currentband.Image }}" alt="">
-        <div class="content">
-            <div class="leftbox">
-                <div class="content">
-                    <h1>{{ .Currentband.Name }}</h1>
-                    <h2>Create in {{ .Currentband.CreationDate }}</h2>
-                    <div class="btnlst">
-                        <a href="#event" class="btn">Event</a>
-                        <a href="" class="btn2">About us</a>
-                    </div>
-                </div>
-            </div>
-            <div class="rightbox">
-                <img src="{{ .Currentband.Image }}" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="secttrans">
-        <div class="ocean">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-          </div>
-        <h2>Hurry up meet us !</h2>
-        <h1 id="event">Event</h1>
-    </div>
-    <div class="sect2">
-        <div class="leftbox">
-            <div class="content">
-                <ul>
-                    {{ range $key, $value := .Currentband.Relations }}
-                    <div class="dateloc">
-                        <li><p class="location">{{ $key }}</p></li>
-                        {{ range $v := $value }}
-                        <li class="event"><p class="date">{{ index $v 0 }} {{ index $v 1 }}</p>
-                            <p>{{ index $v 2 }}</p>
-                        </li>
-                        {{ end}}
-                        
-                    </div>
-                    {{ end }}
-                </ul>
-
-            </div>
-        </div>
-        <div class="rightbox">
-            <img src="{{ .Currentband.Image }}" alt="" class="map">
-        </div>
+        <h1>Groupie-Tracker</h1>
+        <p></p>
     </div>
 </body>
 </html>
