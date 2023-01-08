@@ -68,6 +68,11 @@
     margin: 20px 5px;
     display: flex;
     flex-direction: row;
+    transition: ease 0.5s;
+}
+
+.sidebar .artist:hover {
+    transform: scale(1.1);
 }
 
 .sidebar .artist img {

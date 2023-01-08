@@ -7,22 +7,70 @@ body{
 .header {
     display: flex;
     flex-direction: row;
-    height: 10vh;
+    height: 8vh;
     width: 100vw;
+    justify-content: space-between;
+}
+
+.header .leftbox {
+    display: flex;
+    flex-direction: row;
+    margin: auto 2vw;
+}
+
+.header .leftbox img {
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+}
+
+.header .leftbox h2 {
+    margin: auto 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.header .rightbox {
+    display: flex;
+    flex-direction: row;
+    margin: auto 3vw;
+}
+
+.header .rightbox img {
+    margin: auto 20px;
+    height: 30px;
+    width: 30px;
+}
+
+.header .rightbox a {
+    display: block;
+    padding: 10px 1vw;
+    text-align: center;
+    margin: auto 5px;
+    font-size: 0.9em;
+}
+
+.header .rightbox a:nth-child(3n+2){
+    font-size: 1em;
+    border-style: solid;
+    border-color: var(--gren);
+    border-width: 1px;
+    font-weight: bold;
+    color: var(--gren);
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    background-image: url(/server/images/concert.jpg);
+    background-image: url(/server/images/background/concert.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 90vh;
+    height: 92vh;
 }
 
 .container .content {
     backdrop-filter: blur(5px);
-    background-image: linear-gradient(rgba(0, 0, 0, 0),#173335b2);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.18),#0f2122b2);
     height: 100%;
 }
 
@@ -81,6 +129,11 @@ body{
     margin: 20px;
     border-radius: 35px;
     background-color: rgba(255, 255, 255, 0.06);
+    transition: ease 0.5s;
+}
+
+.art:hover {
+    transform: scale(1.05);
 }
 
 .art img {
