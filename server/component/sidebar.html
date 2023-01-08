@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <div class="header">
+    <div class="sideheader">
         <img src="none" alt="">
         <h1>Groupie-Tracker</h1>
         <form action="/" method="post">
@@ -7,7 +7,7 @@
         </form>
         <p>Show All</p>
     </div>
-    <div class="content">
+    <div class="sidecontent">
         <ul>
             {{ range $artist := .Artists }}
                 {{ if ne ($artist.Id) 0 }}
