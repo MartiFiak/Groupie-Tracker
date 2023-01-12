@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	groupietrackers "groupie-tracker/functions"
 	"math/rand"
 	"net/http"
 	"strconv"
-	"strings"
 	"text/template"
 	"time"
 )
@@ -17,7 +17,14 @@ var artistFiltered []groupietrackers.Artist
 var currentID int
 var data groupietrackers.ApiData
 
+var FakeCurrentYear int
+var FakeCurrentMonth time.Month
+var FakeCurrentDay int
+
 func main() {
+
+	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
+	fmt.Println("Date Simulated :", FakeCurrentDay, FakeCurrentMonth, FakeCurrentYear)
 
 	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
 
@@ -54,15 +61,18 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		pageData.Artists = artistLoad
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
-		GetArtistWithStr(shearchFilter)
+		artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
 		pageData.Artists = artistFiltered
 	}
 	rand.Seed(time.Now().UnixNano())
-	pageData.MPageRArtist = []int{}
-	pageData.MPageRArtist = append(pageData.MPageRArtist, rand.Intn(len(pageData.Artists)))
-
-	//currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
-	//pageData.Currentband = currentband
+	pageData.MPageRArtist = []groupietrackers.Artist{}
+	mi := 3
+	if len(artistLoad) < 3 {
+		mi = len(artistLoad)
+	}
+	for i := 0; i < mi; i++ {
+		pageData.MPageRArtist = append(pageData.MPageRArtist, artistLoad[rand.Intn(len(artistLoad))])
+	}
 
 	tmpl.Execute(w, pageData)
 }
@@ -78,7 +88,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		pageData.Artists = artistLoad
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
-		GetArtistWithStr(shearchFilter)
+		artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
 		pageData.Artists = artistFiltered
 	}
 
@@ -89,31 +99,6 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
 	pageData.Currentband = currentband
 	tmpl.Execute(w, pageData)
-}
-
-func GetArtistWithStr(shearchFilter string) {
-	artistFiltered = []groupietrackers.Artist{}
-	for _, artist := range artistLoad {
-		if strings.Contains(TurnStringToShearch(artist.Name), TurnStringToShearch(shearchFilter)) {
-			artistFiltered = append(artistFiltered, artist)
-		}
-	}
-}
-
-func TurnStringToShearch(str string) string {
-	/*       Turn :  fdsfKJHJUGKHLJ dsf ezrtf _è-'4941 into : fdsfkjhjugkhljdsfezrtf_è-'4941*/
-	var nstr string
-	for _, car := range str {
-		switch {
-		case 65 <= car && car <= 90:
-			nstr = nstr + string(car+32)
-		case car == 32:
-			continue
-		default:
-			nstr = nstr + string(car)
-		}
-	}
-	return nstr
 }
 
 func GetArtistXtoY(x, y int, apiArtist string) {
