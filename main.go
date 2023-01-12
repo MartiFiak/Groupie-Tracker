@@ -110,3 +110,4 @@ func GetArtistXtoY(x, y int, apiArtist string) {
 		}
 	}
 }
+
