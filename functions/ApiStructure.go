@@ -12,7 +12,7 @@ type CurrentBand struct {
 type PageData struct {
 	Currentband CurrentBand
 	Artists     []Artist
-	MPageRArtist []int
+	MPageRArtist []Artist
 }
 
 type Artist struct {

@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
-	"strings"
 	"text/template"
 	"time"
 )
@@ -30,13 +29,6 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func RealtimeData() {
-	for { /*       Regenere les données des artistes toutes les minutes        */
-		GetArtistXtoY(1, 52, data.Artist)
-		time.Sleep(60 * time.Second)
-	}
-}
-
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./server/index.html", "./server/component/sidebar.html"))
 
@@ -48,15 +40,18 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		pageData.Artists = artistLoad
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
-		GetArtistWithStr(shearchFilter)
+		artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
 		pageData.Artists = artistFiltered
 	}
 	rand.Seed(time.Now().UnixNano())
-	pageData.MPageRArtist = []int{}
-	pageData.MPageRArtist = append(pageData.MPageRArtist, rand.Intn(len(pageData.Artists)))
-
-	//currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
-	//pageData.Currentband = currentband
+	pageData.MPageRArtist = []groupietrackers.Artist{}
+	mi := 3
+	if len(pageData.Artists) < 3 {
+		mi = len(pageData.Artists)
+	}
+	for i := 0; i < mi; i++ {
+		pageData.MPageRArtist = append(pageData.MPageRArtist, pageData.Artists[rand.Intn(len(pageData.Artists))])
+	}
 
 	tmpl.Execute(w, pageData)
 }
@@ -72,7 +67,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		pageData.Artists = artistLoad
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
-		GetArtistWithStr(shearchFilter)
+		artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
 		pageData.Artists = artistFiltered
 	}
 
@@ -85,36 +80,18 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, pageData)
 }
 
-func GetArtistWithStr(shearchFilter string) {
-	artistFiltered = []groupietrackers.Artist{}
-	for _, artist := range artistLoad {
-		if strings.Contains(TurnStringToShearch(artist.Name), TurnStringToShearch(shearchFilter)) {
-			artistFiltered = append(artistFiltered, artist)
-		}
-	}
-}
-
-func TurnStringToShearch(str string) string {
-	/*       Turn :  fdsfKJHJUGKHLJ dsf ezrtf _è-'4941 into : fdsfkjhjugkhljdsfezrtf_è-'4941*/
-	var nstr string
-	for _, car := range str {
-		switch {
-		case 65 <= car && car <= 90:
-			nstr = nstr + string(car+32)
-		case car == 32:
-			continue
-		default:
-			nstr = nstr + string(car)
-		}
-	}
-	return nstr
-}
-
 func GetArtistXtoY(x, y int, apiArtist string) {
 	for i := x; i <= y; i++ {
 		if i > len(artistLoad) {
 			artist := groupietrackers.SetArtistInfoData(groupietrackers.GetAPIData(apiArtist + "/" + strconv.Itoa(i)))
 			artistLoad = append(artistLoad, artist)
 		}
+	}
+}
+
+func RealtimeData() {
+	for { /*       Regenere les données des artistes toutes les minutes        */
+		GetArtistXtoY(1, 52, data.Artist)
+		time.Sleep(60 * time.Second)
 	}
 }

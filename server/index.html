@@ -33,30 +33,15 @@
                     <h3>You May Like</h3>
                     <hr class="artistS">
                     <div class="artistR">
-                        {{ range $value := .MPageRArtist }}
-                        {{ $art := index .Artists $value }}
-                        <div class="art">
-                            <img src="none" alt="">
-                            <div class="artinfo">
-                                <p class="name">{{ $art .Name }}</p>
-                                <p class="datecreat">19XX</p>
+                        {{ range $art := .MPageRArtist }}
+                            <div class="art">
+                                <img src="{{ $art.Image }}" alt="">
+                                <div class="artinfo">
+                                    <p class="name">{{ $art.Name }}</p>
+                                    <p class="datecreat">{{ $art.CreationDate }}</p>
+                                </div>
                             </div>
-                        </div>
                         {{ end }}
-                        <div class="art">
-                            <img src="none" alt="">
-                            <div class="artinfo">
-                                <p class="name">Groupe Name</p>
-                                <p class="datecreat">19XX</p>
-                            </div>
-                        </div>
-                        <div class="art">
-                            <img src="none" alt="">
-                            <div class="artinfo">
-                                <p class="name">Groupe Name</p>
-                                <p class="datecreat">19XX</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
