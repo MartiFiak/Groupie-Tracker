@@ -35,7 +35,20 @@ func main() {
 
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/artist", ArtistHandler)
+	http.HandleFunc("/login", LoginHandler)
 	http.ListenAndServe(":8080", nil)
+}
+
+func RealtimeData() {
+	for { /*       Regenere les données des artistes toutes les minutes        */
+		GetArtistXtoY(1, 52, data.Artist)
+		time.Sleep(60 * time.Second)
+	}
+}
+
+func LoginHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("./Login.html"))
+	tmpl.Execute(w, nil)
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -95,16 +108,5 @@ func GetArtistXtoY(x, y int, apiArtist string) {
 			artist := groupietrackers.SetArtistInfoData(groupietrackers.GetAPIData(apiArtist + "/" + strconv.Itoa(i)))
 			artistLoad = append(artistLoad, artist)
 		}
-	}
-}
-
-func GetArtist(apiArtist string) {
-	artistLoad = groupietrackers.SetArtist(groupietrackers.GetAPIData(apiArtist))
-}
-
-func RealtimeData() {
-	for { /*       Regenere les données des artistes toutes les minutes        */
-		GetArtist(data.Artist) /// A Changer en x to y si erreur
-		time.Sleep(60 * time.Second)
 	}
 }
