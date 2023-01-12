@@ -6,12 +6,13 @@ type CurrentBand struct {
 	Image        string
 	Member       []string
 	CreationDate int
-	Relations    map[string][][]string
+	Relations    map[string][][][]string    /// Pays :  [[ville,Date],[ville,Date]]
 }
 
 type PageData struct {
 	Currentband CurrentBand
 	Artists     []Artist
+	MPageRArtist []Artist
 }
 
 type Artist struct {

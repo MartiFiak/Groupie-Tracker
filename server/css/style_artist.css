@@ -152,7 +152,7 @@ body{
 }
 
 .sect2 .leftbox {
-    width: 50vw;
+    width: 70vw;
 }
 
 .sect2 .leftbox .content {
@@ -167,23 +167,36 @@ body{
     margin-left: 2vh;
 }
 
+.sect2 .leftbox .locontent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.sect2 .leftbox .locontent li {
+    flex: 1;
+    max-width: 20vw;
+    margin: 0 5px;
+}
+
 .sect2 .rightbox {
-    width: 50vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .map{
-    height: 25vw;
-    width: 25vw;
+    height: 20vw;
+    width: 20vw;
     margin: 0 auto;
 }
 
 .location {
     color: var(--gren);
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 1vh;
+    margin-top: 5vh;
     text-align: center;
     text-transform: uppercase;
 }
@@ -198,6 +211,13 @@ body{
 }
 
 .event {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 20vw;
+}
+
+.eventdate {
     border-style: solid;
     border-radius: 5vh;
     width: 5vh;
@@ -208,6 +228,25 @@ body{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+.infoloc {
+    margin: auto 0;
+}
+.infoloc h3 {
+    font-size: 16px;
+}
+.infoloc p {
+    font-size: 14px;
+}
+.event img {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 
