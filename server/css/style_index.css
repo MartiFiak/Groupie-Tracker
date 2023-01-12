@@ -33,7 +33,7 @@ body{
 .header .rightbox {
     display: flex;
     flex-direction: row;
-    margin: auto 3vw;
+    margin: auto 12vw;
 }
 
 .header .rightbox img {
