@@ -46,23 +46,27 @@
                     {{ range $key, $value := .Currentband.Relations }}
                         <div class="dateloc">
                             <li><p class="location">{{ $key }}</p></li>
-                            {{ range $v := $value }}
-                            <li>
-                                <div class="event">
-                                    <div class="eventdate">
-                                        <p>{{ index $v 0 }} </p>
-                                        <p class="date">{{ index $v 1 }}</p>
-                                        <p>{{ index $v 2 }}</p>
-                                    </div>
-                                    <div class="infoloc">
-                                        <h3>Concert</h3>
-                                        <p>📍{{ $key }}</p>
-                                        <p>🎟️$100,0</p>
-                                    </div>
-                                    <img src="/server/images/icons/right-arrow.png" alt="">
-                                </div>
-                            </li>
-                            {{ end}}
+                            <div class="locontent">
+                                {{ range $pays := $value }}
+                                    {{ range $ville := $pays}}
+                                    <li>
+                                        <div class="event">
+                                            <div class="eventdate">
+                                                <p>{{ index $ville 1 }} </p>
+                                                <p class="date">{{ index $ville 2 }}</p>
+                                                <p>{{ index $ville 3 }}</p>
+                                            </div>
+                                            <div class="infoloc">
+                                                <h3>Concert</h3>
+                                                <p>📍{{ index $ville 0 }}, {{ $key }}</p>
+                                                <p>🎟️$100,0</p>
+                                            </div>
+                                            <img src="/server/images/icons/right-arrow.png" alt="">
+                                        </div>
+                                    </li>
+                                    {{ end}}
+                                {{ end}}
+                            </div>
                         </div>
                     {{ end }}
                 </ul>

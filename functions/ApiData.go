@@ -90,6 +90,15 @@ func SetArtistInfoData(body []byte) Artist {
 	return artistdata
 }
 
+func SetArtist(body []byte) []Artist {
+	artistd := []Artist{}
+	jsonErr := json.Unmarshal(body, &artistd)
+	if jsonErr != nil {
+		fmt.Println(jsonErr)
+	}
+	return artistd
+}
+
 func UpdateCurrentBand(apiArtist string) CurrentBand {
 	var cb CurrentBand
 	dataartist := SetArtistData(GetAPIData(apiArtist))
@@ -103,10 +112,13 @@ func UpdateCurrentBand(apiArtist string) CurrentBand {
 	return cb
 }
 
-func ChangeDateFormat(date map[string][]string) map[string][][]string {
-	nDate := make(map[string][][]string)
+func ChangeDateFormat(date map[string][]string) map[string][][][]string {
+	nDate := make(map[string][][][]string)
 
 	for location, ldate := range date {
+		var ville string
+		var pays string
+
 		if len(ldate) > 1 {
 			lDate := [][]string{}
 			var allDate [][]string
@@ -118,6 +130,9 @@ func ChangeDateFormat(date map[string][]string) map[string][][]string {
 			var lday int
 			var month string
 			var year string
+
+			pays = strings.Split(location, "-")[1]
+			ville = strings.Split(location, "-")[0]
 
 			for i, d := range allDate {
 				if i == 0 {
@@ -131,13 +146,13 @@ func ChangeDateFormat(date map[string][]string) map[string][][]string {
 					if month == d[1] && year == d[2] && lday-1 == nlday {
 						day = d[0] + "-" + mday
 						lday--
-						if i == len(allDate)-1{
+						if i == len(allDate)-1 {
 							imonth, _ := strconv.Atoi(month)
-							lDate = append(lDate, []string{day, []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth-1], year})
+							lDate = append(lDate, []string{ville, day, []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth-1], year})
 						}
 					} else {
 						imonth, _ := strconv.Atoi(month)
-						lDate = append(lDate, []string{day, []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth-1], year})
+						lDate = append(lDate, []string{ville, day, []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth-1], year})
 						day = d[0]
 						mday = d[0]
 						lday, _ = strconv.Atoi(day)
@@ -147,12 +162,15 @@ func ChangeDateFormat(date map[string][]string) map[string][][]string {
 				}
 			}
 
-			nDate[location] = lDate
+			nDate[pays] = append(nDate[pays], lDate)
 		} else {
+			pays = strings.Split(location, "-")[1]
+			ville = strings.Split(location, "-")[0]
+
 			lDate := [][]string{}
 			imonth, _ := strconv.Atoi(strings.Split(ldate[0], "-")[1])
-			lDate = append(lDate, []string{strings.Split(ldate[0], "-")[0], []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth-1], strings.Split(ldate[0], "-")[2]})
-			nDate[location] = lDate
+			lDate = append(lDate, []string{ville, strings.Split(ldate[0], "-")[0], []string{"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}[imonth-1], strings.Split(ldate[0], "-")[2]})
+			nDate[pays] = append(nDate[pays], lDate)
 		}
 	}
 	return nDate
