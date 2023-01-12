@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	groupietrackers "groupie-tracker/functions"
 	"math/rand"
 	"net/http"
@@ -16,7 +17,14 @@ var artistFiltered []groupietrackers.Artist
 var currentID int
 var data groupietrackers.ApiData
 
+var FakeCurrentYear int
+var FakeCurrentMonth time.Month
+var FakeCurrentDay int
+
 func main() {
+
+	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
+	fmt.Println("Date Simulated :", FakeCurrentDay, FakeCurrentMonth, FakeCurrentYear)
 
 	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
 
@@ -46,11 +54,11 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	rand.Seed(time.Now().UnixNano())
 	pageData.MPageRArtist = []groupietrackers.Artist{}
 	mi := 3
-	if len(pageData.Artists) < 3 {
-		mi = len(pageData.Artists)
+	if len(artistLoad) < 3 {
+		mi = len(artistLoad)
 	}
 	for i := 0; i < mi; i++ {
-		pageData.MPageRArtist = append(pageData.MPageRArtist, pageData.Artists[rand.Intn(len(pageData.Artists))])
+		pageData.MPageRArtist = append(pageData.MPageRArtist, artistLoad[rand.Intn(len(artistLoad))])
 	}
 
 	tmpl.Execute(w, pageData)

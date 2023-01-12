@@ -44,17 +44,26 @@
             <div class="content">
                 <ul>
                     {{ range $key, $value := .Currentband.Relations }}
-                    <div class="dateloc">
-                        <li><p class="location">{{ $key }}</p></li>
-                        {{ range $v := $value }}
-                        <li class="event">
-                            <p>{{ index $v 0 }} </p>
-                            <p class="date">{{ index $v 1 }}</p>
-                            <p>{{ index $v 2 }}</p>
-                        </li>
-                        {{ end}}
-                        
-                    </div>
+                        <div class="dateloc">
+                            <li><p class="location">{{ $key }}</p></li>
+                            {{ range $v := $value }}
+                            <li>
+                                <div class="event">
+                                    <div class="eventdate">
+                                        <p>{{ index $v 0 }} </p>
+                                        <p class="date">{{ index $v 1 }}</p>
+                                        <p>{{ index $v 2 }}</p>
+                                    </div>
+                                    <div class="infoloc">
+                                        <h3>Concert</h3>
+                                        <p>📍{{ $key }}</p>
+                                        <p>🎟️$100,0</p>
+                                    </div>
+                                    <img src="/server/images/icons/right-arrow.png" alt="">
+                                </div>
+                            </li>
+                            {{ end}}
+                        </div>
                     {{ end }}
                 </ul>
 

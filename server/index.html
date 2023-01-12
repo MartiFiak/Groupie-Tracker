@@ -34,13 +34,15 @@
                     <hr class="artistS">
                     <div class="artistR">
                         {{ range $art := .MPageRArtist }}
-                            <div class="art">
-                                <img src="{{ $art.Image }}" alt="">
-                                <div class="artinfo">
-                                    <p class="name">{{ $art.Name }}</p>
-                                    <p class="datecreat">{{ $art.CreationDate }}</p>
-                                </div>
-                            </div>
+                                <!--<div class="art">-->
+                                    <a  class="art" href="/artist?id={{ $art.Id }}">
+                                    <img src="{{ $art.Image }}" alt="">
+                                    <div class="artinfo">
+                                        <p class="name">{{ $art.Name }}</p>
+                                        <p class="datecreat">{{ $art.CreationDate }}</p>
+                                    </div>
+                                    </a>
+                                <!--</div>-->
                         {{ end }}
                     </div>
                 </div>

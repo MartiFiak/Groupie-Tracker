@@ -198,6 +198,13 @@ body{
 }
 
 .event {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 20vw;
+}
+
+.eventdate {
     border-style: solid;
     border-radius: 5vh;
     width: 5vh;
@@ -208,6 +215,25 @@ body{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+.infoloc {
+    margin: auto 0;
+}
+.infoloc h3 {
+    font-size: 16px;
+}
+.infoloc p {
+    font-size: 14px;
+}
+.event img {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 
