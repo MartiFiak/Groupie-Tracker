@@ -1,11 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
 .sidebar{
   position: fixed;
   top: 0;
@@ -43,21 +36,21 @@
   right: 0px;
   width: calc(100% - 78px);
 }
-.home-section .home-content{
+.sidebar .home-section .home-content{
   height: 60px;
   display: flex;
   align-items: center;
 }
-.home-section .home-content .bx-search,
-.home-section .home-content .text{
+.sidebar .home-section .home-content .bx-search,
+.sidebar .home-section .home-content .text{
   color: #28b67e;
   font-size: 35px;
 }
-.home-section .home-content .bx-search{
+.sidebar .home-section .home-content .bx-search{
   margin: 0 15px;
   cursor: pointer;
 }
-.home-section .home-content .text{
+.sidebar .home-section .home-content .text{
   font-size: 26px;
   font-weight: 600;
 }
@@ -69,7 +62,7 @@
   .sidebar.close{
     width: 0;
   }
-  .home-section{
+  .sidebar .home-section{
     right: 0px;
     width: calc(100% - 78px);
     z-index: 100;
