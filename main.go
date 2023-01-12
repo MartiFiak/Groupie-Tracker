@@ -27,6 +27,7 @@ func main() {
 
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/artist", ArtistHandler)
+	http.HandleFunc("/login", LoginHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -35,6 +36,11 @@ func RealtimeData() {
 		GetArtistXtoY(1, 52, data.Artist)
 		time.Sleep(60 * time.Second)
 	}
+}
+
+func LoginHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("./Login.html"))
+	tmpl.Execute(w, nil)
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
