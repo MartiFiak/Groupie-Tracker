@@ -2,6 +2,7 @@ package main
 
 import (
 	groupietrackers "groupie-tracker/functions"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"strings"
@@ -39,10 +40,6 @@ func RealtimeData() {
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./server/index.html", "./server/component/sidebar.html"))
 
-	if currentID == 0 {
-		currentID = 1
-	}
-
 	switch r.Method {
 	case "GET":
 		if r.URL.Query().Get("id") != "" {
@@ -54,17 +51,18 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		GetArtistWithStr(shearchFilter)
 		pageData.Artists = artistFiltered
 	}
-	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
-	pageData.Currentband = currentband
+	rand.Seed(time.Now().UnixNano())
+	pageData.MPageRArtist = []int{}
+	pageData.MPageRArtist = append(pageData.MPageRArtist, rand.Intn(len(pageData.Artists)))
+
+	//currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
+	//pageData.Currentband = currentband
 
 	tmpl.Execute(w, pageData)
 }
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./server/artist.html", "./server/component/sidebar.html"))
-	if currentID == 0 {
-		currentID = 1
-	}
 
 	switch r.Method {
 	case "GET":
@@ -77,6 +75,11 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		GetArtistWithStr(shearchFilter)
 		pageData.Artists = artistFiltered
 	}
+
+	if currentID == 0 {
+		http.Redirect(w, r, "/", http.StatusFound)
+	}
+
 	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
 	pageData.Currentband = currentband
 	tmpl.Execute(w, pageData)
