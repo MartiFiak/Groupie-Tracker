@@ -109,6 +109,7 @@ func UpdateCurrentBand(apiArtist string) CurrentBand {
 	cb.Member = dataartist.Member
 	cb.CreationDate = dataartist.CreationDate
 	cb.Relations = ChangeDateFormat(datadatelocation.DatesLocations)
+	cb.FuturRelation, cb.PassRelation = CheckRelationTime(cb.Relations)
 	return cb
 }
 
@@ -174,4 +175,15 @@ func ChangeDateFormat(date map[string][]string) map[string][][][]string {
 		}
 	}
 	return nDate
+}
+
+func CheckRelationTime(date map[string][][][]string) (map[string][][][]string, map[string][][][]string) {
+	var fRelation map[string][][][]string
+	var pRelation map[string][][][]string
+
+	for _, pays := range date {
+		fmt.Println(pays)
+	}
+
+	return fRelation, pRelation
 }
