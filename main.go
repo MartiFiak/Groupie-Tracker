@@ -24,6 +24,7 @@ var FakeCurrentDay int
 func main() {
 
 	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
+	FakeCurrentYear -= 3
 	fmt.Println("Date Simulated :", FakeCurrentDay, FakeCurrentMonth, FakeCurrentYear)
 
 	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
@@ -115,3 +116,4 @@ func GetArtistXtoY(x, y int, apiArtist string) {
 		}
 	}
 }
+

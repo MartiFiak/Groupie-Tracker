@@ -7,25 +7,65 @@
     <link rel="stylesheet" href="server/css/style.css">
     <link rel="stylesheet" href="server/css/style_index.css">
     <link rel="stylesheet" href="server/css/style_sidebar.css">
+    <link rel="stylesheet" href="server/css/font_style.css">
+    <link rel="icon" href="/server/images/icons/gplogo.png">
     <title>Groupie Tracker</title>
+    <!-- Boxiocns CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    {{ template "sidebar.html" . }}
+    <div class="sidebar close">
+            <div class="sideheader">
+                <img src="none" alt="">
+                <h1>Groupie-Tracker</h1>
+                <form action="/" method="post">
+                    <input type="text" name="search" placeholder="Search an artist" class="search" id="shearchbar">
+                </form>
+                <p>Show All</p>
+            </div>
+            <div class="sidecontent">
+                <ul>
+                    {{ range $artist := .Artists }}
+                        {{ if ne ($artist.Id) 0 }}
+                            <li><a href="/artist?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
+                        {{ end }}
+                    {{ end }}
+                </ul>
+            </div>
+    </div>
     <div class="header">
         <div class="leftbox">
-            <img src="none" alt="">
+            <img src="/server/images/icons/gplogo.png" alt="">
             <h2>Groupie-Tracker</h2>
         </div>
         <div class="rightbox">
             <a href="/signup">Sign up</a>
             <a href="/login">Login</a>
             <img src="/server/images/icons/looplogo.png" alt="">
+            <section class="home-section">
+                <div class="home-content">
+                <i class="bx bx-search"></i>
+                </div>
+            </section>
+            <a href="/login">Sign up</a>
+            <a href="">Login</a>
         </div>
     </div>
+    
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-search");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", ()=>{
+            sidebar.classList.toggle("close");
+        });
+    </script>
     <div class="container">
         <div class="content">
             <div class="sect1">
-                <h1>Groupie-Tracker</h1>
+                <h1 class="mainTitle">Groupie-Tracker</h1>
                 <p>Find all the upcoming events of your favorite groups</p>
             </div>
             <div class="sect2">
@@ -49,5 +89,6 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="server/js/shearchbar.js"></script>
 </body>
 </html>

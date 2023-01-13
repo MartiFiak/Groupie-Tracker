@@ -1,17 +1,19 @@
 package groupietrackers
 
 type CurrentBand struct {
-	Id           int
-	Name         string
-	Image        string
-	Member       []string
-	CreationDate int
-	Relations    map[string][][]string
+	Id            int
+	Name          string
+	Image         string
+	Member        []string
+	CreationDate  int
+	Relations     map[string][][][]string /// Pays :  [[ville,Date],[ville,Date]]
+	FuturRelation map[string][][][]string
+	PassRelation  map[string][][][]string
 }
 
 type PageData struct {
-	Currentband CurrentBand
-	Artists     []Artist
+	Currentband  CurrentBand
+	Artists      []Artist
 	MPageRArtist []Artist
 }
 

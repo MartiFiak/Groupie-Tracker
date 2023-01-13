@@ -1,33 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap%27');
 
-.sidebar {
-    position: fixed;
-    height: 100vh;
-    width: 250px;
-    padding: 10px;
-    backdrop-filter: blur(6px);
-    background-color: #0d1321dc;
-    right: -230px;
-    top: 0;
-    z-index: 3;
-    box-shadow: 0 8px 32px rgb(2,4,24);
-    border-right: 2px solid rgba(255, 255, 255, 0.09);
-    transition: all .5s ease;
-}
-
-.sidebar * {
-    visibility: hidden;
-}
-
-.sidebar:hover{
-    right: 0;
-}
-
-.sidebar:hover * {
-    visibility: visible;
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  padding: 10px;
+  backdrop-filter: blur(6px);
+  background-color: #0d1321dc;
+  z-index: 3;
+  box-shadow: 0 8px 32px rgb(2,4,24);
+  border-right: 2px solid rgba(255, 255, 255, 0.09);
+  transition: all 0.5s ease;
 }
 
 .sidebar .sideheader {
-    height: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,10 +24,57 @@
 .sidebar .sideheader h1 {
     font-size: 1.2em;
     text-align: center;
-    margin: 40px;
+    margin: 45px;
 }
 
-.sidebar .shearch {
+.sidebar.close{
+  width: 0px;
+  visibility: hidden;
+  display: flex;
+}
+
+.sidebar.close ~ .home-section{
+  right: 0px;
+  width: calc(100% - 78px);
+}
+.header .home-section .home-content{
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.header .home-section .home-content .bx-search,
+.header .home-section .home-content .text{
+  color: #28b67e;
+  font-size: 35px;
+}
+.header .home-section .home-content .bx-search{
+  margin: 0 15px;
+  cursor: pointer;
+}
+.header .home-section .home-content .text{
+  font-size: 26px;
+  font-weight: 600;
+}
+@media (max-width: 400px) {
+  
+  .sidebar{
+    width: 78px;
+  }
+  .sidebar.close{
+    width: 0;
+  }
+  .header .home-section{
+    right: 0px;
+    width: calc(100% - 78px);
+    z-index: 100;
+  }
+  .sidebar.close ~ .home-section{
+    width: 100%;
+    right: 0;
+  }
+}
+
+.sidebar .search {
     height: 20px;
     border-radius: 10px;
     border: none;
@@ -47,11 +82,10 @@
     border-width: 1px;
     padding: 5px;
     text-align: center;
-
     border-bottom-style: solid;
     background-color: transparent;
+    outline: none;
 }
-
 .sidebar .sidecontent{
     overflow-y: scroll;
     height: 80vh;

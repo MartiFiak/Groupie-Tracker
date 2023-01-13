@@ -2,6 +2,7 @@ body{
     background-color: var(--bla);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .header {
@@ -19,9 +20,9 @@ body{
 }
 
 .header .leftbox img {
-    height: 50px;
-    width: 50px;
-    margin: 10px;
+    height: 4vh;
+    width: 4vh;
+    margin: auto 10px;
 }
 
 .header .leftbox h2 {
@@ -33,13 +34,7 @@ body{
 .header .rightbox {
     display: flex;
     flex-direction: row;
-    margin: auto 3vw;
-}
-
-.header .rightbox img {
-    margin: auto 20px;
-    height: 30px;
-    width: 30px;
+    margin: auto 12vw;
 }
 
 .header .rightbox a {
@@ -82,7 +77,6 @@ body{
 }
 
 .container .sect1 h1 {
-    font-size: 140px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
@@ -109,24 +103,25 @@ body{
     background-color: #7070703a;
     border: none;
     height: 3px;
-    margin-left: 170px;
-    margin-right: 170px;
+    margin-left: 10vw;
+    margin-right: 10vw;
 }
 
 .container .sect2 .artistR {
+    margin-top: 1vh;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    margin: 0 auto;
 }
 
 .container .sect2 .artistR .art {
     display: flex;
     flex-direction: row;
-    height: 120px;
-    width: 20%;
-    margin: 20px;
+    height: 90%;
+    width: 20vw;
+    margin: auto 20px;
     border-radius: 35px;
     background-color: rgba(255, 255, 255, 0.06);
     transition: ease 0.5s;
@@ -137,8 +132,8 @@ body{
 }
 
 .art img {
-    height: 80px;
-    width: 80px;
+    height: 8vh;
+    width: 8vh;
     margin: auto 20px;
 }
 
