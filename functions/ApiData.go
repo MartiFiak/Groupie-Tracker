@@ -10,6 +10,10 @@ import (
 	"time"
 )
 
+var FakeCurrentYear int
+var FakeCurrentMonth time.Month
+var FakeCurrentDay int
+
 func GetAPIData(apiUrl string) []byte {
 
 	apiClient := http.Client{
@@ -178,19 +182,27 @@ func ChangeDateFormat(date map[string][]string) map[string][][][]string {
 }
 
 func CheckRelationTime(date map[string][][][]string) (map[string][][][]string, map[string][][][]string) {
-	var fRelation map[string][][][]string
-	var pRelation map[string][][][]string
+
+	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
+	FakeCurrentYear -= 3
+
+	fRelation := make(map[string][][][]string)
+	pRelation := make(map[string][][][]string)
 
 	for pays := range date {
-		fmt.Println(pays)
-		for location := range date[pays] {
-			fmt.Println(location)
-			switch {
-			case 20 < 2020:
-				fmt.Println("Ok")
+		for _, location := range date[pays] {
+			for _, rlocation := range location {
+				switch {
+				case AtoiWithoutErr(rlocation[1]) >= FakeCurrentYear:
+					fmt.Println("OK")
+					fRelation[pays] = append(fRelation[pays], location)
+				default:
+					fmt.Println(rlocation[1], FakeCurrentYear)
+				}
 			}
 		}
 	}
+	fmt.Println(fRelation)
 
 	return fRelation, pRelation
 }
