@@ -7,10 +7,61 @@
     <link rel="stylesheet" href="server/css/style.css">
     <link rel="stylesheet" href="server/css/style_artist.css">
     <link rel="stylesheet" href="server/css/style_sidebar.css">
+
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Groupie Tracker</title>
 </head>
 <body>
-    {{ template "sidebar.html" . }}
+
+
+    <div class="header">
+        <div class="left">
+            <img src="/server/images/icons/gplogo.png" alt="">
+            <h2>Groupie-Tracker</h2>
+        </div>
+        <div class="right">
+            <section class="home-section">
+                <div class="home-content">
+                <i class="bx bx-search"></i>
+                </div>
+            </section>
+            <a href="/login">Sign up</a>
+            <a href="">Login</a>
+        </div>
+        <div class="sidebar close">
+            <div class="sideheader">
+                <img src="none" alt="">
+                <h1>Groupie-Tracker</h1>
+                <form action="/" method="post">
+                    <input type="text" name="search" placeholder="Search an artist" class="search" id="shearchbar">
+                </form>
+                <p>Show All</p>
+            </div>
+            <div class="sidecontent">
+                <ul>
+                    {{ range $artist := .Artists }}
+                        {{ if ne ($artist.Id) 0 }}
+                            <li><a href="/artist?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
+                        {{ end }}
+                    {{ end }}
+                </ul>
+            </div>
+
+            <script>
+                let sidebar = document.querySelector(".sidebar");
+                let sidebarBtn = document.querySelector(".bx-search");
+                console.log(sidebarBtn);
+                sidebarBtn.addEventListener("click", ()=>{
+                    sidebar.classList.toggle("close");
+                });
+            </script>
+        </div>
+    </div>
+
+    
+
     <div class="sect1">
         <img class="bg-image" src="{{ .Currentband.Image }}" alt="">
         <div class="content">
@@ -77,5 +128,8 @@
             <img src="{{ .Currentband.Image }}" alt="" class="map">
         </div>
     </div>
+
+    
+
 </body>
 </html>
