@@ -181,8 +181,14 @@ func CheckRelationTime(date map[string][][][]string) (map[string][][][]string, m
 	var fRelation map[string][][][]string
 	var pRelation map[string][][][]string
 
-	for _, pays := range date {
+	for pays := range date {
 		fmt.Println(pays)
+		for location := range date[pays]{
+			fmt.Println(location)
+			switch {
+				case location[3]
+			}
+		}
 	}
 
 	return fRelation, pRelation
