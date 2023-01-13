@@ -183,10 +183,11 @@ func CheckRelationTime(date map[string][][][]string) (map[string][][][]string, m
 
 	for pays := range date {
 		fmt.Println(pays)
-		for location := range date[pays]{
+		for location := range date[pays] {
 			fmt.Println(location)
 			switch {
-				case location[3]
+			case 20 < 2020:
+				fmt.Println("Ok")
 			}
 		}
 	}
