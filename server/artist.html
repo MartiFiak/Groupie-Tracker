@@ -92,7 +92,7 @@
         <div class="leftbox">
             <div class="content">
                 <ul>
-                    {{ range $key, $value := .Currentband.Relations }}
+                    {{ range $key, $value := .Currentband.FuturRelation }}
                         <div class="dateloc">
                             <li><p class="location">{{ $key }}</p></li>
                             <div class="locontent">
@@ -109,6 +109,31 @@
                                                 <h3>Concert</h3>
                                                 <p>📍{{ index $ville 0 }}, {{ $key }}</p>
                                                 <p>🎟️$100,0</p>
+                                            </div>
+                                            <img src="/server/images/icons/right-arrow.png" alt="">
+                                        </div>
+                                    </li>
+                                    {{ end}}
+                                {{ end}}
+                            </div>
+                        </div>
+                    {{ end }}
+                    <p>PassEvent</p>
+                    {{ range $key, $value := .Currentband.PassRelation }}
+                        <div class="dateloc">
+                            <div class="locontent">
+                                {{ range $pays := $value }}
+                                    {{ range $ville := $pays}}
+                                    <li>
+                                        <div class="event">
+                                            <div class="eventdate">
+                                                <p>{{ index $ville 1 }} </p>
+                                                <p class="date">{{ index $ville 2 }}</p>
+                                                <p>{{ index $ville 3 }}</p>
+                                            </div>
+                                            <div class="infoloc">
+                                                <h3>Concert</h3>
+                                                <p>📍{{ index $ville 0 }}, {{ $key }}</p>
                                             </div>
                                             <img src="/server/images/icons/right-arrow.png" alt="">
                                         </div>
