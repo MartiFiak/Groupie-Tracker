@@ -193,16 +193,16 @@ func CheckRelationTime(date map[string][][][]string) (map[string][][][]string, m
 		for _, location := range date[pays] {
 			for _, rlocation := range location {
 				switch {
-				case AtoiWithoutErr(rlocation[1]) >= FakeCurrentYear:
-					fmt.Println("OK")
+				case AtoiWithoutErr(rlocation[3]) >= FakeCurrentYear: // Année pas déjà passé
 					fRelation[pays] = append(fRelation[pays], location)
+				case AtoiWithoutErr(rlocation[3]) < FakeCurrentYear: // Année déjà passé
+					pRelation[pays] = append(pRelation[pays], location)
 				default:
-					fmt.Println(rlocation[1], FakeCurrentYear)
 				}
 			}
 		}
 	}
-	fmt.Println(fRelation)
+	fmt.Println(fRelation, "\n\n", pRelation)
 
 	return fRelation, pRelation
 }
