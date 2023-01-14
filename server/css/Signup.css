@@ -10,10 +10,10 @@ body{
 }
 
 form {
-  margin: 4.5vw;
+  margin: 5vw;
   background-color: rgba(255, 255, 255, 0.842);
-  padding: 25px 75px;
-  border-radius: 10px;
+  padding: 22px 45px;
+  border-radius: 20px;
   min-width: 300px;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   
@@ -22,13 +22,17 @@ form {
 form h1{
   color: #28B67E;
   text-align:center;
-  padding: 3vw;
-
+  padding: 15px;
 }
 
 form .inputs {
   display: flex;
   flex-direction: column;
+  margin-top: 14px;
+}
+
+form .inputs input[type='username']::placeholder, input[type='password']::placeholder, input[type='confirmpassword']::placeholder {
+  color: #070b13cc;
 }
 
 form .inputs input[type='username'], input[type='password'],input[type='confirmpassword']{
