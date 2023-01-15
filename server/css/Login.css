@@ -1,57 +1,126 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
-  display: flex;
-  justify-content:center;
-  flex-direction: columns;
-  align-items: center;
-  background-color: #0D1321;
-  font-family: 'Roboto', sans-serif;
+    display: flex;
+    background-color: #0D1321;
+    font-family: 'Roboto', sans-serif;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 form {
-    margin-top: 20px;
-  background-color: #0D1321;
-  padding: 40px 60px;
-  border-radius: 10px;
+  margin: 5vw;
+  background-color: rgba(255, 255, 255, 0.808);
+  padding: 22px 45px;
+  border-radius: 20px;
   min-width: 300px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
 }
 
 form h1{
-  color: #eb7371;
+  color: #28B67E;
   text-align:center;
+  padding: 15px;
+}
+
+form .inputs input[type='username']::placeholder, input[type='password']::placeholder {
+  color: #070b13cc;
 }
 
 form .inputs {
   display: flex;
   flex-direction: column;
+  margin-top: 14px;
 }
 
 form .inputs input[type='username'], input[type='password']{
   padding: 15px;
   border:none;
   border-radius: 5px;
-  background-color: #5a4747;;
+  background-color: #0d13216c;
+  color: #ece9e9b3;
   outline:none;
-  margin-bottom: 15px;
+  margin-bottom: 2vw;
+  opacity: 0.5;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+form .inputs input[type='username']:hover, input[type='password']:hover{
+  opacity: 0.6;
 }
 
 form p.inscription{
   font-size: 14px;
   margin-bottom: 20px;
   color: #878787;
+  padding: 5px;
 }
 
 form p.inscription span{
-  color: #eb7371;
+  color: #28B67E;
 }
 
 form button{
   padding: 15px 25px;
+  margin: 1vw;
   border-radius: 5px;
   border:none;
   font-size: 15px;
-  color: #fff;
-  background-color: #eb7371;
+  color: #ffffffc3;
+  background-color: #28B67E;
   outline:none;
   cursor:pointer;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+form button:hover{
+  background-color: #2bc084;
+  color: #ffffffd7;
+}
+
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 8vh;
+  width: 100vw;
+  margin: 10px;
+  justify-content: space-between;
+}
+
+.header .leftbox {
+  display: flex;
+  flex-direction: row;
+  margin: auto 2vw;
+  cursor: pointer;
+}
+
+.header .leftbox img {
+  height: 4vh;
+  width: 4vh;
+  margin: auto 10px;
+}
+
+.header .leftbox h2 {
+  margin: auto 0;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+.back{
+  cursor: pointer;
+  opacity: 0.75;
+  height: 50px;
+}
+
+.back:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+
+.back .bx-arrow-back{
+  font-size: 40px;
+  color: var(wh);
 }
