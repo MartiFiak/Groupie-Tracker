@@ -91,6 +91,22 @@ body{
     justify-content: center;
 }
 
+.sect1 .leftbox .back{
+    margin: auto 3.5vw;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.sect1 .leftbox .back:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
+.sect1 .leftbox .back .bx-arrow-back{
+    font-size: 40px;
+    color: var(wh);
+}
+
 .sect1 .leftbox .content{
     display: flex;
     flex-direction: column;

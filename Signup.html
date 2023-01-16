@@ -8,18 +8,31 @@
     <link rel="stylesheet" href="server/css/style_artist.css">
     <link rel="stylesheet" href="server/css/style_sidebar.css">
     <link rel="stylesheet" href="server/css/Signup.css">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groupie Tracker</title>
 </head>
 
 <body>
+  
+  <div class="header">
+      <div class="leftbox" onclick="window.location.href='index.html'">
+          <img src="/server/images/icons/gplogo.png" alt="">
+          <h2>Groupie-Tracker</h2>
+      </div>
+  </div>
+
+  <div class="back">
+    <a href='index.html'><i class='bx bx-arrow-back'></i></a>
+  </div>
+  
   <form>
      
     <h1>Sign up</h1>  
     <div class="inputs">
-      <input type="username" placeholder="username" />
-      <input type="password" placeholder="password">
-      <input type="confirmpassword" placeholder="confirmpassword">
-      
+      <input name="username" type="username" class="textInputBox" placeholder="username" >
+      <input name="password" type="password" class="textInputBox" placeholder="password">
+      <input name="confirmpassword" type="confirmpassword" class="textInputBox" placeholder="confirmpassword">   
     </div>
 
     <p class="inscription"> Already a member ? <a href="/login"> <span>Log In</span> </a>. </p>
