@@ -8,7 +8,7 @@ type CurrentBand struct {
 	CreationDate  int
 	Relations     map[string][][][]string /// Pays :  [[ville,Date],[ville,Date]]
 	FuturRelation map[string][][][]string
-	PassRelation  map[string][][][]string
+	PassRelation  map[string][][]string
 }
 
 type PageData struct {

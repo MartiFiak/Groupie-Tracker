@@ -122,8 +122,8 @@
                     {{ range $key, $value := .Currentband.PassRelation }}
                         <div class="dateloc">
                             <div class="locontent">
-                                {{ range $pays := $value }}
-                                    {{ range $ville := $pays}}
+                                
+                                    {{ range $ville := $value}}
                                     <li>
                                         <div class="event">
                                             <div class="eventdate">
@@ -139,7 +139,7 @@
                                         </div>
                                     </li>
                                     {{ end}}
-                                {{ end}}
+                                
                             </div>
                         </div>
                     {{ end }}
