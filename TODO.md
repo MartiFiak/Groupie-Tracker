@@ -28,7 +28,7 @@
 
 🚧Réaliser un site user-friendly
  - 🚧 Bouton retour
- - ❌ Doublons dans le home page (you may like) **[Niveau 2]**
+ - ✅ Doublons dans le home page (you may like) **[Niveau 2]**
  - 🤔 Reponsive
  - 🤔 Footer ABOUT US
 

@@ -78,7 +78,17 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		mi = len(artistLoad)
 	}
 	for i := 0; i < mi; i++ {
-		pageData.MPageRArtist = append(pageData.MPageRArtist, artistLoad[rand.Intn(len(artistLoad))])
+		alreadyin := false
+		artistrandom := artistLoad[rand.Intn(len(artistLoad))]
+		for _, selectartiste := range pageData.MPageRArtist {
+			if selectartiste.Id == artistrandom.Id {
+				i--
+				alreadyin = true
+			}
+		}
+		if !alreadyin {
+			pageData.MPageRArtist = append(pageData.MPageRArtist, artistrandom)
+		}
 	}
 
 	tmpl.Execute(w, pageData)
