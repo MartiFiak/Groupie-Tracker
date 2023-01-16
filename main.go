@@ -42,7 +42,7 @@ func main() {
 
 func RealtimeData() {
 	for { /*       Regenere les données des artistes toutes les minutes        */
-		GetArtistXtoY(1, 52, data.Artist)
+		artistLoad = groupietrackers.SetArtist(groupietrackers.GetAPIData(data.Artist))
 		time.Sleep(60 * time.Second)
 	}
 }
@@ -116,4 +116,3 @@ func GetArtistXtoY(x, y int, apiArtist string) {
 		}
 	}
 }
-

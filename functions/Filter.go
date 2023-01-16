@@ -4,12 +4,35 @@ import (
 	"strings"
 )
 
-func GetArtistWithStr(shearchFilter string, artistLoad  []Artist) []Artist{
+func GetArtistWithStr(shearchFilter string, artistLoad []Artist) []Artist {
 	artistFiltered := []Artist{}
 	for _, artist := range artistLoad {
 		if strings.Contains(TurnStringToShearch(artist.Name), TurnStringToShearch(shearchFilter)) {
 			artistFiltered = append(artistFiltered, artist)
 		}
+	}
+	return artistFiltered
+}
+
+func FiltredByMembersNumber(artistLoad []Artist, n ...string) []Artist {
+	artistFiltered := []Artist{}
+	for _, artist := range artistLoad {
+		for _, nmembre := range n {
+			if len(artist.Member) == AtoiWithoutErr(nmembre) {
+				artistFiltered = append(artistFiltered, artist)
+			}
+		}
+	}
+	return artistFiltered
+}
+
+func FiltredByCreationDate(artistLoad []Artist, mindate, maxdate string) []Artist {
+	artistFiltered := []Artist{}
+	for _, artist := range artistLoad {
+		if AtoiWithoutErr(mindate) <= artist.CreationDate && artist.CreationDate <= AtoiWithoutErr(maxdate) {
+			artistFiltered = append(artistFiltered, artist)
+		}
+		
 	}
 	return artistFiltered
 }
@@ -22,7 +45,6 @@ func TurnStringToShearch(str string) string {
 		case 65 <= car && car <= 90:
 			nstr = nstr + string(car+32)
 		case car == 32:
-			continue
 		default:
 			nstr = nstr + string(car)
 		}

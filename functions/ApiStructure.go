@@ -6,7 +6,7 @@ type CurrentBand struct {
 	Image         string
 	Member        []string
 	CreationDate  int
-	Relations     map[string][][][]string /// Pays :  [[ville,Date],[ville,Date]]
+	Relations     map[string][][][]string
 	FuturRelation map[string][][][]string
 	PassRelation  map[string][][]string
 }
@@ -18,10 +18,11 @@ type PageData struct {
 }
 
 type Artist struct {
-	Id           int    `json:"id"`
-	Image        string `json:"image"`
-	Name         string `json:"name"`
-	CreationDate int    `json:"creationdate"`
+	Id           int      `json:"id"`
+	Image        string   `json:"image"`
+	Name         string   `json:"name"`
+	CreationDate int      `json:"creationdate"`
+	Member       []string `json:"members"`
 }
 
 type ApiData struct {

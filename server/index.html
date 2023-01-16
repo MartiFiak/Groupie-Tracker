@@ -15,12 +15,12 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="sidebar close">
+    <!--<div class="sidebar close">
             <div class="sideheader">
                 <img src="none" alt="">
                 <h1>Groupie-Tracker</h1>
-                <form action="/" method="post">
-                    <input type="text" name="search" placeholder="Search an artist" class="search" id="shearchbar">
+                <form action="" method="post">
+                    <input type="text" name="shearch" placeholder="Search an artist" class="search" id="shearchbar">
                 </form>
                 <p>Show All</p>
             </div>
@@ -33,7 +33,8 @@
                     {{ end }}
                 </ul>
             </div>
-    </div>
+    </div>-->
+    {{ template "sidebar.html" .}}
     <div class="header">
         <div class="leftbox" onclick="window.location.href='index.html'">
             <img src="/server/images/icons/gplogo.png" alt="">
@@ -86,6 +87,5 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="server/js/shearchbar.js"></script>
 </body>
 </html>

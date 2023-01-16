@@ -38,10 +38,10 @@
  - 🚧 Affichage des locations
  - ☐ Page All Artists
 
-⚠️ Filtrer :
- - ☐ Date de création
+⚠️ Filtre :
+ - 🚧 Date de création
  - ☐ Date du premier album
- - ☐ Nombre de membres
+ - 🚧 Nombre de membres
  - ☐ Lieux de concerts
 
 ⚠️ La barre de recherche
@@ -51,8 +51,8 @@
  - ☐ Date du premier album
  - ☐ Date de création
 
-⚠️ La barre de recherche est insensible à la casse
- - ❌ Pas de gestion des espaces **[Niveau 1]**
+✅ La barre de recherche est insensible à la casse
+ - ✅ Pas de gestion des espaces **[Niveau 1]**
 
 ⚠️ Suggestions shearch bar
  - ☐ Membre
