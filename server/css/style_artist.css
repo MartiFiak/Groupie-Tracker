@@ -256,6 +256,24 @@ body{
     justify-content: center;
 }
 
+.sect2 .lesep {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5vh;
+}
+
+.sect2 .lesep h3 {
+    margin-left: 5vw;
+}
+
+.sect2 .lesep .linesep{
+    height: 3px;
+    width: 50%;
+    margin: auto auto;
+    background-color: #7070703a;
+    border: none;
+}
+
 .map{
     height: 20vw;
     width: 20vw;

@@ -7,7 +7,7 @@ type CurrentBand struct {
 	Member        []string
 	CreationDate  int
 	Relations     map[string][][][]string
-	FuturRelation map[string][][][]string
+	FuturRelation map[string][][]string
 	PassRelation  map[string][][]string
 }
 

@@ -56,7 +56,7 @@
                     sidebar.classList.toggle("close");
                 });
             </script>
-        </div>
+        <!--</div>-->
     </div>
 
     <div class="sect1">
@@ -94,12 +94,13 @@
         <div class="leftbox">
             <div class="content">
                 <ul>
+                    {{ if gt (len .Currentband.FuturRelation) 0 }}
                     {{ range $key, $value := .Currentband.FuturRelation }}
                         <div class="dateloc">
                             <li><p class="location">{{ $key }}</p></li>
                             <div class="locontent">
-                                {{ range $pays := $value }}
-                                    {{ range $ville := $pays}}
+                                {{ range $ville := $value }}
+                                    
                                     <li>
                                         <div class="event">
                                             <div class="eventdate">
@@ -115,16 +116,19 @@
                                             <img src="/server/images/icons/right-arrow.png" alt="">
                                         </div>
                                     </li>
-                                    {{ end}}
+                                    
                                 {{ end}}
                             </div>
                         </div>
                     {{ end }}
-                    <p>PassEvent</p>
+                    {{ else }}
+                    <p>No events planned</p>
+                    {{ end }}
+                    {{ if ne (len .Currentband.PassRelation) 0 }}
+                    <div class="lesep"><h3>Latest events</h3><div class="linesep"></div></div>
                     {{ range $key, $value := .Currentband.PassRelation }}
                         <div class="dateloc">
                             <div class="locontent">
-                                
                                     {{ range $ville := $value}}
                                     <li>
                                         <div class="event">
@@ -144,6 +148,7 @@
                                 
                             </div>
                         </div>
+                    {{ end }}
                     {{ end }}
                 </ul>
 
