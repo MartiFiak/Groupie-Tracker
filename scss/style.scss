@@ -1,0 +1,37 @@
+:root {
+    --gren:#28B67E;
+    --bla:#0D1321;
+    --mid:#1D4C4F;
+    --wh:#ECE9E9;
+    --whg:#D3DCDE;
+}
+
+/*                    ANIMATION                                      */
+
+@keyframes defilement-rtl {
+    0% {
+      transform: translate3d(100%,0,0);
+    }
+    100% {
+      transform: translate3d(-100%,0,0);
+    }
+}
+
+@keyframes wave {
+    0% {transform: translateX(0);}
+    50% {transform: translateX(-25%);}
+    100% {transform: translateX(-50%);}
+}
+
+/*                    END                                            */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    color: white;
+    list-style: none;   
+    user-select: none;
+}
