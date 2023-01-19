@@ -1,10 +1,13 @@
 let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".bx-search");
+let hright = document.getElementById("hright");
 
 var sidebarPosition = false;
+var filterVisibility = false;
 console.log(sidebarBtn);
 
 function _openSidebar(){
+    hright.style.opacity = "0";
     sidebar.style.width = "250px";
     sidebar.style.padding = "10px";
     console.log("Click", sidebar.style.width);
@@ -12,11 +15,25 @@ function _openSidebar(){
 }
 
 function _closeSidebar(){
+    hright.style.opacity = "1";
     sidebar.style.width = "0px";
     sidebar.style.margin = "0px";
     sidebar.style.padding = "0px";
     console.log("Click", sidebar.style.width);
     sidebarPosition = false;
+}
+
+function _showFilter(){
+
+}
+
+function _rangeManager(slider, text){
+    text.textContent = "1800 - " + slider.value;
+}
+
+function _test(){
+    console.log(document.getElementById("myRange").value);
+    _rangeManager(document.getElementById("myRange"), document.getElementById("test"));
 }
 
 window.addEventListener('click', function(e){   

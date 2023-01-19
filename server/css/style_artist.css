@@ -31,7 +31,7 @@ body {
 .header .right {
   display: flex;
   flex-direction: row;
-  margin: auto 12vw;
+  margin: auto 2vw;
 }
 .header .right a {
   display: block;

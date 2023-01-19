@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="server/css/style.css">
     <link rel="stylesheet" href="server/css/style_artist.css">
-    <link rel="stylesheet" href="server/css/style_sidebar.css">
     <link rel="icon" href="/server/images/icons/gplogo.png">
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +18,14 @@
             <img src="/server/images/icons/gplogo.png" alt="">
             <h2>Groupie-Tracker</h2>
         </div>
-        <div class="right">
+        <div class="right" id="hright">
+            <a href="/signup">Sign up</a>
+            <a href="/login">Login</a>
             <section class="home-section">
                 <div class="home-content">
                 <i class="bx bx-search"></i>
                 </div>
             </section>
-            <a href="/signup">Sign up</a>
-            <a href="/login">Login</a>
         </div>
             
     {{ template "sidebar.html" .}}

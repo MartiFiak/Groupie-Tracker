@@ -1,10 +1,56 @@
+<link rel="stylesheet" href="/server/css/style_sidebar.css">
 <div class="sidebar close">
     <div class="sideheader">
-        <img src="none" alt="">
+        <img src="/server/images/icons/gplogo.png" alt="">
         <h1>Groupie-Tracker</h1>
         <form action="" method="post">
             <input type="text" name="shearch" placeholder="Schearch an artist" class="shearch">
         </form>
+        <a href="" onclick="">▼ Filter</a>
+        <div class="filter">
+            <div class="creationdate">
+                <p class="title">Creation date</p>
+                <p id="test" class="daterange"> 1800-2020</p>
+            </div>
+            <div class="slidecreationdate">
+                <input type="range" min="1800" max="2050" value="1900" class="slidercreationdate" id="myRange" oninput="_test()">
+            </div>
+            
+            <div class="nbmembres">
+                <p class="title">Number of members</p>
+
+                <div class="allcheck">
+                    <div>
+                        <input type="checkbox" id="one_members" name="one_members">
+                        <label for="one_members">1</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tow_members" name="tow_members">
+                        <label for="tow_members">2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tree_members" name="tree_members">
+                        <label for="tree_members">3</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="four_members" name="four_members">
+                        <label for="four_members">4</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="five_members" name="five_members">
+                        <label for="five_members">5</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="six_members" name="six_members">
+                        <label for="six_members">6</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="more_members" name="more_members">
+                        <label for="more_members">7+</label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <p>Show All</p>
     </div>
     <div class="sidecontent">
