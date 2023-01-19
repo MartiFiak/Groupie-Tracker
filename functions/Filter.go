@@ -14,11 +14,11 @@ func GetArtistWithStr(shearchFilter string, artistLoad []Artist) []Artist {
 	return artistFiltered
 }
 
-func FiltredByMembersNumber(artistLoad []Artist, n ...string) []Artist {
+func FiltredByMembersNumber(artistLoad []Artist, n []string) []Artist {
 	artistFiltered := []Artist{}
 	for _, artist := range artistLoad {
 		for _, nmembre := range n {
-			if len(artist.Member) == AtoiWithoutErr(nmembre) {
+			if (len(artist.Member) == AtoiWithoutErr(nmembre) && nmembre != "7") || (nmembre == "7" && len(artist.Member) >= AtoiWithoutErr(nmembre)){
 				artistFiltered = append(artistFiltered, artist)
 			}
 		}
@@ -35,6 +35,16 @@ func FiltredByCreationDate(artistLoad []Artist, mindate, maxdate string) []Artis
 		
 	}
 	return artistFiltered
+}
+
+func CheckNumberSelect(n []string)[]string{
+	newn := []string{}
+	for _,nc := range n{
+		if nc != ""{
+			newn = append(newn, nc)
+		}
+	}
+	return newn
 }
 
 func TurnStringToShearch(str string) string {

@@ -39,9 +39,10 @@
  - ☐ Page All Artists
 
 ⚠️ Filtre :
- - 🚧 Date de création
+ - ✅ Date de création
+    - 🤔 Double selecteur
  - ☐ Date du premier album
- - 🚧 Nombre de membres
+ - ✅ Nombre de membres
  - ☐ Lieux de concerts
 
 ⚠️ La barre de recherche
