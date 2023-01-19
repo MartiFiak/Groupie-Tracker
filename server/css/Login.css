@@ -7,34 +7,34 @@ body {
   background-image: url(/server/images/background/concert.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  backdrop-filter: blur(5px);
 }
 body form {
-  opacity: 1;
   margin: 4.7vw;
-  background-color: rgba(255, 255, 255, 0.808);
+  background-color: #ffffff;
   padding: 18px 45px;
   border-radius: 20px;
   min-width: 300px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-body form .ligne1 {
+body  .ligne1 {
   display: flex;
 }
-body form .ligne1 .back {
+body  .ligne1 .back {
   display: flex;
   cursor: pointer;
   opacity: 0.75;
   height: 50px;
 }
-body form .ligne1 .back:hover {
+body  .ligne1 .back:hover {
   cursor: pointer;
   opacity: 1;
 }
-body form .ligne1 .back .bx-arrow-back {
+body  .ligne1 .back .bx-arrow-back {
   font-size: 40px;
   color: var(--bla);
 }
-body form .ligne1 h1 {
+body form  h1 {
   color: #28B67E;
   text-align: center;
   padding: 15px;
@@ -49,8 +49,8 @@ body form .inputs input[type=password] {
   padding: 15px;
   border: none;
   border-radius: 5px;
-  background-color: rgba(13, 19, 33, 0.4235294118);
-  color: rgba(236, 233, 233, 0.7019607843);
+  background-color: #0d132140;
+  color: #000000;
   outline: none;
   margin-bottom: 2vw;
   opacity: 0.5;
@@ -58,11 +58,18 @@ body form .inputs input[type=password] {
 }
 body form .inputs input[type=username]::placeholder,
 body form .inputs input[type=password]::placeholder {
-  color: rgba(7, 11, 19, 0.8);
+  color: #000000;
 }
 body form .inputs input[type=username]:hover,
 body form .inputs input[type=password]:hover {
-  opacity: 0.6;
+  opacity: 0.65;
+}
+body form .inputs input[type='username']:focus,
+body form .inputs input[type=password]:focus {
+  opacity: 0.68;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: #46474733;
 }
 body form .inscription {
   font-size: 14px;
@@ -79,15 +86,19 @@ body form button {
   border-radius: 5px;
   border: none;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.7647058824);
-  background-color: #28b67e;
+  color: #ffffffc3;
+  background-color: #28B67E;
   outline: none;
   cursor: pointer;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 body form button:hover {
   background-color: #2bc084;
-  color: rgba(255, 255, 255, 0.8431372549);
+  color: #ffffffd7;
+}
+body form button:focus {
+  background-color: #28B67E;
+  color: #ffffffc3;
 }
 body .header {
   background-color: var(--bla);
