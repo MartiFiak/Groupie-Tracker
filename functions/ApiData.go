@@ -181,13 +181,13 @@ func ChangeDateFormat(date map[string][]string) map[string][][][]string {
 	return nDate
 }
 
-func CheckRelationTime(date map[string][][][]string) (map[string][][]string, map[string][][]string) {
+func CheckRelationTime(date map[string][][][]string) (map[string][][]string, [][]string) {
 
 	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
 	FakeCurrentYear -= 3
 
 	fRelation := make(map[string][][]string)
-	pRelation := make(map[string][][]string)
+	pRelation := [][]string{}
 
 	for pays := range date {
 		for _, location := range date[pays] {
@@ -196,11 +196,18 @@ func CheckRelationTime(date map[string][][][]string) (map[string][][]string, map
 				case AtoiWithoutErr(rlocation[3]) >= FakeCurrentYear:
 					fRelation[pays] = append(fRelation[pays], rlocation)
 				case AtoiWithoutErr(rlocation[3]) < FakeCurrentYear:
-					pRelation[pays] = append(pRelation[pays], rlocation)
+					rlocation = append(rlocation, pays)
+					pRelation = append(pRelation, rlocation)
 				default:
 				}
 			}
 		}
 	}
+
+	pRelation = sortByNIndex(3, sortByNIndex(1, pRelation))
+	if len(pRelation) >= 3 {
+		pRelation = pRelation[:3]
+	}
+
 	return fRelation, pRelation
 }

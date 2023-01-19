@@ -35,7 +35,7 @@
 ✅Réaliser des requêtes vers une API
 
 🚧Design global de l'interface
- - 🚧 Affichage des locations
+ - ✅ Affichage des locations
  - ☐ Page All Artists
 
 ⚠️ Filtre :
@@ -86,7 +86,7 @@
 
 ⚠️Les 8 règles d'or de conception d'interface de Schneiderman ont été suivies (https://capian.co/fr/shneiderman-huit-regles-interface-graphique)
 
-🤔 SCSS
+✅ SCSS
 
 🤔 Test de Framework
 

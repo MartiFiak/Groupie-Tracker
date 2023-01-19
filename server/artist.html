@@ -98,29 +98,26 @@
                     {{ end }}
                     {{ if ne (len .Currentband.PassRelation) 0 }}
                     <div class="lesep"><h3>Latest events</h3><div class="linesep"></div></div>
-                    {{ range $key, $value := .Currentband.PassRelation }}
                         <div class="dateloc">
                             <div class="locontent">
-                                    {{ range $ville := $value}}
-                                    <li>
-                                        <div class="event">
-                                            <div class="eventdate">
-                                                <p>{{ index $ville 1 }} </p>
-                                                <p class="date">{{ index $ville 2 }}</p>
-                                                <p>{{ index $ville 3 }}</p>
-                                            </div>
-                                            <div class="infoloc">
-                                                <h3>Concert</h3>
-                                                <p>📍{{ index $ville 0 }}, {{ $key }}</p>
-                                            </div>
-                                            <img src="/server/images/icons/right-arrow.png" alt="">
+                                    {{ range $value := .Currentband.PassRelation }}
+                                <li>
+                                    <div class="event">
+                                        <div class="eventdate">
+                                            <p>{{ index $value 1 }} </p>
+                                            <p class="date">{{ index $value 2 }}</p>
+                                            <p>{{ index $value 3 }}</p>
                                         </div>
-                                    </li>
-                                    {{ end}}
-                                
+                                        <div class="infoloc">
+                                            <h3>Concert</h3>
+                                            <p>📍{{ index $value 0 }}, {{ index $value 4 }}</p>
+                                        </div>
+                                        <img src="/server/images/icons/right-arrow.png" alt="">
+                                    </div>
+                                </li> 
+                                    {{ end }}
                             </div>
                         </div>
-                    {{ end }}
                     {{ end }}
                 </ul>
 
