@@ -15,25 +15,6 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <!--<div class="sidebar close">
-            <div class="sideheader">
-                <img src="none" alt="">
-                <h1>Groupie-Tracker</h1>
-                <form action="" method="post">
-                    <input type="text" name="shearch" placeholder="Search an artist" class="search" id="shearchbar">
-                </form>
-                <p>Show All</p>
-            </div>
-            <div class="sidecontent">
-                <ul>
-                    {{ range $artist := .Artists }}
-                        {{ if ne ($artist.Id) 0 }}
-                            <li><a href="/artist?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
-                        {{ end }}
-                    {{ end }}
-                </ul>
-            </div>
-    </div>-->
     {{ template "sidebar.html" .}}
     <div class="header">
         <div class="leftbox" onclick="window.location.href='index.html'">
@@ -51,15 +32,6 @@
         </div>
     </div>
     
-
-    <script>
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-search");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", ()=>{
-            sidebar.classList.toggle("close");
-        });
-    </script>
     <div class="container">
         <div class="content">
             <div class="sect1">
@@ -87,5 +59,6 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/server/js/sidebar.js"></script>
 </body>
 </html>
