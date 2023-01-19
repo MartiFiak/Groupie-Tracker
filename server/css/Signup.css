@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 body{
     display: flex;
     background-color: #0D1321;
-    font-family: 'Roboto', sans-serif;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
@@ -33,6 +30,10 @@ form .inputs {
 form .inputs input[type='username']::placeholder, input[type='password']::placeholder, input[type='confirmpassword']::placeholder {
   color: #070b13cc;
 }
+
+
+
+
 
 form .inputs input[type='username'], input[type='password'],input[type='confirmpassword']{
   padding: 15px;

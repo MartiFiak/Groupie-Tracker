@@ -1,24 +1,22 @@
-
-@media only screen and (min-width:900px){
-    .mainTitle {
-        font-size: 50px;
-    }
+@media only screen and (min-width: 900px) {
+  .mainTitle {
+    font-size: 50px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .mainTitle {
+    font-size: 80px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .mainTitle {
+    font-size: 100px;
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .mainTitle {
+    font-size: 140px;
+  }
 }
 
-@media only screen and (min-width:1200px){
-    .mainTitle {
-        font-size: 80px;
-    }
-}
-
-@media only screen and (min-width:1400px){
-    .mainTitle {
-        font-size: 100px;
-    }
-}
-
-@media only screen and (min-width:1700px){
-    .mainTitle {
-        font-size: 140px;
-    }
-}
+/*# sourceMappingURL=font_style.css.map */

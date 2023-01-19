@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
     display: flex;
     background-color: #0D1321;
-    font-family: 'Roboto', sans-serif;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
