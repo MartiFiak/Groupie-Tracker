@@ -78,15 +78,25 @@ body {
 .sect1 .content .leftbox .back {
   margin: auto 3.5vw;
   cursor: pointer;
-  opacity: 0.75;
+  height: 60px;
+  width: 60px;
+  border-radius: 100px;
 }
 .sect1 .content .leftbox .back:hover {
-  cursor: pointer;
-  opacity: 1;
+  background-color: rgba(13, 19, 33, 0.0784313725);
+  align-content: center;
+  border-radius: 100px;
 }
 .sect1 .content .leftbox .back .bx-arrow-back {
-  font-size: 40px;
+  font-size: 50px;
   color: var(wh);
+  margin: 5px 7px;
+  opacity: 0.75;
+  position: fixed;
+}
+.sect1 .content .leftbox .back .bx-arrow-back:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 .sect1 .content .leftbox .content {
   display: flex;

@@ -85,16 +85,27 @@ body{
             .back {
                 margin: auto 3.5vw;
                 cursor: pointer;
-                opacity: 0.75;
+                height: 60px;
+                width: 60px;
+                border-radius: 100px;
 
                 &:hover {
-                    cursor: pointer;
-                    opacity: 1;
+                    background-color: #0d132114;
+                    align-content:center;
+                    border-radius: 100px;
                 }
 
                 .bx-arrow-back {
-                    font-size: 40px;
+                    font-size: 50px;
                     color: var(wh);
+                    margin: 5px 7px;
+                    opacity: 0.75;
+                    position: fixed;
+                
+                    &:hover {
+                        opacity: 1;
+                        cursor: pointer;
+                    }
                 }
             }
 

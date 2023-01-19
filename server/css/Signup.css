@@ -14,7 +14,8 @@ body .back {
   height: 60px;
   width: 60px;
   border-radius: 100px;
-  margin: 60px -9px;
+  margin: 80px -9px;
+  position: initial;
 }
 body .back:hover {
   background-color: rgba(13, 19, 33, 0.0784313725);
@@ -26,6 +27,7 @@ body .back .bx-arrow-back {
   color: var(wh);
   margin: 5px 7px;
   opacity: 0.75;
+  position: fixed;
 }
 body .back .bx-arrow-back:hover {
   opacity: 1;
