@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap%27');
 
-.close {
+/*.close {
     width: 0px;
     visibility: hidden;
     display: flex;
@@ -9,15 +9,16 @@
         right: 0px;
         width: calc(100% - 78px);
     }
-}
+}*/
 
 .sidebar {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
-    width: 250px;
-    padding: 10px;
+    overflow: hidden;
+    width: 0;
+    padding: 0;
     backdrop-filter: blur(6px);
     background-color: #0d1321dc;
     z-index: 3;
