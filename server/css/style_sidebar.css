@@ -44,6 +44,14 @@
 }
 .sidebar .sideheader a {
   font-size: 14px;
+  color: rgba(255, 255, 255, 0.8431372549);
+  cursor: pointer;
+}
+.sidebar .sideheader a:hover {
+  color: #ffffff;
+}
+.sidebar .sideheader a:active {
+  color: rgba(255, 255, 255, 0.8);
 }
 .sidebar .sideheader .filter {
   height: 0;
@@ -104,6 +112,10 @@
 .sidebar .sideheader .filter .nbmembres .allcheck div input[type=checkbox]:checked::before {
   transform: scale(1);
 }
+.sidebar .sideheader .filter .nbmembres .allcheck div label {
+  font-size: 14px;
+  margin: 1px;
+}
 .sidebar .sideheader .filter .slidecreationdate {
   width: 100%;
 }
@@ -147,8 +159,15 @@
   margin: 10px;
   text-align: center;
   border-bottom-style: solid;
+  border-bottom-color: rgba(255, 255, 255, 0.7607843137);
   background-color: transparent;
   outline: none;
+}
+.sidebar .shearch:hover {
+  border-bottom-color: #ffffff;
+}
+.sidebar .shearch:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.9058823529);
 }
 .sidebar .sidecontent {
   overflow-y: scroll;

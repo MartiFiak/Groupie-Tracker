@@ -48,6 +48,16 @@
 
         a {
             font-size: 14px;
+            color: #ffffffd7;
+            cursor: pointer;
+
+            &:hover {
+                color: #ffffff;
+            }
+
+            &:active {
+                color: #ffffffcc;
+            }
         }
 
         .filter {
@@ -114,6 +124,11 @@
                                 transform: scale(1);
                             }
                         }
+
+                        label {
+                            font-size: 14px;
+                            margin: 1px;
+                        }
                     }
                 }
             }
@@ -169,8 +184,17 @@
         margin: 10px;
         text-align: center;
         border-bottom-style: solid;
+        border-bottom-color: #ffffffc2;
         background-color: transparent;
         outline: none;
+
+        &:hover {
+            border-bottom-color: #ffffff;
+        }
+
+        &:focus {
+            border-bottom-color: #ffffffe7;
+        }
     }
 
     .sidecontent {
