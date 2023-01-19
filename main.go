@@ -68,8 +68,32 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		pageData.Artists = artistLoad
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
-		artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
+		creationdateFilter := r.FormValue("creationdate")
+		nmemberFilter := []string{r.FormValue("one_members"), r.FormValue("tow_members"), r.FormValue("tree_members"), r.FormValue("four_members"), r.FormValue("five_members"), r.FormValue("six_members"), r.FormValue("more_members")}
+		if shearchFilter != "" {
+			if artistFiltered == nil {
+				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
+			} else {
+				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistFiltered)
+			}
+		}
+		if creationdateFilter != "" {
+			if artistFiltered == nil {
+				artistFiltered = groupietrackers.FiltredByCreationDate(artistLoad, "1800", creationdateFilter)
+			} else {
+				artistFiltered = groupietrackers.FiltredByCreationDate(artistFiltered, "1800", creationdateFilter)
+			}
+		}
+		nmemberFilter = groupietrackers.CheckNumberSelect(nmemberFilter)
+		if len(nmemberFilter) != 0 {
+			if artistFiltered == nil {
+				artistFiltered = groupietrackers.FiltredByMembersNumber(artistLoad, nmemberFilter)
+			} else {
+				artistFiltered = groupietrackers.FiltredByMembersNumber(artistFiltered, nmemberFilter)
+			}
+		}
 		pageData.Artists = artistFiltered
+		artistFiltered = nil
 	}
 	rand.Seed(time.Now().UnixNano())
 	pageData.MPageRArtist = []groupietrackers.Artist{}
@@ -105,8 +129,25 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		pageData.Artists = artistLoad
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
-		artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
+		creationdateFilter := r.FormValue("creationdate")
+		fmt.Println(shearchFilter)
+		fmt.Println(creationdateFilter)
+		if shearchFilter != "" {
+			if artistFiltered == nil {
+				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
+			} else {
+				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistFiltered)
+			}
+		}
+		if creationdateFilter != "" {
+			if artistFiltered == nil {
+				artistFiltered = groupietrackers.FiltredByCreationDate(artistLoad, "1800", creationdateFilter)
+			} else {
+				artistFiltered = groupietrackers.FiltredByCreationDate(artistFiltered, "1800", creationdateFilter)
+			}
+		}
 		pageData.Artists = artistFiltered
+		artistFiltered = nil
 	}
 
 	if currentID == 0 {

@@ -11,6 +11,8 @@
 }*/
 .sidebar {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   top: 0;
   right: 0;
   height: 100vh;
@@ -41,11 +43,16 @@
   margin-bottom: 30px;
 }
 .sidebar .sideheader .filter {
+  height: 0;
   margin: 10px;
   width: 80%;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 .sidebar .sideheader .filter .title {
   font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .sidebar .sideheader .filter .creationdate {
   display: flex;
@@ -54,6 +61,8 @@
 }
 .sidebar .sideheader .filter .creationdate .daterange {
   font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .sidebar .sideheader .filter .nbmembres .allcheck {
   display: flex;
@@ -139,7 +148,7 @@
 }
 .sidebar .sidecontent {
   overflow-y: scroll;
-  height: 80vh;
+  height: 100%;
   width: 100%;
   -ms-overflow-style: none;
   scrollbar-width: none;
