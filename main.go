@@ -49,11 +49,22 @@ func RealtimeData() {
 
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./Signup.html"))
+
+	switch r.Method {
+	case "GET":
+	case "POST":
+	}
+
 	tmpl.Execute(w, nil)
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./Login.html"))
+
+	switch r.Method {
+	case "GET":
+	case "POST":
+	}
 	tmpl.Execute(w, nil)
 }
 
