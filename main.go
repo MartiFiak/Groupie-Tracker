@@ -35,10 +35,17 @@ func main() {
 
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/artist", ArtistHandler)
+	http.HandleFunc("/allArtist", AllArtistHandler)
 	http.HandleFunc("/login", LoginHandler)
 	http.HandleFunc("/signup", SignUpHandler)
 	http.ListenAndServe(":8080", nil)
 }
+func AllArtistHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("./server/allArtist.html", "./server/component/sidebar.html"))
+
+	tmpl.Execute(w, nil)
+}
+
 
 func RealtimeData() {
 	for { /*       Regenere les données des artistes toutes les minutes        */
