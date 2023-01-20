@@ -34,7 +34,7 @@
 
 🚧Design global de l'interface
  - ✅ Affichage des locations
- - ☐ Page All Artists
+ - 🚧 Page All Artists
 
 ⚠️ Filtre :
  - ✅ Date de création
@@ -64,8 +64,8 @@
 
 ⚠️README clair et détaillé
  - ☐ Procédures d'installations
- - ☐ Procédures de lancement
- - ☐ ...
+ - 🚧 Procédures de lancement
+ - 🚧 ...
 
 
 <br>
