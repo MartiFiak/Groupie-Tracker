@@ -309,6 +309,12 @@ body{
 
                                 }
 
+                                .coord {
+                                    visibility: hidden;
+                                    height: 0;
+                                    width: 0;
+                                }
+
                             }
 
                             img {
@@ -359,7 +365,7 @@ body{
         flex-direction: column;
         justify-content: center;
 
-        .map {
+        #map {
             height: 20vw;
             width: 20vw;
             margin: 0 auto;

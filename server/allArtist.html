@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="server/css/style.css">
+    <link rel="stylesheet" href="server/css/style_scrollbar.css">
+    <link rel="stylesheet" href="server/css/style_sidebar.css">
+    <link rel="stylesheet" href="server/css/allArtist.css">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie Tracker</title>
+</head>
+
+<body>
+  {{ template "sidebar.html" .}}
+  <div class="header">
+      <div class="leftbox" onclick="window.location.href='index.html'">
+          <img src="/server/images/icons/gplogo.png" alt="">
+          <h2>Groupie-Tracker</h2>
+      </div>
+      <div class="rightbox" id="hright">
+          <a href="/signup">Sign up</a>
+          <a href="/login">Login</a>
+          <section class="home-section">
+              <div class="home-content">
+              <i class="bx bx-search"></i>
+              </div>
+          </section>
+      </div>
+  </div>
+
+  <script type="text/javascript" src="/server/js/sidebar.js"></script>
+</body>
+</html>

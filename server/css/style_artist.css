@@ -264,6 +264,11 @@ body {
 .sect2 .leftbox .content .dateloc .locontent li .event .infoloc p {
   font-size: 14px;
 }
+.sect2 .leftbox .content .dateloc .locontent li .event .infoloc .coord {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
 .sect2 .leftbox .content .dateloc .locontent li .event img {
   position: absolute;
   height: 35px;
@@ -294,7 +299,7 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-.sect2 .rightbox .map {
+.sect2 .rightbox #map {
   height: 20vw;
   width: 20vw;
   margin: 0 auto;

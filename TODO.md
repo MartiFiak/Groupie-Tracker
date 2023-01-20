@@ -61,7 +61,7 @@
  - ☐ Emplacement
  - ☐ ...
 
-☐ Produire un code clair et concis
+🚧 Produire un code clair et concis
 
 🚧Nommage des variable
 
@@ -82,7 +82,7 @@
 
 <br>
 
-☐ Géolocalisation
+🚧 Géolocalisation
 
 ⚠️Les 8 règles d'or de conception d'interface de Schneiderman ont été suivies (https://capian.co/fr/shneiderman-huit-regles-interface-graphique)
 

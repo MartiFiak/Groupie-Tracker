@@ -75,15 +75,15 @@
                                 {{ range $ville := $value }}
                                     
                                     <li>
-                                        <div class="event">
+                                        <div class="event" onmouseover="changeMapFocus({{ index $ville.Coord.Lat}},{{ index $ville.Coord.Long }})">
                                             <div class="eventdate">
-                                                <p>{{ index $ville 1 }} </p>
-                                                <p class="date">{{ index $ville 2 }}</p>
-                                                <p>{{ index $ville 3 }}</p>
+                                                <p>{{ index $ville.Date 0 }} </p>
+                                                <p class="date">{{ index $ville.Date 1 }}</p>
+                                                <p>{{ index $ville.Date 2 }}</p>
                                             </div>
                                             <div class="infoloc">
                                                 <h3>Concert</h3>
-                                                <p>📍{{ index $ville 0 }}, {{ $key }}</p>
+                                                <p>📍{{ index $ville.City }}, {{ index $ville.Country }}<p class="coord">{{ index $ville.Coord.Lat}}|{{ index $ville.Coord.Long }}</p></p>
                                                 <p>🎟️$100,0</p>
                                             </div>
                                             <img src="/server/images/icons/right-arrow.png" alt="">
@@ -121,13 +121,17 @@
                         </div>
                     {{ end }}
                 </ul>
-
             </div>
         </div>
         <div class="rightbox">
-            <img src="{{ .Currentband.Image }}" alt="" class="map">
+            <div id="map"></div>
         </div>
     </div>
     <script type="text/javascript" src="/server/js/sidebar.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq9H9P3Jazc6tUoqQ8fwBdMbgLhm0QSe4&callback=initMap&v=weekly"
+      defer
+    ></script>
+    <script type="text/javascript" src="/server/js/map.js"></script>
 </body>
 </html>
