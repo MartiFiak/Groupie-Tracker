@@ -2,6 +2,7 @@ let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".bx-search");
 let hright = document.getElementById("hright");
 let filter = document.querySelector(".filter");
+let form = document.getElementById("sidebarform");
 
 var sidebarPosition = false;
 var filterVisibility = false;
@@ -36,12 +37,21 @@ function _showFilter(){
 }
 
 function _rangeManager(slider, text){
-    text.textContent = "1800 - " + slider.value;
+    text.textContent = "1900 - " + slider.value;
+}
+
+function _FirstAlbumSlider(){
+    console.log(document.getElementById("myRangeFA").value);
+    _rangeManager(document.getElementById("myRangeFA"), document.getElementById("faTxt"));
 }
 
 function _creationDateSlider(){
     console.log(document.getElementById("myRange").value);
-    _rangeManager(document.getElementById("myRange"), document.getElementById("test"));
+    _rangeManager(document.getElementById("myRange"), document.getElementById("cdTxt"));
+}
+
+function _getData(data){
+    console.log(data[0])
 }
 
 window.addEventListener('click', function(e){   
@@ -55,5 +65,11 @@ window.addEventListener('click', function(e){
         } 
     } else {
         _closeSidebar();
+    }
+});
+
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13 && sidebarPosition) {
+        form.submit();
     }
 });

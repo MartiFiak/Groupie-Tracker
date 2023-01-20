@@ -1,18 +1,26 @@
 <link rel="stylesheet" href="/server/css/style_sidebar.css">
+<script src="/server/js/suggestions.js" type="text/javascript"></script>
 <div class="sidebar close">
     <div class="sideheader">
         <img src="/server/images/icons/gplogo.png" alt="">
         <h1>Groupie-Tracker</h1>
-        <form action="" method="post">
-            <input type="text" name="shearch" placeholder="Schearch an artist" class="shearch">
+        <form action="" method="post" id="sidebarform">
+            <input type="text" name="shearch" placeholder="Schearch an artist" class="shearch" autocomplete="off">
             <a onclick="_showFilter()">▼ Filter</a>
             <div class="filter">
                 <div class="creationdate">
                     <p class="title">Creation date</p>
-                    <p id="test" class="daterange"> 1800-2020</p>
+                    <p id="cdTxt" class="daterange"> 1900-2020</p>
                 </div>
                 <div class="slidecreationdate">
-                    <input name="creationdate" type="range" min="1800" max="2023" value="2020" class="slidercreationdate" id="myRange" oninput="_creationDateSlider()">
+                    <input name="creationdate" type="range" min="1900" max="2023" value="2020" class="slidercreationdate" id="myRange" oninput="_creationDateSlider()">
+                </div>
+                <div class="firstalbumdate">
+                    <p class="title">First album</p>
+                    <p id="faTxt" class="daterange"> 1900-2020</p>
+                </div>
+                <div class="slidefirstalbum">
+                    <input name="firstalbumdate" type="range" min="1900" max="2023" value="2020" class="sliderfirstalbum" id="myRangeFA" oninput="_FirstAlbumSlider()">
                 </div>
                 
                 <div class="nbmembres">
@@ -56,6 +64,9 @@
     <div class="sidecontent">
         <ul>
             {{ range $artist := .Artists }}
+            <script type="text/javascript">
+                _addArtist("{{ $artist.Id }}", "{{ $artist.Image }}", "{{ $artist.Name }}", "{{ $artist.CreationDate }}");
+            </script>
                 {{ if ne ($artist.Id) 0 }}
                     <li><a href="/artist?id={{ $artist.Id }}"><div class="artist"><img src="{{ $artist.Image }}" alt=""><div><h3>{{ $artist.Name }}</h3><p>{{ $artist.CreationDate }}</p></div></div></a></li>
                 {{ end }}

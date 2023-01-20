@@ -37,6 +37,17 @@ func FiltredByCreationDate(artistLoad []Artist, mindate, maxdate string) []Artis
 	return artistFiltered
 }
 
+func FiltredByFirstAlbum(artistLoad []Artist, mindate, maxdate string) []Artist {
+	artistFiltered := []Artist{}
+	for _, artist := range artistLoad {
+		if AtoiWithoutErr(mindate) <= AtoiWithoutErr(strings.Split(artist.FirstAlbum, "-")[2]) && AtoiWithoutErr(strings.Split(artist.FirstAlbum, "-")[2]) <= AtoiWithoutErr(maxdate) {
+			artistFiltered = append(artistFiltered, artist)
+		}
+		
+	}
+	return artistFiltered
+}
+
 func CheckNumberSelect(n []string)[]string{
 	newn := []string{}
 	for _,nc := range n{

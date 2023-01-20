@@ -24,8 +24,6 @@
 
 <br>
 
-🚧Respecter les bonnes pratiques HTML/CSS
-
 🚧Réaliser un site user-friendly
  - ✅ Bouton retour
  - ✅ Doublons dans le home page (you may like) **[Niveau 2]**
@@ -41,7 +39,8 @@
 ⚠️ Filtre :
  - ✅ Date de création
     - 🤔 Double selecteur
- - ☐ Date du premier album
+ - ✅ Date du premier album
+     - 🤔 Double selecteur
  - ✅ Nombre de membres
  - ☐ Lieux de concerts
 
@@ -61,18 +60,12 @@
  - ☐ Emplacement
  - ☐ ...
 
-🚧 Produire un code clair et concis
-
-🚧Nommage des variable
-
 ✅Code optimisé (pas d'attente sur le chargement d'une page)
 
 ⚠️README clair et détaillé
  - ☐ Procédures d'installations
  - ☐ Procédures de lancement
  - ☐ ...
-
-✅Organisation des fichiers/dossiers
 
 
 <br>
@@ -82,13 +75,11 @@
 
 <br>
 
-🚧 Géolocalisation
+✅ Géolocalisation
 
 ⚠️Les 8 règles d'or de conception d'interface de Schneiderman ont été suivies (https://capian.co/fr/shneiderman-huit-regles-interface-graphique)
 
 ✅ SCSS
-
-🤔 Test de Framework
 
 🤔 Page de Payement
 
@@ -97,3 +88,19 @@
  - ☐ Back
 
 🤔 System de favori
+
+
+<br>
+<br>
+
+## **Code Management :**
+
+<br>
+
+🚧 Produire un code clair et concis
+
+🚧Nommage des variable
+
+🚧Organisation des fichiers/dossiers
+
+🚧Respecter les bonnes pratiques HTML/CSS

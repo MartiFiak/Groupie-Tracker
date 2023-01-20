@@ -43,9 +43,8 @@ func main() {
 func AllArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./server/allArtist.html", "./server/component/sidebar.html"))
 
-	tmpl.Execute(w, nil)
+	tmpl.Execute(w, pageData)
 }
-
 
 func RealtimeData() {
 	for { /*       Regenere les données des artistes toutes les minutes        */
@@ -87,6 +86,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
 		creationdateFilter := r.FormValue("creationdate")
+		firstalbumdateFilte := r.FormValue("firstalbumdate")
 		nmemberFilter := []string{r.FormValue("one_members"), r.FormValue("tow_members"), r.FormValue("tree_members"), r.FormValue("four_members"), r.FormValue("five_members"), r.FormValue("six_members"), r.FormValue("more_members")}
 		if shearchFilter != "" {
 			if artistFiltered == nil {
@@ -100,6 +100,14 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 				artistFiltered = groupietrackers.FiltredByCreationDate(artistLoad, "1800", creationdateFilter)
 			} else {
 				artistFiltered = groupietrackers.FiltredByCreationDate(artistFiltered, "1800", creationdateFilter)
+			}
+		}
+		
+		if firstalbumdateFilte != "" {
+			if artistFiltered == nil {
+				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistLoad, "1800", firstalbumdateFilte)
+			} else {
+				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistFiltered, "1800", firstalbumdateFilte)
 			}
 		}
 		nmemberFilter = groupietrackers.CheckNumberSelect(nmemberFilter)
@@ -148,8 +156,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		shearchFilter := r.FormValue("shearch")
 		creationdateFilter := r.FormValue("creationdate")
-		fmt.Println(shearchFilter)
-		fmt.Println(creationdateFilter)
+		firstalbumdateFilte := r.FormValue("firstalbumdate")
 		if shearchFilter != "" {
 			if artistFiltered == nil {
 				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
@@ -162,6 +169,13 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 				artistFiltered = groupietrackers.FiltredByCreationDate(artistLoad, "1800", creationdateFilter)
 			} else {
 				artistFiltered = groupietrackers.FiltredByCreationDate(artistFiltered, "1800", creationdateFilter)
+			}
+		}
+		if firstalbumdateFilte != "" {
+			if artistFiltered == nil {
+				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistLoad, "1800", firstalbumdateFilte)
+			} else {
+				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistFiltered, "1800", firstalbumdateFilte)
 			}
 		}
 		pageData.Artists = artistFiltered
