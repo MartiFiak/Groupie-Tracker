@@ -27,7 +27,7 @@
 🚧Respecter les bonnes pratiques HTML/CSS
 
 🚧Réaliser un site user-friendly
- - 🚧 Bouton retour
+ - ✅ Bouton retour
  - ✅ Doublons dans le home page (you may like) **[Niveau 2]**
  - 🤔 Reponsive
  - 🤔 Footer ABOUT US
@@ -36,7 +36,7 @@
 
 🚧Design global de l'interface
  - ✅ Affichage des locations
- - ☐ Page All Artists
+ - 🚧 Page All Artists
 
 ⚠️ Filtre :
  - ✅ Date de création
@@ -69,8 +69,8 @@
 
 ⚠️README clair et détaillé
  - ☐ Procédures d'installations
- - ☐ Procédures de lancement
- - ☐ ...
+ - 🚧 Procédures de lancement
+ - 🚧 ...
 
 ✅Organisation des fichiers/dossiers
 
