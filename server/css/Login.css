@@ -4,99 +4,91 @@ body {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: flex-start;
   background-image: url(/server/images/background/concert.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
   backdrop-filter: blur(5px);
 }
-body .back {
-  cursor: pointer;
-  height: 60px;
-  width: 60px;
-  border-radius: 100px;
-  margin: 80px -9px;
-  position: initial;
-  z-index: 4;
+body .container {
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.18), rgba(15, 33, 34, 0.6980392157));
+  backdrop-filter: blur(5px);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  align-items: flex-start;
 }
-body .back:hover {
-  background-color: rgba(13, 19, 33, 0.0784313725);
-  align-content: center;
-  border-radius: 100px;
-}
-body .back .bx-arrow-back {
-  font-size: 50px;
-  color: var(wh);
-  margin: 5px 7px;
-  opacity: 0.75;
-  position: fixed;
-}
-body .back .bx-arrow-back:hover {
-  opacity: 1;
-  cursor: pointer;
-  z-index: 5;
-}
-body form {
+body .container form {
   margin: 4.7vw;
   background-color: #ffffff;
   opacity: 0.98;
   padding: 18px 45px;
   border-radius: 20px;
   min-width: 300px;
+  max-width: 300px;
+  max-height: 28pc;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
 }
-body form h1 {
+body .container form h1 {
   color: #28B67E;
   text-align: center;
   padding: 15px;
 }
-body form .inputs {
+body .container form .inputs {
   display: flex;
   flex-direction: column;
   margin-top: 14px;
 }
-body form .inputs input[type=username],
-body form .inputs input[type=password] {
+body .container form .inputs input[type=username],
+body .container form .inputs input[type=password] {
   padding: 15px;
   border: none;
   border-radius: 5px;
   background-color: rgba(13, 19, 33, 0.2509803922);
   color: #000000;
   outline: none;
-  margin-bottom: 2vw;
+  margin-bottom: 1.4vw;
   opacity: 0.5;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-body form .inputs input[type=username]::placeholder,
-body form .inputs input[type=password]::placeholder {
+body .container form .inputs input[type=username]::placeholder,
+body .container form .inputs input[type=password]::placeholder {
   color: #000000;
 }
-body form .inputs input[type=username]:hover,
-body form .inputs input[type=password]:hover {
+body .container form .inputs input[type=username]:hover,
+body .container form .inputs input[type=password]:hover {
   opacity: 0.65;
 }
-body form .inputs input[type=username]:focus,
-body form .inputs input[type=password]:focus {
+body .container form .inputs input[type=username]:focus,
+body .container form .inputs input[type=password]:focus {
   opacity: 0.68;
   border-style: solid;
   border-width: 1.5px;
   border-color: rgba(70, 71, 71, 0.2);
 }
-body form .inscription {
+body .container form .inscription {
   font-size: 14px;
   margin-bottom: 20px;
   color: #878787;
   padding: 5px;
 }
-body form .inscription span {
+body .container form .inscription span {
   color: #28b67e;
 }
-body form .inscription span:hover {
+body .container form .inscription span:hover {
   color: #3bffb0;
 }
-body form .inscription span:focus {
+body .container form .inscription span:focus {
   color: #23a16f;
 }
-body form button {
+body .container form button {
   padding: 13px 30px;
   border-radius: 5px;
   margin: 1vw;
@@ -108,13 +100,45 @@ body form button {
   cursor: pointer;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-body form button:hover {
+body .container form button:hover {
   background-color: #2bc084;
   color: rgba(255, 255, 255, 0.8431372549);
 }
-body form button:focus {
+body .container form button:focus {
   background-color: #23a16f;
   color: rgba(255, 255, 255, 0.7647058824);
+}
+body .back {
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  border-radius: 100px;
+  margin: 80px -9px;
+  position: initial;
+}
+body .back:hover {
+  background-color: rgba(13, 19, 33, 0.0784313725);
+  align-content: center;
+  border-radius: 100px;
+}
+body .back:active {
+  cursor: pointer;
+  background-color: rgba(13, 19, 33, 0.0470588235);
+}
+body .back .bx-arrow-back {
+  font-size: 50px;
+  color: var(wh);
+  margin: 5px 7px;
+  opacity: 0.75;
+  position: fixed;
+}
+body .back .bx-arrow-back:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+body .back .bx-arrow-back:active {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6156862745);
 }
 body .header {
   background-color: #0D1321;

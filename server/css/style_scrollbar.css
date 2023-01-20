@@ -1,0 +1,29 @@
+::-webkit-scrollbar {
+  width: 10px;
+  min-height: 5px;
+  max-height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(13, 19, 33, 0.0431372549);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.531);
+  box-shadow: 200px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(159, 159, 159, 0.531);
+  box-shadow: 200px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(13, 19, 33, 0);
+}
+
+/*# sourceMappingURL=style_scrollbar.css.map */
