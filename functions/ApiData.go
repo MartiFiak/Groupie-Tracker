@@ -208,7 +208,6 @@ func SetCoordToEvent(event map[string][]Event)map[string][]Event{
 			event[pays][i] = FormatFLocation(e)
 		}
 	}
-	fmt.Println(event)
 	return event
 }
 
@@ -240,7 +239,6 @@ func FormatFLocation(event Event) Event {
 		country[i] = ncountry
 	}
 	event.Country = strings.Join(country, " ")
-	fmt.Println(country)
 	
 	return event
 }
