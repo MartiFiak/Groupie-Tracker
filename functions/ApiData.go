@@ -49,6 +49,26 @@ func SetGlobalData(body []byte) ApiData {
 	return apidata
 }
 
+func GetGeoCodeData(body []byte) map[string]interface{} {
+	ap := make(map[string]interface{})
+	jsonErr := json.Unmarshal(body, &ap)
+	if jsonErr != nil {
+		fmt.Println(jsonErr)
+	}
+	return ap
+}
+
+func GetCoord(geoCodeData map[string]interface{}) GeoCoord {
+	coord := GeoCoord{}
+	test := geoCodeData["results"].([]interface{})
+	test2 := test[0].(map[string]interface{})
+	test3 := test2["geometry"].(map[string]interface{})
+	test4 := test3["location"].(map[string]interface{})
+	coord.Lat = test4["lat"].(float64)
+	coord.Long = test4["lng"].(float64)
+	return coord
+}
+
 func SetArtistData(body []byte) artistStruct {
 	artistdata := artistStruct{}
 	jsonErr := json.Unmarshal(body, &artistdata)
@@ -181,20 +201,67 @@ func ChangeDateFormat(date map[string][]string) map[string][][][]string {
 	return nDate
 }
 
-func CheckRelationTime(date map[string][][][]string) (map[string][][]string, [][]string) {
+func SetCoordToEvent(event map[string][]Event)map[string][]Event{
+	for pays := range event {
+		for i, e := range event[pays]{
+			e.Coord = GetCoord(GetGeoCodeData(GetAPIData("https://maps.googleapis.com/maps/api/geocode/json?address=" + e.City + "+" + e.Country + "&key=AIzaSyBq9H9P3Jazc6tUoqQ8fwBdMbgLhm0QSe4")))
+			event[pays][i] = FormatFLocation(e)
+		}
+	}
+	fmt.Println(event)
+	return event
+}
+
+func FormatFLocation(event Event) Event {
+	city := strings.Split(event.City, "_")
+	for i, value := range city {
+		ncity := ""
+		for j, lettre := range value {
+			if j == 0 {
+				ncity += string(lettre-32)
+			}else {
+				ncity += string(lettre)
+			}
+		}
+		city[i] = ncity
+	}
+	event.City = strings.Join(city, " ")
+
+	country := strings.Split(event.Country, "_")
+	for i, value := range country {
+		ncountry := ""
+		for j, lettre := range value {
+			if j == 0 {
+				ncountry += string(lettre-32)
+			}else {
+				ncountry += string(lettre)
+			}
+		}
+		country[i] = ncountry
+	}
+	event.Country = strings.Join(country, " ")
+	fmt.Println(country)
+	
+	return event
+}
+
+func CheckRelationTime(date map[string][][][]string) (map[string][]Event, [][]string) {
 
 	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
 	FakeCurrentYear -= 3
-
-	fRelation := make(map[string][][]string)
+	fRelation := make(map[string][]Event)
 	pRelation := [][]string{}
 
 	for pays := range date {
 		for _, location := range date[pays] {
 			for _, rlocation := range location {
+				checkEvent := Event{}
 				switch {
 				case AtoiWithoutErr(rlocation[3]) >= FakeCurrentYear:
-					fRelation[pays] = append(fRelation[pays], rlocation)
+					checkEvent.Country = pays
+					checkEvent.City = rlocation[0]
+					checkEvent.Date = rlocation[1:]
+					fRelation[pays] = append(fRelation[pays], checkEvent)
 				case AtoiWithoutErr(rlocation[3]) < FakeCurrentYear:
 					rlocation = append(rlocation, pays)
 					pRelation = append(pRelation, rlocation)
@@ -208,6 +275,7 @@ func CheckRelationTime(date map[string][][][]string) (map[string][][]string, [][
 	if len(pRelation) >= 3 {
 		pRelation = pRelation[:3]
 	}
-
+	/*fRelation = FormatFLocation(fRelation)*/
+	fRelation = SetCoordToEvent(fRelation)
 	return fRelation, pRelation
 }

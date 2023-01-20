@@ -7,8 +7,20 @@ type CurrentBand struct {
 	Member        []string
 	CreationDate  int
 	Relations     map[string][][][]string
-	FuturRelation map[string][][]string
+	FuturRelation map[string][]Event
 	PassRelation  [][]string
+}
+
+type Event struct {
+	Country string
+	City    string
+	Date    []string
+	Coord   GeoCoord
+}
+
+type GeoCoord struct {
+	Lat  float64
+	Long float64
 }
 
 type PageData struct {
