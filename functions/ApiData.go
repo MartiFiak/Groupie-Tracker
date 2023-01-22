@@ -28,7 +28,7 @@ func GetAPIData(apiUrl string) []byte {
 	if getErr != nil {
 		fmt.Println(getErr)
 	}
-	if res.Body != nil {
+	if res.Body != nil { // ?  Get "": unsupported protocol scheme "" 2023/01/22 23:48:26 http: panic serving [::1]:60987: runtime error: invalid memory address or nil pointer dereference
 		defer res.Body.Close()
 	}
 	body, readErr := ioutil.ReadAll(res.Body)
@@ -105,15 +105,6 @@ func SetRelationData(body []byte) relationStruct {
 	return relationdata
 }
 
-func SetArtistInfoData(body []byte) Artist {
-	artistdata := Artist{}
-	jsonErr := json.Unmarshal(body, &artistdata)
-	if jsonErr != nil {
-		fmt.Println(jsonErr)
-	}
-	return artistdata
-}
-
 func SetArtist(body []byte) []Artist {
 	artistd := []Artist{}
 	jsonErr := json.Unmarshal(body, &artistd)
@@ -124,16 +115,26 @@ func SetArtist(body []byte) []Artist {
 }
 
 func UpdateCurrentBand(apiArtist string) CurrentBand {
-	var cb CurrentBand
+	//var cb CurrentBand
 	dataartist := SetArtistData(GetAPIData(apiArtist))
-	datadatelocation := SetRelationData(GetAPIData(dataartist.Relations))
-	cb.Id = dataartist.Id
+	datadatelocation := SetRelationData(GetAPIData(dataartist.Relations)) // ? Erreur au lancement   Get "": unsupported protocol scheme "" 2023/01/22 23:48:26 http: panic serving [::1]:60989: runtime error: invalid memory address or nil pointer dereference
+
+	cb := CurrentBand{
+		Id:           dataartist.Id,
+		Name:         dataartist.Name,
+		Image:        dataartist.Image,
+		Member:       dataartist.Member,
+		CreationDate: dataartist.CreationDate,
+		Relations:    ChangeDateFormat(datadatelocation.DatesLocations),
+	}
+	cb.FuturRelation, cb.PassRelation = CheckRelationTime(cb.Relations)
+	/*cb.Id = dataartist.Id
 	cb.Image = dataartist.Image
 	cb.Name = dataartist.Name
 	cb.Member = dataartist.Member
 	cb.CreationDate = dataartist.CreationDate
 	cb.Relations = ChangeDateFormat(datadatelocation.DatesLocations)
-	cb.FuturRelation, cb.PassRelation = CheckRelationTime(cb.Relations)
+	cb.FuturRelation, cb.PassRelation = CheckRelationTime(cb.Relations)*/
 	return cb
 }
 
@@ -201,9 +202,9 @@ func ChangeDateFormat(date map[string][]string) map[string][][][]string {
 	return nDate
 }
 
-func SetCoordToEvent(event map[string][]Event)map[string][]Event{
+func SetCoordToEvent(event map[string][]Event) map[string][]Event {
 	for pays := range event {
-		for i, e := range event[pays]{
+		for i, e := range event[pays] {
 			e.Coord = GetCoord(GetGeoCodeData(GetAPIData("https://maps.googleapis.com/maps/api/geocode/json?address=" + e.City + "+" + e.Country + "&key=AIzaSyBq9H9P3Jazc6tUoqQ8fwBdMbgLhm0QSe4")))
 			event[pays][i] = FormatFLocation(e)
 		}
@@ -217,8 +218,8 @@ func FormatFLocation(event Event) Event {
 		ncity := ""
 		for j, lettre := range value {
 			if j == 0 {
-				ncity += string(lettre-32)
-			}else {
+				ncity += string(lettre - 32)
+			} else {
 				ncity += string(lettre)
 			}
 		}
@@ -231,15 +232,15 @@ func FormatFLocation(event Event) Event {
 		ncountry := ""
 		for j, lettre := range value {
 			if j == 0 {
-				ncountry += string(lettre-32)
-			}else {
+				ncountry += string(lettre - 32)
+			} else {
 				ncountry += string(lettre)
 			}
 		}
 		country[i] = ncountry
 	}
 	event.Country = strings.Join(country, " ")
-	
+
 	return event
 }
 

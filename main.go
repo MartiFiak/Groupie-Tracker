@@ -29,7 +29,7 @@ func main() {
 
 	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
 
-	go RealtimeData() /*       Permet de récuperer les artists en arrière plan sans ralentir l'affichage de la page         */
+	go RealtimeData() /*       Permet de récuperer les artists en parallèle de la gestion de nos pages        */
 	fs := http.FileServer(http.Dir("./server"))
 	http.Handle("/server/", http.StripPrefix("/server/", fs))
 
@@ -40,6 +40,7 @@ func main() {
 	http.HandleFunc("/signup", SignUpHandler)
 	http.ListenAndServe(":8080", nil)
 }
+
 func AllArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./server/allArtist.html", "./server/component/sidebar.html"))
 
@@ -47,7 +48,8 @@ func AllArtistHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func RealtimeData() {
-	for { /*       Regenere les données des artistes toutes les minutes        */
+	// !       Regenere les données des artistes toutes les minutes
+	for {
 		artistLoad = groupietrackers.SetArtist(groupietrackers.GetAPIData(data.Artist))
 		time.Sleep(60 * time.Second)
 	}
@@ -84,41 +86,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		pageData.Artists = artistLoad
 	case "POST":
-		shearchFilter := r.FormValue("shearch")
-		creationdateFilter := r.FormValue("creationdate")
-		firstalbumdateFilte := r.FormValue("firstalbumdate")
-		nmemberFilter := []string{r.FormValue("one_members"), r.FormValue("tow_members"), r.FormValue("tree_members"), r.FormValue("four_members"), r.FormValue("five_members"), r.FormValue("six_members"), r.FormValue("more_members")}
-		if shearchFilter != "" {
-			if artistFiltered == nil {
-				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
-			} else {
-				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistFiltered)
-			}
-		}
-		if creationdateFilter != "" {
-			if artistFiltered == nil {
-				artistFiltered = groupietrackers.FiltredByCreationDate(artistLoad, "1800", creationdateFilter)
-			} else {
-				artistFiltered = groupietrackers.FiltredByCreationDate(artistFiltered, "1800", creationdateFilter)
-			}
-		}
-		
-		if firstalbumdateFilte != "" {
-			if artistFiltered == nil {
-				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistLoad, "1800", firstalbumdateFilte)
-			} else {
-				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistFiltered, "1800", firstalbumdateFilte)
-			}
-		}
-		nmemberFilter = groupietrackers.CheckNumberSelect(nmemberFilter)
-		if len(nmemberFilter) != 0 {
-			if artistFiltered == nil {
-				artistFiltered = groupietrackers.FiltredByMembersNumber(artistLoad, nmemberFilter)
-			} else {
-				artistFiltered = groupietrackers.FiltredByMembersNumber(artistFiltered, nmemberFilter)
-			}
-		}
-		pageData.Artists = artistFiltered
+		pageData.Artists = groupietrackers.GetFilterUse(r, artistFiltered, artistLoad)
 		artistFiltered = nil
 	}
 	rand.Seed(time.Now().UnixNano())
@@ -154,31 +122,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		pageData.Artists = artistLoad
 	case "POST":
-		shearchFilter := r.FormValue("shearch")
-		creationdateFilter := r.FormValue("creationdate")
-		firstalbumdateFilte := r.FormValue("firstalbumdate")
-		if shearchFilter != "" {
-			if artistFiltered == nil {
-				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistLoad)
-			} else {
-				artistFiltered = groupietrackers.GetArtistWithStr(shearchFilter, artistFiltered)
-			}
-		}
-		if creationdateFilter != "" {
-			if artistFiltered == nil {
-				artistFiltered = groupietrackers.FiltredByCreationDate(artistLoad, "1800", creationdateFilter)
-			} else {
-				artistFiltered = groupietrackers.FiltredByCreationDate(artistFiltered, "1800", creationdateFilter)
-			}
-		}
-		if firstalbumdateFilte != "" {
-			if artistFiltered == nil {
-				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistLoad, "1800", firstalbumdateFilte)
-			} else {
-				artistFiltered = groupietrackers.FiltredByFirstAlbum(artistFiltered, "1800", firstalbumdateFilte)
-			}
-		}
-		pageData.Artists = artistFiltered
+		pageData.Artists = groupietrackers.GetFilterUse(r, artistFiltered, artistLoad)
 		artistFiltered = nil
 	}
 
@@ -186,16 +130,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusFound)
 	}
 
-	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
+	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID)) // ? Erreur au lancement
 	pageData.Currentband = currentband
 	tmpl.Execute(w, pageData)
-}
-
-func GetArtistXtoY(x, y int, apiArtist string) {
-	for i := x; i <= y; i++ {
-		if i > len(artistLoad) {
-			artist := groupietrackers.SetArtistInfoData(groupietrackers.GetAPIData(apiArtist + "/" + strconv.Itoa(i)))
-			artistLoad = append(artistLoad, artist)
-		}
-	}
 }

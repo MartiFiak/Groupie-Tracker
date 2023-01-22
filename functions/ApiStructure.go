@@ -35,7 +35,7 @@ type Artist struct {
 	Name         string   `json:"name"`
 	CreationDate int      `json:"creationdate"`
 	Member       []string `json:"members"`
-	FirstAlbum   string      `json:"firstAlbum"`
+	FirstAlbum   string   `json:"firstAlbum"`
 }
 
 type ApiData struct {
