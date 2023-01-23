@@ -61,6 +61,28 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 	case "POST":
+		username := r.FormValue("username")
+		password := r.FormValue("password")
+		confpassword := r.FormValue("confirmpassword")
+
+		if password == confpassword {
+			if username == "" || password == "" {
+				fmt.Println("Please all field nead to be write")
+			} else {
+				if groupietrackers.GetUserData(username).Username != "" {
+					fmt.Println("Error User Already exist")
+				} else {
+					newUser := groupietrackers.User{
+						Username: username,
+						Password: password,
+					}
+					groupietrackers.AddUser(newUser)
+				}
+			}
+		} else {
+			fmt.Println("Password don't match")
+		}
+
 	}
 
 	tmpl.Execute(w, nil)

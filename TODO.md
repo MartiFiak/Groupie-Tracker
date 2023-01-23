@@ -87,7 +87,9 @@
 
 🤔 Login Register
  - 🚧 UI    (1h)
- - ☐ Back  (20min)
+ - 🚧 Back  (20min)
+    - ✅ Register
+    - ☐ Login
 
 🤔 System de favori
 

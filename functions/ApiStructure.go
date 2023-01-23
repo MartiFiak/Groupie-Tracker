@@ -72,3 +72,9 @@ type relationStruct struct {
 	Id             int                 `json:"id"`
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
+
+type User struct {
+	Username  string
+	Password  string
+	Favorites []string
+}
