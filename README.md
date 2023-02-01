@@ -7,14 +7,14 @@
 
 <br>
 
-1. [Introduction](#📖-story)
+1. [Introduction](#📖-why-groupie-tracker)
 2. [Requirement](#✅-here-is-what-you-will-need)
 3. [How to start your exploration](#👍-to-join-us)
 4. [Content](#🎯-what-will-you-have-access-to)
 
 <br>
 
-## **📖 Story**
+## **📖 Why Groupie-Tracker ?**
 
 <br>
 
@@ -24,7 +24,7 @@ This is where our great Groupie-tracker web page comes into play
 
 <br>
 
-**Groupie-Tracker is for you**
+**Groupie-Tracker is made for you**
 
 <br>
 
@@ -34,8 +34,6 @@ This is where our great Groupie-tracker web page comes into play
 
 * A computer 💻 or phone📱
 * An internet connection
-* clone our repository
-* start main.go on a terminal
 * And nothing more...
 
 <br>
@@ -44,11 +42,13 @@ This is where our great Groupie-tracker web page comes into play
 
 <br>
 
-1. Run : **[ *main.go* ]**
-2. Access [ http://127.0.0.1:8080 ] on a web browser
-3. Create your account
-4. Connect yourself
-5. Do your own research
+1. Clone our repository
+2. Go to repository folder
+3. Run : **[ *go run main.go* ]**
+4. Access [ http://127.0.0.1:8080 ] on a web browser
+5. Create your account
+6. Connect yourself
+7. Do your own research
 
 <br>
 
@@ -60,7 +60,11 @@ This is where our great Groupie-tracker web page comes into play
 
 To simplify your search go to the search bar by clicking on the magnifying glass and access the different filters with the filter arrow. 
 
-- Concert info.
+- Many Bands and their informations.
+
+Possibility to show the informations of many bands/artist contains in our api to saw their futur concert, locations and many other think.
+
+- Concert informations.
 
 Be informed of all the latest events of your favorite musical artists with the prices their different locations but also the possibility to access our online ticketing.
 <br>
@@ -68,7 +72,7 @@ Be informed of all the latest events of your favorite musical artists with the p
 
 **Now you know everything.**
 
-Why browse the web when you have Groupie-Tracker?
+Why browse the web when you have Groupie-Tracker ?
 
 
 ## **Make your life easier! 😉**

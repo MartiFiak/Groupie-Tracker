@@ -248,12 +248,39 @@
 
     .sidecontent {
         overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
         height: 100%;
         width: 100%;  
         -ms-overflow-style: none;
         scrollbar-width: none;
 
         &::-webkit-scrollbar {
+            display: none;
+        }
+
+        #artist_band,#members,#creation_date {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            flex: 1;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            .artists {
+                overflow-y: scroll;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .title{
+                font-size: 0.8em;
+                margin-left: 10px;
+                margin-top: 10px;
+            }
+        }
+
+        #members,#creation_date{
             display: none;
         }
     }
@@ -284,6 +311,14 @@
 
         h3 {
             font-size: 1.2em;
+
+    /*        .id{
+                height: 0;
+                width: 0;
+                visibility: hidden;
+                font-size: 0;
+                display: none;
+            }*/
         }
 
         p {

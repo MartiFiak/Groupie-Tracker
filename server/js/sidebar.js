@@ -4,7 +4,7 @@ let hright = document.getElementById("hright");
 let filter = document.querySelector(".filter");
 let form = document.getElementById("sidebarform");
 
-var sidebarPosition = false;
+var sidebarOpen = false;
 var filterVisibility = false;
 console.log(sidebarBtn);
 
@@ -13,7 +13,7 @@ function _openSidebar(){
     sidebar.style.width = "250px";
     sidebar.style.padding = "10px";
     console.log("Click", sidebar.style.width);
-    sidebarPosition = true;
+    sidebarOpen = true;
 }
 
 function _closeSidebar(){
@@ -22,7 +22,7 @@ function _closeSidebar(){
     sidebar.style.margin = "0px";
     sidebar.style.padding = "0px";
     console.log("Click", sidebar.style.width);
-    sidebarPosition = false;
+    sidebarOpen = false;
 }
 
 function _showFilter(){
@@ -58,7 +58,7 @@ window.addEventListener('click', function(e){
     if (sidebar.contains(e.target)){
 
     } else if (sidebarBtn.contains(e.target)){
-        if (!sidebarPosition) {
+        if (!sidebarOpen) {
             _openSidebar();
         } else {
             _closeSidebar();
@@ -69,7 +69,7 @@ window.addEventListener('click', function(e){
 });
 
 document.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13 && sidebarPosition) {
+    if (event.keyCode === 13 && sidebarOpen) {
         form.submit();
     }
 });

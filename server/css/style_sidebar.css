@@ -214,12 +214,35 @@
 }
 .sidebar .sidecontent {
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .sidebar .sidecontent::-webkit-scrollbar {
+  display: none;
+}
+.sidebar .sidecontent #artist_band, .sidebar .sidecontent #members, .sidebar .sidecontent #creation_date {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  flex: 1;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.sidebar .sidecontent #artist_band .artists, .sidebar .sidecontent #members .artists, .sidebar .sidecontent #creation_date .artists {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.sidebar .sidecontent #artist_band .title, .sidebar .sidecontent #members .title, .sidebar .sidecontent #creation_date .title {
+  font-size: 0.8em;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.sidebar .sidecontent #members, .sidebar .sidecontent #creation_date {
   display: none;
 }
 .sidebar .artist {
@@ -245,6 +268,13 @@
 }
 .sidebar .artist h3 {
   font-size: 1.2em;
+}
+.sidebar .artist h3 .id {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  font-size: 0;
+  display: none;
 }
 .sidebar .artist p {
   font-size: 0.8em;

@@ -1,5 +1,4 @@
 let coords = document.getElementsByClassName("coord");
-console.log(coords);
 
 
 let usableCoord = [];

@@ -29,6 +29,7 @@ func GetAPIData(apiUrl string) []byte {
 		fmt.Println(getErr)
 	}
 	if res.Body != nil { // ?  Get "": unsupported protocol scheme "" 2023/01/22 23:48:26 http: panic serving [::1]:60987: runtime error: invalid memory address or nil pointer dereference
+		// ? Get "https://groupietrackers.herokuapp.com/api": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
 		defer res.Body.Close()
 	}
 	body, readErr := ioutil.ReadAll(res.Body)

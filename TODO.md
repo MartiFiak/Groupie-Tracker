@@ -45,26 +45,26 @@
  - ✅ Nombre de membres
  - ☐ Lieux de concerts   (1h)
 
-⚠️ La barre de recherche
+🚧 La barre de recherche
  - ✅ Nom de l'artist/du groupe
  - ☐ Membres
  - ☐ Emplacements
  - ☐ Date du premier album
  - ☐ Date de création
 
-✅ La barre de recherche est insensible à la casse
- - ✅ Pas de gestion des espaces **[Niveau 1]**
-
-⚠️ Suggestions shearch bar
+ 🚧 Suggestions shearch bar
  - ☐ Membre
- - ☐ Groupe
+ - ✅ Groupe
  - ☐ Emplacement
  - ☐ ...
+
+✅ La barre de recherche est insensible à la casse
+ - ✅ Pas de gestion des espaces **[Niveau 1]**
 
 ✅Code optimisé (pas d'attente sur le chargement d'une page)
 
 ⚠️README clair et détaillé   (30min)
- - ☐ Procédures d'installations
+ - ✅ Procédures d'installations
  - 🚧 Procédures de lancement
  - 🚧 ...
 
@@ -86,7 +86,7 @@
 🤔 Page de Payement
 
 🤔 Login Register
- - 🚧 UI    (1h)
+ - 🚧 UI    (30min)
  - 🚧 Back  (20min)
     - ✅ Register
     - ☐ Login
@@ -103,8 +103,8 @@
 
 🚧 Produire un code clair et concis
 
-🚧Nommage des variable
+🚧 Nommage des variable
 
-🚧Organisation des fichiers/dossiers   (10min)
+🚧 Organisation des fichiers/dossiers   (10min)
 
-🚧Respecter les bonnes pratiques HTML/CSS
+🚧 Respecter les bonnes pratiques HTML/CSS
