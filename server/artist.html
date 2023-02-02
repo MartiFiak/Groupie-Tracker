@@ -14,12 +14,13 @@
     <title>Groupie Tracker</title>
 </head>
 <body>
+    {{ template "sidebar.html" .}}
     <div class="header">
-        <div class="left" onclick="window.location.href='index.html'">
+        <div class="leftbox" onclick="window.location.href='index.html'">
             <img src="/server/images/icons/gplogo.png" alt="">
             <h2>Groupie-Tracker</h2>
         </div>
-        <div class="right" id="hright">
+        <div class="rightbox" id="hright">
             <a href="/signup">Sign up</a>
             <a href="/login">Login</a>
             <section class="home-section">
@@ -28,10 +29,7 @@
                 </div>
             </section>
         </div>
-            
-    {{ template "sidebar.html" .}}
     </div>
-
     <div class="sect1">
         <img class="bg-image" src="{{ .Currentband.Image }}" alt="">
         <div class="content">
@@ -77,9 +75,9 @@
                                     <li>
                                         <div class="event" onmouseover="changeMapFocus({{ index $ville.Coord.Lat}},{{ index $ville.Coord.Long }})">
                                             <div class="eventdate">
-                                                <p>{{ index $ville.Date 0 }} </p>
+                                                <p class="jy">{{ index $ville.Date 0 }} </p>
                                                 <p class="date">{{ index $ville.Date 1 }}</p>
-                                                <p>{{ index $ville.Date 2 }}</p>
+                                                <p class="jy">{{ index $ville.Date 2 }}</p>
                                             </div>
                                             <div class="infoloc">
                                                 <h3>Concert</h3>
@@ -105,9 +103,9 @@
                                 <li>
                                     <div class="event">
                                         <div class="eventdate">
-                                            <p>{{ index $value 1 }} </p>
+                                            <p class="jy">{{ index $value 1 }} </p>
                                             <p class="date">{{ index $value 2 }}</p>
-                                            <p>{{ index $value 3 }}</p>
+                                            <p class="jy">{{ index $value 3 }}</p>
                                         </div>
                                         <div class="infoloc">
                                             <h3>Concert</h3>
