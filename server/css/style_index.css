@@ -148,4 +148,214 @@ body {
   background: #555;
 }
 
+@media screen and (max-width: 1080px) {
+  .container .content .sect1 {
+    height: auto;
+    padding-top: 25vh;
+  }
+  .container .content .sect1 h1 {
+    font-size: 3.5em;
+    margin-bottom: 5px;
+  }
+  .container .content .sect1 p {
+    font-size: 1em;
+  }
+  .container .content .sect2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .container .content .sect2 h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  .container .content .sect2 .artistS {
+    background-color: rgba(112, 112, 112, 0.2274509804);
+    border: none;
+    height: 2px;
+  }
+  .container .content .sect2 .artistR {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .container .content .sect2 .artistR .art {
+    padding: 15px;
+    width: 65%;
+    margin: 10px auto;
+    border-radius: 25px;
+  }
+}
+@media screen and (max-width: 700px) {
+  body {
+    overflow-y: visible;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .header .leftbox {
+    margin: auto 2%;
+    cursor: pointer;
+  }
+  .header .leftbox img {
+    height: 35px;
+    width: 35px;
+  }
+  .header .leftbox h2 {
+    font-size: 1em;
+  }
+  .header .rightbox {
+    display: flex;
+    flex-direction: row;
+    margin: auto 2vw;
+  }
+  .header .rightbox a {
+    display: block;
+    padding: 10px 1vw;
+    text-align: center;
+    margin: auto 5px;
+    font-size: 0.8em;
+  }
+  .header .rightbox a:nth-child(3n+2) {
+    padding: 8px 10px;
+    font-size: 0.9em;
+    border-style: solid;
+  }
+  .container .content .sect1 {
+    height: auto;
+    padding-top: 25vh;
+  }
+  .container .content .sect1 h1 {
+    font-size: 2.7em;
+    margin-bottom: 5px;
+  }
+  .container .content .sect1 p {
+    font-size: 0.9em;
+  }
+  .container .content .sect2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .container .content .sect2 h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  .container .content .sect2 .artistS {
+    background-color: rgba(112, 112, 112, 0.2274509804);
+    border: none;
+    height: 1px;
+  }
+  .container .content .sect2 .artistR {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .container .content .sect2 .artistR .art {
+    padding: 15px;
+    width: 65%;
+    margin: 10px auto;
+    border-radius: 25px;
+  }
+  .container .content .sect2 .artistR .art img {
+    height: 65px;
+    width: 65px;
+  }
+  .container .content .sect2 .artistR .art .artinfo .name {
+    font-size: 1em;
+  }
+  .container .content .sect2 .artistR .art .artinfo .datecreat {
+    font-size: 0.9em;
+  }
+}
+@media screen and (max-width: 500px) {
+  body {
+    overflow-y: visible;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .header .leftbox {
+    margin: auto 2%;
+    cursor: pointer;
+  }
+  .header .leftbox img {
+    height: 30px;
+    width: 30px;
+  }
+  .header .leftbox h2 {
+    font-size: 0.9em;
+  }
+  .header .rightbox {
+    display: flex;
+    flex-direction: row;
+    margin: auto 2vw;
+  }
+  .header .rightbox a {
+    display: block;
+    padding: 10px 1vw;
+    text-align: center;
+    margin: auto 5px;
+    font-size: 0.7em;
+  }
+  .header .rightbox a:nth-child(3n+2) {
+    font-size: 0.8em;
+    border-style: none;
+  }
+  .container .content .sect1 {
+    height: auto;
+    padding-top: 25vh;
+  }
+  .container .content .sect1 h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+  .container .content .sect1 p {
+    font-size: 0.7em;
+  }
+  .container .content .sect2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .container .content .sect2 h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  .container .content .sect2 .artistS {
+    background-color: rgba(112, 112, 112, 0.2274509804);
+    border: none;
+    height: 1px;
+  }
+  .container .content .sect2 .artistR {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .container .content .sect2 .artistR .art {
+    padding: 15px;
+    width: 65%;
+    margin: 10px auto;
+    border-radius: 25px;
+  }
+  .container .content .sect2 .artistR .art img {
+    height: 60px;
+    width: 60px;
+  }
+  .container .content .sect2 .artistR .art .artinfo .name {
+    font-size: 0.9em;
+  }
+  .container .content .sect2 .artistR .art .artinfo .datecreat {
+    font-size: 0.8em;
+  }
+}
+
 /*# sourceMappingURL=style_index.css.map */

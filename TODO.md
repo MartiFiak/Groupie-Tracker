@@ -24,19 +24,6 @@
 
 <br>
 
-🚧Réaliser un site user-friendly
- - ✅ Bouton retour
- - ✅ Doublons dans le home page (you may like) **[Niveau 2]**
- - 🤔 Reponsive  (3h)
- - 🤔 Footer ABOUT US  ( 5min )
-
-✅Réaliser des requêtes vers une API
-
-🚧Design global de l'interface
- - ✅ Affichage des locations
-    - ✅ Evenement passé, doublons ( exemple page Pink Floyd ) **[Niveau 2]**
- - 🚧 Page All Artists
-
 ⚠️ Filtre :
  - ✅ Date de création
     - 🤔 Double selecteur  (1h)
@@ -47,26 +34,39 @@
 
 🚧 La barre de recherche
  - ✅ Nom de l'artist/du groupe
- - ☐ Membres
- - ☐ Emplacements
- - ☐ Date du premier album
- - ☐ Date de création
+ - ✅ Membres
+ - ☐ Emplacements        (1h)
+ - ✅ Date du premier album
+ - ✅ Date de création
 
  🚧 Suggestions shearch bar
- - ☐ Membre
+ - ✅ Membre
  - ✅ Groupe
  - ☐ Emplacement
- - ☐ ...
+ - ✅ ...
+
+🚧Réaliser un site user-friendly
+ - ✅ Bouton retour
+ - ✅ Doublons dans le home page (you may like) **[Niveau 2]**
+ - 🤔 Reponsive  (3h)
+ - 🤔 Footer ABOUT US  ( 5min )
+
+🚧Design global de l'interface
+ - ✅ Affichage des locations
+    - ✅ Evenement passé, doublons ( exemple page Pink Floyd ) **[Niveau 2]**
+ - 🚧 Page All Artists
+
+🚧README clair et détaillé   (30min)
+ - ✅ Procédures d'installations
+ - ✅ Procédures de lancement
+ - 🚧 ...
+
+✅Réaliser des requêtes vers une API
 
 ✅ La barre de recherche est insensible à la casse
  - ✅ Pas de gestion des espaces **[Niveau 1]**
 
 ✅Code optimisé (pas d'attente sur le chargement d'une page)
-
-⚠️README clair et détaillé   (30min)
- - ✅ Procédures d'installations
- - 🚧 Procédures de lancement
- - 🚧 ...
 
 
 <br>

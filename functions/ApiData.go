@@ -17,7 +17,7 @@ var FakeCurrentDay int
 func GetAPIData(apiUrl string) []byte {
 
 	apiClient := http.Client{
-		Timeout: time.Second * 2,
+		Timeout: time.Second * 5,
 	}
 	req, err := http.NewRequest(http.MethodGet, apiUrl, nil)
 	if err != nil {

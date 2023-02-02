@@ -6,13 +6,11 @@ let form = document.getElementById("sidebarform");
 
 var sidebarOpen = false;
 var filterVisibility = false;
-console.log(sidebarBtn);
 
 function _openSidebar(){
     hright.style.opacity = "0";
     sidebar.style.width = "250px";
     sidebar.style.padding = "10px";
-    console.log("Click", sidebar.style.width);
     sidebarOpen = true;
 }
 
@@ -21,7 +19,6 @@ function _closeSidebar(){
     sidebar.style.width = "0px";
     sidebar.style.margin = "0px";
     sidebar.style.padding = "0px";
-    console.log("Click", sidebar.style.width);
     sidebarOpen = false;
 }
 
@@ -38,16 +35,6 @@ function _showFilter(){
 
 function _rangeManager(slider, text){
     text.textContent = "1900 - " + slider.value;
-}
-
-function _FirstAlbumSlider(){
-    console.log(document.getElementById("myRangeFA").value);
-    _rangeManager(document.getElementById("myRangeFA"), document.getElementById("faTxt"));
-}
-
-function _creationDateSlider(){
-    console.log(document.getElementById("myRange").value);
-    _rangeManager(document.getElementById("myRange"), document.getElementById("cdTxt"));
 }
 
 function _getData(data){
@@ -67,9 +54,9 @@ window.addEventListener('click', function(e){
         _closeSidebar();
     }
 });
-
+/*
 document.addEventListener("keyup", function(event) {
     if (event.keyCode === 13 && sidebarOpen) {
         form.submit();
     }
-});
+});*/
