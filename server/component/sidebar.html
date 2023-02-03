@@ -79,71 +79,22 @@
                     <script type="text/javascript">
                     _addArtist("{{ $artist.Id }}", "{{ $artist.Image }}", "{{ $artist.Name }}", "{{ $artist.CreationDate }}", "{{ $artist.FirstAlbum }}",m);
                 </script>
-                <!--{{ if ne ($artist.Id) 0 }}
-                <li class="artist_box" id="{{ $artist.Id }}"><a href="/artist?id={{ $artist.Id }}">
-                        <div class="artist"><img src="{{ $artist.Image }}" alt="">
-                            <div>
-                                <h3>{{ $artist.Name }}</h3>
-                                <p>{{ $artist.CreationDate }}</p>
-                            </div>
-                        </div>
-                    </a></li>
-                {{ end }}-->
                 {{ end }}
             </div>
         </div>
         <div id="members">
             <p class="title">Members</p>
             <div class="artists">
-                <!--{{ range $artist := .Artists }}
-                {{ if ne ($artist.Id) 0 }}
-                <li class="artist_box_m" id="{{ $artist.Id }}m"><a href="/artist?id={{ $artist.Id }}">
-                        <div class="artist"><img src="{{ $artist.Image }}" alt="">
-                            <div>
-                                <h3>{{ $artist.Name }}<p class="id">{{ $artist.Id }}</p>
-                                </h3>
-                                <p>{{ $artist.CreationDate }}</p>
-                            </div>
-                        </div>
-                    </a></li>
-                {{ end }}
-                {{ end }}-->
             </div>
         </div>
         <div id="creation_date">
             <p class="title">Creation Date</p>
             <div class="artists">
-                <!--{{ range $artist := .Artists }}
-                {{ if ne ($artist.Id) 0 }}
-                <li class="artist_box_cd" id="{{ $artist.Id }}c"><a href="/artist?id={{ $artist.Id }}">
-                        <div class="artist"><img src="{{ $artist.Image }}" alt="">
-                            <div>
-                                <h3>{{ $artist.Name }}<p class="id">{{ $artist.Id }}</p>
-                                </h3>
-                                <p>{{ $artist.CreationDate }}</p>
-                            </div>
-                        </div>
-                    </a></li>
-                {{ end }}
-                {{ end }}-->
             </div>
         </div>
         <div id="firstalbumdate_date">
             <p class="title">First Album Date</p>
             <div class="artists">
-                <!--{{ range $artist := .Artists }}
-                {{ if ne ($artist.Id) 0 }}
-                <li class="artist_box_cd" id="{{ $artist.Id }}c"><a href="/artist?id={{ $artist.Id }}">
-                        <div class="artist"><img src="{{ $artist.Image }}" alt="">
-                            <div>
-                                <h3>{{ $artist.Name }}<p class="id">{{ $artist.Id }}</p>
-                                </h3>
-                                <p>{{ $artist.CreationDate }}</p>
-                            </div>
-                        </div>
-                    </a></li>
-                {{ end }}
-                {{ end }}-->
             </div>
         </div>
     </div>

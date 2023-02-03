@@ -48,7 +48,7 @@
 🚧Réaliser un site user-friendly
  - ✅ Bouton retour
  - ✅ Doublons dans le home page (you may like) **[Niveau 2]**
- - 🚧 Reponsive  (3h)
+ - 🚧 Reponsive  (2h)
  - 🤔 Footer ABOUT US  ( 5min )
 
 🚧Design global de l'interface

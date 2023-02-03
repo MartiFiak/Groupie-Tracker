@@ -1,0 +1,130 @@
+body {
+  background-color: var(--bla);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 8vh;
+  width: 100vw;
+  justify-content: space-between;
+}
+.header .leftbox {
+  display: flex;
+  flex-direction: row;
+  margin: auto 2vw;
+  cursor: pointer;
+}
+.header .leftbox img {
+  height: 4vh;
+  width: 4vh;
+  margin: auto 10px;
+}
+.header .leftbox h2 {
+  margin: auto 0;
+  font-weight: bold;
+  font-size: 20px;
+}
+.header .rightbox {
+  display: flex;
+  flex-direction: row;
+  margin: auto 2vw;
+}
+.header .rightbox a {
+  display: block;
+  padding: 10px 1vw;
+  text-align: center;
+  margin: auto 5px;
+  font-size: 0.9em;
+}
+.header .rightbox a:nth-child(3n+2) {
+  font-size: 1em;
+  border-style: solid;
+  border-color: var(--gren);
+  border-width: 1px;
+  font-weight: bold;
+  color: var(--gren);
+}
+
+.sect1 {
+  margin: 10vh;
+}
+.sect1 .searchBar {
+  border: none;
+  border-radius: 0;
+  border-width: 1px;
+  padding: 5px;
+  margin: 10px;
+  width: 20%;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(255, 255, 255, 0.7607843137);
+  background-color: transparent;
+  outline: none;
+}
+.sect1 .slidecreationdate {
+  width: 20%;
+}
+.sect1 .slidecreationdate .slidercreationdate {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.sect1 .slidecreationdate .slidercreationdate:hover {
+  opacity: 1;
+}
+.sect1 .slidecreationdate .slidercreationdate::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #04AA6D;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.sect1 .slidecreationdate .slidercreationdate::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 5px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.sect2 {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  gap: 20px;
+}
+.sect2 .artist {
+  position: relative;
+  overflow: hidden;
+  width: 15vh;
+  flex: 1 0 auto;
+  transition: ease 1s;
+  border-radius: 2vh;
+}
+.sect2 .artist img {
+  height: 50vh;
+  width: 50vh;
+  filter: saturate(20%);
+  transition: ease 1s;
+}
+.sect2 .artist .info {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(13, 19, 33, 0.6235294118);
+  width: 100%;
+  padding: 3vh;
+}
+
+/*# sourceMappingURL=style_allArtist.css.map */

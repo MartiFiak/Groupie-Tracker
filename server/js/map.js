@@ -3,14 +3,6 @@ let coords = document.getElementsByClassName("coord");
 
 let usableCoord = [];
 for (let i = 0; i < coords.length; i++) {
-
-  coords[i].onmouseover = function(){
-    console.log("hover");
-  };
-  coords[i].addEventListener("mouseover", function( event ) {
-    console.log("hover")
-  
-  },false);
   coord = {lat: coords[i].textContent.split("|")[0], lng: coords[i].textContent.split("|")[1]}
   usableCoord.push(coord);
 }
