@@ -27,15 +27,18 @@ type PageData struct {
 	Currentband  CurrentBand
 	Artists      []Artist
 	MPageRArtist []Artist
+	Locations    []string
 }
 
 type Artist struct {
-	Id           int      `json:"id"`
-	Image        string   `json:"image"`
-	Name         string   `json:"name"`
-	CreationDate int      `json:"creationdate"`
-	Member       []string `json:"members"`
-	FirstAlbum   string   `json:"firstAlbum"`
+	Id              int      `json:"id"`
+	Image           string   `json:"image"`
+	Name            string   `json:"name"`
+	CreationDate    int      `json:"creationdate"`
+	Member          []string `json:"members"`
+	FirstAlbum      string   `json:"firstAlbum"`
+	Locations       string   `json:"locations"`
+	FormatLocations []string
 }
 
 type ApiData struct {

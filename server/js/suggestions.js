@@ -1,36 +1,37 @@
-let artist_boxs = document.getElementsByClassName("artist_box");
-
 class Artist{
-    constructor(id,image,name,creationdate,firstalbum, members){
+    constructor(id,image,name,creationdate,firstalbum, members, locations){
         this.id;
         this.image;
         this.name;
         this.creationdate;
         this.firstalbum;
         this.members;
+        this.locations;
     }
 }
 
-let allArtist = {}
-let currentArtist = []
-
-function _addArtist(id, image, name, creationDate, firstAlbum, members){
-    allArtist[id] = {id:id,image:image,name:name,creationDate:creationDate,firstalbum:firstAlbum, members:members};
-    displayArtist(id, image,name, creationDate, "artist_band");
-}
 
 document.addEventListener("keyup", function(event) {
     _executeFilter()
 });
 
+
+let allArtist = {}
+let currentArtist = []
+
+function _addArtist(id, image, name, creationDate, firstAlbum, members, locations){
+    allArtist[id] = {id:id,image:image,name:name,creationDate:creationDate,firstalbum:firstAlbum, members:members, locations:locations};
+    displayArtist(id, image,name, creationDate, "artist_band");
+}
+
 function _creationDateSlider(){
-    _rangeManager(document.getElementById("myRange"), document.getElementById("cdTxt"));
-    return document.getElementById("myRange").value;
+    _rangeManager(document.getElementById("myRangeMax"),document.getElementById("myRangeMin"), document.getElementById("cdTxt"));
+    return [document.getElementById("myRangeMin").value, document.getElementById("myRangeMax").value];
 }
 
 function _FirstAlbumSlider(){
-    _rangeManager(document.getElementById("myRangeFA"), document.getElementById("faTxt"));
-    return document.getElementById("myRangeFA").value;
+    _rangeManager(document.getElementById("myRangeFAMax"),document.getElementById("myRangeFAMin"), document.getElementById("faTxt"));
+    return [document.getElementById("myRangeFAMin").value, document.getElementById("myRangeFAMax").value];
 }
 
 function _searchDate(date, currentsearch){
@@ -39,6 +40,24 @@ function _searchDate(date, currentsearch){
 
 function _searchArtistBand(name, currentsearch){
     return _formatString(name).includes(_formatString(currentsearch));
+}
+
+function _filterLocations(locations, loc){
+    for(const location of locations){
+        if(_formatString(location).includes(_formatString(loc))){
+            return true;
+        }
+    }
+    return false;
+}
+
+function _searchLocations(locations, currentsearch){
+    for(const location of locations){
+        if(_formatString(location).includes(_formatString(currentsearch))){
+            return location;
+        }
+    }
+    return "";
 }
 
 function _searchMembers(members, currentsearch){
@@ -50,20 +69,65 @@ function _searchMembers(members, currentsearch){
     return "";
 }
 
+function _filterByNumberOfMember(members){
+    let o_Member = document.getElementById("one_members");
+    if(o_Member.checked && members.length == 1){
+        return true
+    }
+    let to_Member = document.getElementById("tow_members");
+    if(to_Member.checked && members.length == 2){
+        return true
+    }
+    let tr_Member = document.getElementById("tree_members");
+    if(tr_Member.checked && members.length == 3){
+        return true
+    }
+    let fo_Member = document.getElementById("four_members");
+    if(fo_Member.checked && members.length == 4){
+        return true
+    }
+    let fi_Member = document.getElementById("five_members");
+    if(fi_Member.checked && members.length == 5){
+        return true
+    }
+    let s_Member = document.getElementById("six_members");
+    if(s_Member.checked && members.length == 6){
+        return true
+    }
+    let m_Member = document.getElementById("more_members");
+    if(m_Member.checked && members.length >= 7){
+        return true
+    }
+
+    if(!o_Member.checked && !to_Member.checked && !tr_Member.checked && !fo_Member.checked && !fi_Member.checked && !s_Member.checked && !m_Member.checked){
+        return true
+    }
+
+    return false;
+}
+
 function _executeFilter(){
     if (sidebarOpen) {
         let artistbandIsDisplay = false;
         let creationdateIsDisplay = false;
         let firstalbumIsDisplay = false;
         let memberIsDisplay = false;
+        let locationsIsDisplay = false;
         let searchBar = document.querySelector(".shearch");
         currentsearch = String(searchBar.value);
         document.getElementById("artist_band").querySelector(".artists").innerHTML = "";
         document.getElementById("creation_date").querySelector(".artists").innerHTML = "";
         document.getElementById("firstalbumdate_date").querySelector(".artists").innerHTML = "";
         document.getElementById("members").querySelector(".artists").innerHTML="";
+        document.getElementById("locations").querySelector(".artists").innerHTML="";
         for(const [key, artist] of Object.entries(allArtist)){
-            if(_creationDateSlider() >= artist.creationDate && _FirstAlbumSlider() >= artist.firstalbum.split("-")[2]){
+            if((_creationDateSlider()[0] <= artist.creationDate 
+            && _creationDateSlider()[1] >= artist.creationDate) 
+            && (_FirstAlbumSlider()[0] <= artist.firstalbum.split("-")[2] 
+            && _FirstAlbumSlider()[1] >= artist.firstalbum.split("-")[2]) 
+            && _filterByNumberOfMember(artist.members) 
+            && _filterLocations(artist.locations, document.getElementById("locselect").value)){
+
                 if(_searchArtistBand(artist.name, currentsearch)){
                     displayArtist(artist.id, artist.image,artist.name, artist.creationDate, "artist_band");
                     artistbandIsDisplay = true;
@@ -80,6 +144,11 @@ function _executeFilter(){
                 if(m != "" && currentsearch != ""){
                     displayArtist(artist.id, artist.image,artist.name, m, "members");
                     memberIsDisplay = true;
+                }
+                var l = _searchLocations(artist.locations, currentsearch);
+                if(l != "" && currentsearch != ""){
+                    displayArtist(artist.id, artist.image,artist.name, l, "locations");
+                    locationsIsDisplay = true;
                 }
             }
         }
@@ -109,6 +178,13 @@ function _executeFilter(){
             members_sect.style.display = "block";
         }else { 
             members_sect.style.display = "none";
+        }
+
+        let locations_sect = document.getElementById("locations");
+        if(locationsIsDisplay){
+            locations_sect.style.display = "block";
+        }else { 
+            locations_sect.style.display = "none";
         }
     }
 

@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"text/template"
 	"time"
+	"strings"
 )
 
 var currentband groupietrackers.CurrentBand
@@ -44,6 +45,13 @@ func main() {
 func AllArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./server/allArtist.html", "./server/component/sidebar.html"))
 
+	switch r.Method {
+	case "GET":
+	case "POST":
+		pageData.Artists = groupietrackers.GetFilterUse(r, artistFiltered, artistLoad)
+		artistFiltered = nil
+	}
+
 	tmpl.Execute(w, pageData)
 }
 
@@ -51,6 +59,21 @@ func RealtimeData() {
 	// !       Regenere les données des artistes toutes les minutes
 	for {
 		artistLoad = groupietrackers.SetArtist(groupietrackers.GetAPIData(data.Artist))
+		for index, artist := range artistLoad {
+			locations := groupietrackers.SetLocationData(groupietrackers.GetAPIData(artist.Locations))
+			for _, location := range locations.Locations {
+				ville_pays := strings.Split(location, "-")
+				ville_pays[0] = strings.Replace(ville_pays[0], "_", " ", -1)
+				ville_pays[1] = strings.Replace(ville_pays[1], "_", " ", -1)
+				if !groupietrackers.SContains(pageData.Locations, ville_pays[0]){
+					pageData.Locations = append(pageData.Locations, ville_pays[0])
+				}
+				if !groupietrackers.SContains(pageData.Locations, ville_pays[1]){
+					pageData.Locations = append(pageData.Locations, ville_pays[1])
+				}
+				artistLoad[index].FormatLocations = append(artistLoad[index].FormatLocations, ville_pays[0] + " " + ville_pays[1])
+			}
+		}
 		time.Sleep(60 * time.Second)
 	}
 }

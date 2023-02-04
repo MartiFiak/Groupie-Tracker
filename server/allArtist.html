@@ -15,7 +15,6 @@
 </head>
 
 <body>
-  {{ template "sidebar.html" .}}
   <div class="header">
       <div class="leftbox" onclick="window.location.href='index.html'">
           <img src="/server/images/icons/gplogo.png" alt="">
@@ -24,34 +23,71 @@
       <div class="rightbox" id="hright">
           <a href="/signup">Sign up</a>
           <a href="/login">Login</a>
-          <section class="home-section">
-              <div class="home-content">
-              <i class="bx bx-search"></i>
-              </div>
-          </section>
       </div>
   </div>
 
   <div class="sect1">
-    <form action="" method="get">
-        <input class="searchBar" type="text" name="" id="" placeholder="Enter your search">
-        <div class="slidecreationdate">
-            <input name="creationdate" type="range" min="1900" max="2023" value="2020"
-                class="slidercreationdate">
-        </div><div class="slidecreationdate">
-            <input name="creationdate" type="range" min="1900" max="2023" value="2020"
-                class="slidercreationdate">
+    <form action="" method="post" id="sidebarform">
+        <input type="text" name="shearch" placeholder="Schearch an artist" class="shearch" autocomplete="off">
+        <div class="filter">
+            <div class="creationdate">
+                <p class="title">Creation date</p>
+                <p class="daterange"> 1900-2020</p>
+            </div>
+            <div class="slidecreationdate">
+                <input name="creationdate" type="range" min="1900" max="2023" value="2020"
+                    class="slidercreationdate" id="myRange">
+            </div>
+            <div class="firstalbumdate">
+                <p class="title">First album</p>
+                <p class="daterange"> 1900-2020</p>
+            </div>
+            <div class="slidefirstalbum">
+                <input name="firstalbumdate" type="range" min="1900" max="2023" value="2020"
+                    class="sliderfirstalbum" id="myRangeFA">
+            </div>
+
+            <div class="nbmembres">
+                <p class="title">Number of members</p>
+
+                <div class="allcheck">
+                    <div>
+                        <input type="checkbox" name="one_members" value="1">
+                        <label for="one_members">1</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="tow_members" value="2">
+                        <label for="tow_members">2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="tree_members" value="3">
+                        <label for="tree_members">3</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="four_members" value="4">
+                        <label for="four_members">4</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="five_members" value="5">
+                        <label for="five_members">5</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="six_members" value="6">
+                        <label for="six_members">6</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="more_members" value="7">
+                        <label for="more_members">7+</label>
+                    </div>
+                </div>
+            </div>
+            <select name="locationfilter" id="" class="locationsSelecteur">
+                <option value="">Select a location</option>
+                {{ range $location := .Locations}}
+                <option value="{{ $location }}">{{ $location }}</option>
+                {{ end }}
+            </select>
         </div>
-        <input type="checkbox" name="" id="">
-        <input type="checkbox" name="" id="">
-        <input type="checkbox" name="" id="">
-        <input type="checkbox" name="" id="">
-        <input type="checkbox" name="" id="">
-        <input type="checkbox" name="" id="">
-        <input type="checkbox" name="" id="">
-
-
-
     </form>
 
   </div>
@@ -71,8 +107,6 @@
   {{ end }}
 
   </div>
-
-  <script type="text/javascript" src="/server/js/sidebar.js"></script>
   <script type="text/javascript" src="/server/js/allartist.js"></script>
 </body>
 </html>

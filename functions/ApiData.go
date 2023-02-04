@@ -114,7 +114,6 @@ func SetArtist(body []byte) []Artist {
 }
 
 func UpdateCurrentBand(apiArtist string) CurrentBand {
-	//var cb CurrentBand
 	dataartist := SetArtistData(GetAPIData(apiArtist))
 	datadatelocation := SetRelationData(GetAPIData(dataartist.Relations)) // ? Erreur au lancement   Get "": unsupported protocol scheme "" 2023/01/22 23:48:26 http: panic serving [::1]:60989: runtime error: invalid memory address or nil pointer dereference
 
@@ -127,13 +126,6 @@ func UpdateCurrentBand(apiArtist string) CurrentBand {
 		Relations:    ChangeDateFormat(datadatelocation.DatesLocations),
 	}
 	cb.FuturRelation, cb.PassRelation = CheckRelationTime(cb.Relations)
-	/*cb.Id = dataartist.Id
-	cb.Image = dataartist.Image
-	cb.Name = dataartist.Name
-	cb.Member = dataartist.Member
-	cb.CreationDate = dataartist.CreationDate
-	cb.Relations = ChangeDateFormat(datadatelocation.DatesLocations)
-	cb.FuturRelation, cb.PassRelation = CheckRelationTime(cb.Relations)*/
 	return cb
 }
 

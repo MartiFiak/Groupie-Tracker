@@ -24,31 +24,31 @@
 
 <br>
 
-⚠️ Filtre :
+✅ Filtre :
  - ✅ Date de création
-    - 🤔 Double selecteur  (1h)
+    - ✅ Double selecteur
  - ✅ Date du premier album
-     - 🤔 Double selecteur
+     - ✅ Double selecteur
  - ✅ Nombre de membres
- - ☐ Lieux de concerts   (1h)
+ - ✅ Lieux de concerts   (1h)
 
-🚧 La barre de recherche
+✅ La barre de recherche
  - ✅ Nom de l'artist/du groupe
  - ✅ Membres
- - ☐ Emplacements        (1h)
+ - ✅ Emplacements        (1h)
  - ✅ Date du premier album
  - ✅ Date de création
 
- 🚧 Suggestions shearch bar
+ ✅ Suggestions shearch bar
  - ✅ Membre
  - ✅ Groupe
- - ☐ Emplacement
+ - ✅ Emplacement
  - ✅ ...
 
 🚧Réaliser un site user-friendly
  - ✅ Bouton retour
  - ✅ Doublons dans le home page (you may like) **[Niveau 2]**
- - 🚧 Reponsive  (2h)
+ - ✅ Reponsive
  - 🤔 Footer ABOUT US  ( 5min )
 
 🚧Design global de l'interface

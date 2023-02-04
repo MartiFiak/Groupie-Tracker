@@ -1,18 +1,20 @@
 package groupietrackers
 
 import (
-	"strings"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
-func GetFilterUse(r *http.Request, artistFiltered []Artist, artistLoad []Artist)[]Artist{
+func GetFilterUse(r *http.Request, artistFiltered []Artist, artistLoad []Artist) []Artist {
 	// ! Checks and applies the filters used for the search
 	shearchFilter := r.FormValue("shearch")
 	creationdateFilter := r.FormValue("creationdate")
 	firstalbumdateFilte := r.FormValue("firstalbumdate")
+	locationFilter := r.FormValue("locationfilter")
 	nmemberFilter := []string{ // * Contains the value of all check-buttons
 		r.FormValue("one_members"),
-		r.FormValue("tow_members"), 
+		r.FormValue("tow_members"),
 		r.FormValue("tree_members"),
 		r.FormValue("four_members"),
 		r.FormValue("five_members"),
@@ -48,6 +50,14 @@ func GetFilterUse(r *http.Request, artistFiltered []Artist, artistLoad []Artist)
 			artistFiltered = FiltredByMembersNumber(artistFiltered, nmemberFilter)
 		}
 	}
+	if locationFilter != "" {
+		if artistFiltered == nil {
+			artistFiltered = FiltredByLocations(artistLoad, locationFilter)
+		} else {
+			artistFiltered = FiltredByLocations(artistFiltered, locationFilter)
+		}
+	}
+
 	return artistFiltered
 }
 
@@ -57,9 +67,27 @@ func WhichContainsString(content string, listToCheck []Artist) []Artist { // ? H
 	for _, element := range listToCheck {
 		if strings.Contains(TurnStringToShearch(element.Name), TurnStringToShearch(content)) {
 			containsString = append(containsString, element)
+		} else if strconv.Itoa(element.CreationDate) == content || strings.Split(element.FirstAlbum, "-")[2] == content {
+			containsString = append(containsString, element)
+		}else {
+			if len(FiltredByLocations([]Artist{element}, content)) != 0 {
+				containsString = append(containsString, element)
+			} else if SearchMembers(element, content){
+				containsString = append(containsString, element)
+			}
 		}
+
 	}
 	return containsString
+}
+
+func SearchMembers(artist Artist, search string) bool{
+	for _, member := range artist.Member {
+		if strings.Contains(TurnStringToShearch(member), TurnStringToShearch(search)){
+			return true
+		}
+	}
+	return false
 }
 
 func FiltredByMembersNumber(artistLoad []Artist, n []string) []Artist {
@@ -68,6 +96,20 @@ func FiltredByMembersNumber(artistLoad []Artist, n []string) []Artist {
 		for _, nmembre := range n {
 			if (len(artist.Member) == AtoiWithoutErr(nmembre) && nmembre != "7") || (nmembre == "7" && len(artist.Member) >= AtoiWithoutErr(nmembre)) {
 				artistFiltered = append(artistFiltered, artist)
+			}
+		}
+	}
+	return artistFiltered
+}
+
+func FiltredByLocations(artistLoad []Artist, locationSearch string) []Artist {
+	artistFiltered := []Artist{}
+	for _, artist := range artistLoad {
+		locations := artist.FormatLocations
+		for _, location := range locations {
+			if strings.Contains(TurnStringToShearch(location), TurnStringToShearch(locationSearch)) {
+				artistFiltered = append(artistFiltered, artist)
+				break
 			}
 		}
 	}

@@ -59,57 +59,202 @@ body{
 .sect1 {
     margin:10vh;
 
-    .searchBar{
+    .shearch {
+        height: 20px;
+        border-radius: 10px;
         border: none;
         border-radius: 0;
         border-width: 1px;
         padding: 5px;
         margin: 10px;
-        width: 20%;
         text-align: center;
         border-bottom-style: solid;
         border-bottom-color: #ffffffc2;
         background-color: transparent;
         outline: none;
-    }
 
-    .slidecreationdate {
-        width: 20%;
-        .slidercreationdate {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 3px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-              
-            &:hover {
-            opacity: 1;
-            }
-              
-            &::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 12px;
-            height: 12px;
-            background: #04AA6D;
-            border-radius: 5px;
-            cursor: pointer;
-            }
-            
-            &::-moz-range-thumb {
-            width: 12px;
-            height: 12px;
-            border-radius: 5px;
-            background: #04AA6D;
-            cursor: pointer;
-            }
+        &:hover {
+            border-bottom-color: #ffffff;
+        }
+
+        &:focus {
+            border-bottom-color: #ffffffe7;
         }
     }
+
+    .filter {
+        height: auto;
+        margin: 10px;
+        width: 80%;
+        overflow: hidden;
+        transition: all 0.5s ease;
+
+        .title {
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .creationdate {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .daterange {
+                font-size: 12px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .firstalbumdate {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .daterange {
+                font-size: 12px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .slidecreationdate {
+            width: 100%;
+            .slidercreationdate {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                height: 3px;
+                background: #d3d3d3;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+                  
+                &:hover {
+                opacity: 1;
+                }
+                  
+                &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 12px;
+                height: 12px;
+                background: #04AA6D;
+                border-radius: 5px;
+                cursor: pointer;
+                }
+                
+                &::-moz-range-thumb {
+                width: 12px;
+                height: 12px;
+                border-radius: 5px;
+                background: #04AA6D;
+                cursor: pointer;
+                }
+            }
+        }
+
+        .slidefirstalbum {
+            width: 100%;
+            .sliderfirstalbum {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                height: 3px;
+                background: #d3d3d3;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+                  
+                &:hover {
+                opacity: 1;
+                }
+                  
+                &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 12px;
+                height: 12px;
+                background: #04AA6D;
+                border-radius: 5px;
+                cursor: pointer;
+                }
+                
+                &::-moz-range-thumb {
+                width: 12px;
+                height: 12px;
+                border-radius: 5px;
+                background: #04AA6D;
+                cursor: pointer;
+                }
+            }
+        }
+
+        .nbmembres {
+            .allcheck {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    margin: 2px;
+                    justify-content: center;
+
+                    input[type="checkbox"]{
+                        margin: 3px;
+                        -webkit-appearance: none;
+                        appearance: none;
+                        font: inherit;
+                        color: currentColor;
+                        width: 1em;
+                        height: 1em;
+                        border: 0.05em solid currentColor;
+                        border-radius: 0.15em;
+                        display: grid;
+                        place-content: center;
+
+                        &::before {
+                            content: "";
+                            width: 0.50em;
+                            height: 0.50em;
+                            transform: scale(0);
+                            transition: 120ms transform ease-in-out;
+                            box-shadow: inset 1em 1em var(--gren); 
+                            transform-origin: bottom left;
+                            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+                        }
+
+                        &:checked::before{
+                            transform: scale(1);
+                        }
+                    }
+
+                    label {
+                        font-size: 14px;
+                        margin: 1px;
+                    }
+                }
+            }
+        }
+        
+
+        .locationsSelecteur {
+            width: 70%;
+            margin: 10px;
+            color: black;
+            option {
+                color: black;
+            }
+        }
+
+    }
+
 }
+
 
 .sect2{
     display : flex;

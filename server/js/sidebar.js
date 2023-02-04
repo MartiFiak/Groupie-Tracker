@@ -33,8 +33,20 @@ function _showFilter(){
 
 }
 
-function _rangeManager(slider, text){
-    text.textContent = "1900 - " + slider.value;
+function _rangeManager(slider, slider2, text){
+    text.textContent = slider2.value + " - " + slider.value;
+    if ('min' in slider) {
+        slider.min = slider2.value;
+    } 
+    else {
+        slider.setAttribute ("min", slider2.value);
+    }
+    if ('max' in slider) {
+        slider2.max = slider.value;
+    } 
+    else {
+        slider2.setAttribute ("max", slider.value);
+    }
 }
 
 function _getData(data){
@@ -54,9 +66,3 @@ window.addEventListener('click', function(e){
         _closeSidebar();
     }
 });
-/*
-document.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13 && sidebarOpen) {
-        form.submit();
-    }
-});*/

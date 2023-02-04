@@ -4,7 +4,7 @@
     <div class="sideheader">
         <img src="/server/images/icons/gplogo.png" alt="">
         <h1>Groupie-Tracker</h1>
-        <form action="" method="post" id="sidebarform">
+        <form id="sidebarform" onsubmit="return false">
             <input type="text" name="shearch" placeholder="Schearch an artist" class="shearch" autocomplete="off">
             <a onclick="_showFilter()">▼ Filter</a>
             <div class="filter">
@@ -13,16 +13,20 @@
                     <p id="cdTxt" class="daterange"> 1900-2020</p>
                 </div>
                 <div class="slidecreationdate">
-                    <input name="creationdate" type="range" min="1900" max="2023" value="2020"
-                        class="slidercreationdate" id="myRange" oninput="_executeFilter()">
+                    <input name="creationdate" type="range" min="1900" max="2000" value="1900"
+                        class="slidercreationdate" id="myRangeMin" oninput="_executeFilter()">
+                    <input name="creationdate" type="range" min="2000" max="2023" value="2023"
+                        class="slidercreationdate" id="myRangeMax" oninput="_executeFilter()">
                 </div>
                 <div class="firstalbumdate">
                     <p class="title">First album</p>
                     <p id="faTxt" class="daterange"> 1900-2020</p>
                 </div>
                 <div class="slidefirstalbum">
-                    <input name="firstalbumdate" type="range" min="1900" max="2023" value="2020"
-                        class="sliderfirstalbum" id="myRangeFA" oninput="_executeFilter()">
+                    <input name="firstalbumdate" type="range" min="1900" max="2000" value="1900"
+                        class="sliderfirstalbum" id="myRangeFAMin" oninput="_executeFilter()">
+                    <input name="firstalbumdate" type="range" min="2000" max="2023" value="2023"
+                        class="sliderfirstalbum" id="myRangeFAMax" oninput="_executeFilter()">
                 </div>
 
                 <div class="nbmembres">
@@ -30,35 +34,41 @@
 
                     <div class="allcheck">
                         <div>
-                            <input type="checkbox" id="one_members" name="one_members" value="1">
+                            <input type="checkbox" id="one_members" name="one_members" value="1" onchange="_executeFilter()">
                             <label for="one_members">1</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="tow_members" name="tow_members" value="2">
+                            <input type="checkbox" id="tow_members" name="tow_members" value="2" onchange="_executeFilter()">
                             <label for="tow_members">2</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="tree_members" name="tree_members" value="3">
+                            <input type="checkbox" id="tree_members" name="tree_members" value="3" onchange="_executeFilter()">
                             <label for="tree_members">3</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="four_members" name="four_members" value="4">
+                            <input type="checkbox" id="four_members" name="four_members" value="4" onchange="_executeFilter()">
                             <label for="four_members">4</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="five_members" name="five_members" value="5">
+                            <input type="checkbox" id="five_members" name="five_members" value="5" onchange="_executeFilter()">
                             <label for="five_members">5</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="six_members" name="six_members" value="6">
+                            <input type="checkbox" id="six_members" name="six_members" value="6" onchange="_executeFilter()">
                             <label for="six_members">6</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="more_members" name="more_members" value="7">
+                            <input type="checkbox" id="more_members" name="more_members" value="7" onchange="_executeFilter()">
                             <label for="more_members">7+</label>
                         </div>
                     </div>
                 </div>
+                <select name="" id="locselect" class="locationsSelecteur" onchange="_executeFilter()">
+                    <option value="Select a location">Select a location</option>
+                    {{ range $location := .Locations}}
+                    <option value="{{ $location }}">{{ $location }}</option>
+                    {{ end }}
+                </select>
             </div>
         </form>
         <a href="/allArtist">Show All</a>
@@ -70,14 +80,20 @@
                 {{ range $artist := .Artists }}
                 <script type="text/javascript">
                     var m = [];
+                    var l = [];
                     </script>
                     {{ range $name := $artist.Member }}
                     <script type="text/javascript">
                     m.push(`{{ $name }}`);
                     </script>
                     {{ end }}
+                    {{ range $location := $artist.FormatLocations }}
                     <script type="text/javascript">
-                    _addArtist("{{ $artist.Id }}", "{{ $artist.Image }}", "{{ $artist.Name }}", "{{ $artist.CreationDate }}", "{{ $artist.FirstAlbum }}",m);
+                    l.push(`{{ $location }}`);
+                    </script>
+                    {{ end }}
+                    <script type="text/javascript">
+                    _addArtist("{{ $artist.Id }}", "{{ $artist.Image }}", "{{ $artist.Name }}", "{{ $artist.CreationDate }}", "{{ $artist.FirstAlbum }}",m,l);
                 </script>
                 {{ end }}
             </div>
@@ -94,6 +110,11 @@
         </div>
         <div id="firstalbumdate_date">
             <p class="title">First Album Date</p>
+            <div class="artists">
+            </div>
+        </div>
+        <div id="locations">
+            <p class="title">Locations</p>
             <div class="artists">
             </div>
         </div>
