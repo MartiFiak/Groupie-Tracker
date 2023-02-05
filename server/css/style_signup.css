@@ -1,57 +1,100 @@
 body {
+  overflow: hidden;
+  background-image: url(/server/images/background/concert.jpg);
+  background-repeat: no-repeat;
+  fill-opacity: 0.5;
+  background-size: cover;
+  height: 100vh;
+}
+body .container {
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.18), rgba(15, 33, 34, 0.6980392157));
+  backdrop-filter: blur(5px) brightness(0.4);
+  width: 100%;
   display: flex;
-  background-color: #0D1321;
-  justify-content: center;
   flex-direction: row;
-  flex-wrap: wrap;
 }
-body form {
-  margin: 4.7vw;
-  background-color: rgba(255, 255, 255, 0.808);
-  padding: 18px 45px;
-  border-radius: 20px;
-  min-width: 300px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+body .container .leftbox {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-body form h1 {
-  color: #28B67E;
+body .container .leftbox img {
+  height: 20%;
+  margin: 20px;
+}
+body .container .leftbox h1 {
+  font-size: 3.5em;
   text-align: center;
-  padding: 15px;
 }
-body form .inputs {
+body .container form {
+  background-color: #0D1321;
   display: flex;
   flex-direction: column;
-  margin-top: 14px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 40vw;
+  padding: 0 10vh;
 }
-body form .inputs input[type=username], body form .inputs input[type=password], body form .inputs input[type=confirmpassword] {
-  padding: 15px;
+body .container form h1 {
+  color: #28B67E;
+  text-align: center;
+  font-size: 3em;
+  margin: 50px;
+}
+body .container form .inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+body .container form .inputs input[type=username], body .container form .inputs input[type=password], body .container form .inputs input[type=confirmpassword] {
+  width: 20vw;
+  margin: 15px;
+  padding-bottom: 5px;
   border: none;
-  border-radius: 5px;
-  background-color: rgba(13, 19, 33, 0.4235294118);
-  color: rgba(236, 233, 233, 0.7019607843);
+  border-bottom-style: solid;
+  border-color: #b1b1b1;
+  background-color: transparent;
+  color: #ffffff;
+  border-width: 1px;
   outline: none;
-  margin-bottom: 2vw;
-  opacity: 0.5;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-body form .inputs input[type=username]::placeholder, body form .inputs input[type=password]::placeholder, body form .inputs input[type=confirmpassword]::placeholder {
-  color: rgba(7, 11, 19, 0.8);
+body .container form .inputs input[type=username]::placeholder, body .container form .inputs input[type=password]::placeholder, body .container form .inputs input[type=confirmpassword]::placeholder {
+  color: #b1b1b1;
 }
-body form .inputs input[type=username]:hover, body form .inputs input[type=password]:hover, body form .inputs input[type=confirmpassword]:hover {
-  opacity: 0.6;
+body .container form .inputs input[type=username]:hover, body .container form .inputs input[type=password]:hover, body .container form .inputs input[type=confirmpassword]:hover {
+  opacity: 0.65;
 }
-body form p .inscription {
+body .container form .inputs input[type=username]:focus, body .container form .inputs input[type=password]:focus, body .container form .inputs input[type=confirmpassword]:focus {
+  opacity: 0.68;
+  border-bottom-style: solid;
+  border-width: 1.5px;
+  border-color: #28b67e;
+}
+body .container form .inscription {
   font-size: 14px;
   margin-bottom: 20px;
-  color: #878787;
+  color: #ffffff;
   padding: 5px;
 }
-body form p .inscription span {
-  color: #28B67E;
+body .container form .inscription span {
+  color: #28b67e;
+  font-weight: 900;
 }
-body form button {
-  padding: 13px 30px;
+body .container form .inscription span:hover {
+  color: #3bffb0;
+}
+body .container form .inscription span:focus {
+  color: #23a16f;
+}
+body .container form button {
+  padding: 15px;
+  width: 20vw;
   border-radius: 5px;
+  font-weight: bold;
   margin: 1vw;
   border: none;
   font-size: 15px;
@@ -61,46 +104,48 @@ body form button {
   cursor: pointer;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-body form button:hover {
+body .container form button:hover {
   background-color: #2bc084;
   color: rgba(255, 255, 255, 0.8431372549);
 }
-body .header {
-  display: flex;
-  flex-direction: row;
-  height: 8vh;
-  width: 100vw;
-  margin: 10px;
-  justify-content: space-between;
-}
-body .header .leftbox {
-  display: flex;
-  flex-direction: row;
-  margin: auto 2vw;
-  cursor: pointer;
-}
-body .header .leftbox img {
-  height: 4vh;
-  width: 4vh;
-  margin: auto 10px;
-}
-body .header .leftbox h2 {
-  margin: auto 0;
-  font-weight: bold;
-  font-size: 20px;
+body .container form button:focus {
+  background-color: #23a16f;
+  color: rgba(255, 255, 255, 0.7647058824);
 }
 body .back {
   cursor: pointer;
-  opacity: 0.75;
-  height: 50px;
+  position: absolute;
+  z-index: 1;
+  height: 60px;
+  width: 60px;
+  border-radius: 100px;
+  margin: 50px;
+  top: 0;
+  left: 0;
 }
 body .back:hover {
+  background-color: rgba(13, 19, 33, 0.0784313725);
+  align-content: center;
+  border-radius: 100px;
+}
+body .back:active {
   cursor: pointer;
-  opacity: 1;
+  background-color: rgba(13, 19, 33, 0.0470588235);
 }
 body .back .bx-arrow-back {
-  font-size: 40px;
+  font-size: 50px;
   color: var(wh);
+  margin: 5px 7px;
+  opacity: 0.75;
+  position: fixed;
+}
+body .back .bx-arrow-back:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+body .back .bx-arrow-back:active {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6156862745);
 }
 
 /*# sourceMappingURL=style_signup.css.map */

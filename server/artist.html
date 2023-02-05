@@ -14,6 +14,8 @@
     <title>Groupie Tracker</title>
 </head>
 <body>
+    <div class="popup">
+    </div>
     {{ template "sidebar.html" .}}
     <div class="header">
         <div class="leftbox" onclick="window.location.href='index.html'">
@@ -42,7 +44,7 @@
                     <h2>Create in {{ .Currentband.CreationDate }}</h2>
                     <div class="btnlst">
                         <a href="#event" class="btn">Event</a>
-                        <a href="" class="btn2">About us</a>
+                        <a onclick="_aboutUsPopUp('{{ .Currentband.Name }}', '{{ .Currentband.Member }}', '{{ .Currentband.CreationDate }}', '{{ .Currentband.FirstAlbum }}')" class="btn2">About us</a>
                     </div>
                 </div>
             </div>
@@ -73,7 +75,7 @@
                                 {{ range $ville := $value }}
                                     
                                     <li>
-                                        <div class="event" onmouseover="changeMapFocus({{ index $ville.Coord.Lat}},{{ index $ville.Coord.Long }})">
+                                        <div class="event" onmouseover="changeMapFocus({{ index $ville.Coord.Lat}},{{ index $ville.Coord.Long }});">
                                             <div class="eventdate">
                                                 <p class="jy">{{ index $ville.Date 0 }} </p>
                                                 <p class="date">{{ index $ville.Date 1 }}</p>
@@ -126,10 +128,8 @@
         </div>
     </div>
     <script type="text/javascript" src="/server/js/sidebar.js"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq9H9P3Jazc6tUoqQ8fwBdMbgLhm0QSe4&callback=initMap&v=weekly"
-      defer
-    ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq9H9P3Jazc6tUoqQ8fwBdMbgLhm0QSe4&callback=initMap&v=weekly" defer></script>
     <script type="text/javascript" src="/server/js/map.js"></script>
+    <script type="text/javascript" src="/server/js/artistpopup.js"></script>
 </body>
 </html>

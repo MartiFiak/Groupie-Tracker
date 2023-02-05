@@ -137,11 +137,13 @@ body {
 }
 .sect1 .filter .slidecreationdate {
   width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 .sect1 .filter .slidecreationdate .slidercreationdate {
   -webkit-appearance: none;
   appearance: none;
-  width: 100%;
+  width: 50%;
   height: 3px;
   background: #d3d3d3;
   outline: none;
@@ -170,11 +172,13 @@ body {
 }
 .sect1 .filter .slidefirstalbum {
   width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 .sect1 .filter .slidefirstalbum .sliderfirstalbum {
   -webkit-appearance: none;
   appearance: none;
-  width: 100%;
+  width: 50%;
   height: 3px;
   background: #d3d3d3;
   outline: none;

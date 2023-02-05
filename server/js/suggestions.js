@@ -43,6 +43,9 @@ function _searchArtistBand(name, currentsearch){
 }
 
 function _filterLocations(locations, loc){
+    if(loc == ""){
+        return true
+    }
     for(const location of locations){
         if(_formatString(location).includes(_formatString(loc))){
             return true;

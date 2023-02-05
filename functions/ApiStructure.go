@@ -6,6 +6,7 @@ type CurrentBand struct {
 	Image         string
 	Member        []string
 	CreationDate  int
+	FirstAlbum    string
 	Relations     map[string][][][]string
 	FuturRelation map[string][]Event
 	PassRelation  [][]string
@@ -28,6 +29,7 @@ type PageData struct {
 	Artists      []Artist
 	MPageRArtist []Artist
 	Locations    []string
+	CurrentUser  User
 }
 
 type Artist struct {

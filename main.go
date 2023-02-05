@@ -79,7 +79,7 @@ func RealtimeData() {
 }
 
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("./Signup.html"))
+	tmpl := template.Must(template.ParseFiles("./server/signup.html"))
 
 	switch r.Method {
 	case "GET":
@@ -112,11 +112,20 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("./Login.html"))
+	tmpl := template.Must(template.ParseFiles("./server/login.html"))
 
 	switch r.Method {
 	case "GET":
 	case "POST":
+		username := r.FormValue("username")
+		password := r.FormValue("password")
+		if password != "" {
+			if username != ""{
+				if groupietrackers.GetUserData(username).Username != "" && groupietrackers.GetUserData(username).Password == password {
+					pageData.CurrentUser = groupietrackers.GetUserData(username)
+				}
+			}
+		}
 	}
 	tmpl.Execute(w, nil)
 }

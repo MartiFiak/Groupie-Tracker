@@ -1,65 +1,72 @@
 body {
-    display: flex;
-    background-color: #0D1321;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    overflow: hidden;
     background-image: url(/server/images/background/concert.jpg);
     background-repeat: no-repeat;
     fill-opacity: 0.5;
     background-size: cover;
-    height: 92vh;
+    height: 100vh;
 
     .container {
         height: 100%;
         background-image: linear-gradient(rgba(0, 0, 0, 0.18), rgba(15, 33, 34, 0.6980392157));
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px) brightness(0.4);
         width: 100%;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-content: space-between;
-        align-items: flex-start;
+
+        .leftbox {
+            display: flex;
+            width: 50%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            img{
+                height: 20%;
+                margin: 20px;
+            }
+            h1{
+                font-size: 3.5em;
+                text-align: center;
+            }
+        }
     
         form {
-            margin: 4.7vw;
-            background-color: #ffffff;
-            opacity: 0.98;
-            padding: 18px 45px;
-            border-radius: 20px;
-            min-width: 300px;
-            max-width: 300px;
-            max-height: 28pc;
-            box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+            background-color: #0D1321;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 40vw;
+            padding: 0 10vh;
             
             h1 {
                 color: #28B67E;
                 text-align:center;
-                padding: 15px;
+                font-size: 3em;
+                margin: 50px;
             }
     
             .inputs {
                 display: flex;
                 flex-direction: column;
-                margin-top: 14px;
+                margin: 15px;
     
                 input[type='username'], input[type='password'], input[type='confirmpassword']{
-                    padding: 15px;
+                    width: 20vw;
+                    margin: 15px;
+                    padding-bottom: 5px;
                     border:none;
-                    border-radius: 5px;
-                    background-color: #0d132140;
-                    color: #000000;
-                    outline:none;
-                    margin-bottom: 1.4vw;
-                    opacity: 0.5;
-                    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+                    border-bottom-style: solid;
+                    border-color: #b1b1b1;
+                    background-color: transparent;
+                    color: #ffffff;
+                    border-width: 1px;
+                    outline: none;
                     
                     &::placeholder {
-                        color: #000000;
+                        color: #b1b1b1;
                     }
     
                     &:hover{
@@ -68,20 +75,21 @@ body {
     
                     &:focus{
                         opacity: 0.68;
-                        border-style: solid;
+                        border-bottom-style: solid;
                         border-width: 1.5px;
-                        border-color: #46474733;
+                        border-color: #28b67e;
                     }
                 }
             }
                 .inscription {
                     font-size: 14px;
                     margin-bottom: 20px;
-                    color: #878787;
+                    color: #ffffff;
                     padding: 5px;
     
                     span {
                         color: #28b67e;
+                        font-weight: 900;
                     
                         &:hover {
                             color: #3bffb0;
@@ -94,8 +102,10 @@ body {
                 }
     
             button {
-                padding: 13px 30px;
+                padding: 15px;
+                width: 20vw;
                 border-radius: 5px;
+                font-weight: bold;
                 margin: 1vw;
                 border:none;
                 font-size: 15px;
@@ -120,11 +130,14 @@ body {
 
     .back {
         cursor: pointer;
+        position: absolute;
+        z-index: 1;
         height: 60px;
         width: 60px;
         border-radius: 100px;
-        margin: 80px -9px;
-        position: initial;
+        margin: 50px;
+        top: 0;
+        left: 0;
         
         &:hover {
             background-color: #0d132114;
@@ -157,56 +170,4 @@ body {
         }
 
     }  
-
-    .header {
-        background-color: #0D1321;
-        display: flex;
-        flex-direction: row;
-        height: 8vh;
-        width: 100vw;
-        justify-content: space-between;
-        top: 0;
-    
-        .leftbox {
-            display: flex;
-            flex-direction: row;
-            margin: auto 2vw;
-            cursor: pointer;
-    
-            img {
-                height: 4vh;
-                width: 4vh;
-                margin: auto 10px;
-            }
-    
-            h2 {
-                margin: auto 0;
-                font-weight: bold;
-                font-size: 20px;
-            }
-        }
-    
-        .rightbox {
-            display: flex;
-            flex-direction: row;
-            margin: auto 12vw;
-    
-            a {  
-                display: block;
-                padding: 10px 1vw;
-                text-align: center;
-                margin: auto 5px;
-                font-size: 0.9em;
-    
-                &:nth-child(3n+2){
-                    font-size: 1em;
-                    border-style: solid;
-                    border-color: var(--gren);
-                    border-width: 1px;
-                    font-weight: bold;
-                    color: var(--gren);
-                }
-            }
-        }
-    }
 }

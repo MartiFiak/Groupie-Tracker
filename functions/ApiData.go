@@ -123,6 +123,7 @@ func UpdateCurrentBand(apiArtist string) CurrentBand {
 		Image:        dataartist.Image,
 		Member:       dataartist.Member,
 		CreationDate: dataartist.CreationDate,
+		FirstAlbum:   dataartist.FirstAlbum,
 		Relations:    ChangeDateFormat(datadatelocation.DatesLocations),
 	}
 	cb.FuturRelation, cb.PassRelation = CheckRelationTime(cb.Relations)
