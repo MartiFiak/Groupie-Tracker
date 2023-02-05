@@ -57,10 +57,22 @@ body{
 
 
 .sect1 {
-    margin:10vh;
+    margin:5vh 10vh;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        .searchSect{
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
 
     .shearch {
         height: 20px;
+        width: 50%;
         border-radius: 10px;
         border: none;
         border-radius: 0;
@@ -83,10 +95,11 @@ body{
     }
 
     .filter {
-        height: auto;
-        margin: 10px;
-        width: 80%;
+        height: 0;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
         transition: all 0.5s ease;
 
         .title {
@@ -95,6 +108,22 @@ body{
             margin-bottom: 10px;
         }
 
+        .rangefilter {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .otherfilter {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .boxcreatdate{
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            margin: auto 50px;
+        }
         .creationdate {
             display: flex;
             flex-direction: row;
@@ -107,6 +136,14 @@ body{
             }
         }
 
+        
+        
+        .boxfadate{
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            margin: auto 50px;
+        }
         .firstalbumdate {
             display: flex;
             flex-direction: row;
@@ -194,6 +231,7 @@ body{
         }
 
         .nbmembres {
+            margin: auto 50px;
             .allcheck {
                 display: flex;
                 flex-direction: row;
@@ -242,12 +280,19 @@ body{
         }
         
 
+        
         .locationsSelecteur {
-            width: 70%;
-            margin: 10px;
-            color: black;
+            width: 25%;
+            height: 40px;
+            margin: auto 50px;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 3px;
+            background-color: transparent;
             option {
                 color: black;
+                font-weight: bold;
             }
         }
 
@@ -256,9 +301,11 @@ body{
 }
 
 
-.sect2{
+.sect2AA{
     display : flex;
     flex-direction: row;
+    justify-content: center;
+    align-content: center;
     overflow-x: scroll;
     gap: 20px;
 
@@ -269,6 +316,7 @@ body{
         flex: 1 0 auto;
         transition: ease 1s;
         border-radius: 2vh;
+        margin: auto auto;
         img{
             height: 50vh;
             width: 50vh;

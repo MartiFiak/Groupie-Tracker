@@ -193,10 +193,15 @@
 .sidebar .sideheader .filter .locationsSelecteur {
   width: 70%;
   margin: 10px;
-  color: black;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 5px;
+  background-color: transparent;
 }
 .sidebar .sideheader .filter .locationsSelecteur option {
   color: black;
+  font-weight: bold;
 }
 .sidebar .shearch {
   height: 20px;

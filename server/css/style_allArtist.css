@@ -50,10 +50,20 @@ body {
 }
 
 .sect1 {
-  margin: 10vh;
+  margin: 5vh 10vh;
+}
+.sect1 form {
+  display: flex;
+  flex-direction: column;
+}
+.sect1 form .searchSect {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .sect1 .shearch {
   height: 20px;
+  width: 50%;
   border-radius: 10px;
   border: none;
   border-radius: 0;
@@ -73,16 +83,31 @@ body {
   border-bottom-color: rgba(255, 255, 255, 0.9058823529);
 }
 .sect1 .filter {
-  height: auto;
-  margin: 10px;
-  width: 80%;
+  height: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
   transition: all 0.5s ease;
 }
 .sect1 .filter .title {
   font-size: 14px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.sect1 .filter .rangefilter {
+  display: flex;
+  flex-direction: row;
+}
+.sect1 .filter .otherfilter {
+  display: flex;
+  flex-direction: row;
+}
+.sect1 .filter .boxcreatdate {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: auto 50px;
 }
 .sect1 .filter .creationdate {
   display: flex;
@@ -93,6 +118,12 @@ body {
   font-size: 12px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.sect1 .filter .boxfadate {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: auto 50px;
 }
 .sect1 .filter .firstalbumdate {
   display: flex;
@@ -170,6 +201,9 @@ body {
   background: #04AA6D;
   cursor: pointer;
 }
+.sect1 .filter .nbmembres {
+  margin: auto 50px;
+}
 .sect1 .filter .nbmembres .allcheck {
   display: flex;
   flex-direction: row;
@@ -212,35 +246,44 @@ body {
   margin: 1px;
 }
 .sect1 .filter .locationsSelecteur {
-  width: 70%;
-  margin: 10px;
-  color: black;
+  width: 25%;
+  height: 40px;
+  margin: auto 50px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 3px;
+  background-color: transparent;
 }
 .sect1 .filter .locationsSelecteur option {
   color: black;
+  font-weight: bold;
 }
 
-.sect2 {
+.sect2AA {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-content: center;
   overflow-x: scroll;
   gap: 20px;
 }
-.sect2 .artist {
+.sect2AA .artist {
   position: relative;
   overflow: hidden;
   width: 15vh;
   flex: 1 0 auto;
   transition: ease 1s;
   border-radius: 2vh;
+  margin: auto auto;
 }
-.sect2 .artist img {
+.sect2AA .artist img {
   height: 50vh;
   width: 50vh;
   filter: saturate(20%);
   transition: ease 1s;
 }
-.sect2 .artist .info {
+.sect2AA .artist .info {
   position: absolute;
   bottom: 0;
   background-color: rgba(13, 19, 33, 0.6235294118);

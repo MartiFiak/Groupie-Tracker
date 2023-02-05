@@ -218,9 +218,14 @@
             .locationsSelecteur {
                 width: 70%;
                 margin: 10px;
-                color: black;
+                color: white;
+                font-weight: bold;
+                border: none;
+                padding: 5px;
+                background-color: transparent;
                 option {
                     color: black;
+                    font-weight: bold;
                 }
             }
 
