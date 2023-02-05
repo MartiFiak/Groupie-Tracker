@@ -6,9 +6,9 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
+	"strings"
 	"text/template"
 	"time"
-	"strings"
 )
 
 var currentband groupietrackers.CurrentBand
@@ -24,11 +24,8 @@ var FakeCurrentDay int
 
 func main() {
 
-	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
-	FakeCurrentYear -= 3
-	fmt.Println("Date Simulated :", FakeCurrentDay, FakeCurrentMonth, FakeCurrentYear)
-
 	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
+	pageData.CurrentUser = groupietrackers.User{Username: ""}
 
 	go RealtimeData() /*       Permet de récuperer les artists en parallèle de la gestion de nos pages        */
 	fs := http.FileServer(http.Dir("./server"))
@@ -65,13 +62,13 @@ func RealtimeData() {
 				ville_pays := strings.Split(location, "-")
 				ville_pays[0] = strings.Replace(ville_pays[0], "_", " ", -1)
 				ville_pays[1] = strings.Replace(ville_pays[1], "_", " ", -1)
-				if !groupietrackers.SContains(pageData.Locations, ville_pays[0]){
+				if !groupietrackers.SContains(pageData.Locations, ville_pays[0]) {
 					pageData.Locations = append(pageData.Locations, ville_pays[0])
 				}
-				if !groupietrackers.SContains(pageData.Locations, ville_pays[1]){
+				if !groupietrackers.SContains(pageData.Locations, ville_pays[1]) {
 					pageData.Locations = append(pageData.Locations, ville_pays[1])
 				}
-				artistLoad[index].FormatLocations = append(artistLoad[index].FormatLocations, ville_pays[0] + " " + ville_pays[1])
+				artistLoad[index].FormatLocations = append(artistLoad[index].FormatLocations, ville_pays[0]+" "+ville_pays[1])
 			}
 		}
 		time.Sleep(60 * time.Second)
@@ -120,7 +117,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		username := r.FormValue("username")
 		password := r.FormValue("password")
 		if password != "" {
-			if username != ""{
+			if username != "" {
 				if groupietrackers.GetUserData(username).Username != "" && groupietrackers.GetUserData(username).Password == password {
 					pageData.CurrentUser = groupietrackers.GetUserData(username)
 				}

@@ -66,7 +66,7 @@ Possibility to show the informations of many bands/artist contains in our api to
 
 - Concert informations.
 
-Be informed of all the latest events of your favorite musical artists with the prices their different locations but also the possibility to access our online ticketing.
+Be informed of all the latest events of your favorite musical artists with the prices their different locations.
 <br>
 <br>
 
