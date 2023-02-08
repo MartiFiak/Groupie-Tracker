@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="server/css/style.css">
     <link rel="stylesheet" href="server/css/style_artist.css">
     <link rel="stylesheet" href="server/css/style_scrollbar.css">
+    <link rel="stylesheet" href="server/css/style_payementCard.css">
     <link rel="icon" href="/server/images/icons/gplogo.png">
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,7 +78,7 @@
                                 {{ range $ville := $value }}
                                     
                                     <li>
-                                        <div class="event" onmouseover="changeMapFocus({{ index $ville.Coord.Lat}},{{ index $ville.Coord.Long }});">
+                                        <div class="event" onclick="_payementPopUp()" onmouseover="changeMapFocus({{ index $ville.Coord.Lat}},{{ index $ville.Coord.Long }});">
                                             <div class="eventdate">
                                                 <p class="jy">{{ index $ville.Date 0 }} </p>
                                                 <p class="date">{{ index $ville.Date 1 }}</p>

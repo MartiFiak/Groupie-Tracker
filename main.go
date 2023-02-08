@@ -18,16 +18,13 @@ var artistFiltered []groupietrackers.Artist
 var currentID int
 var data groupietrackers.ApiData
 
-var FakeCurrentYear int
-var FakeCurrentMonth time.Month
-var FakeCurrentDay int
-
 func main() {
 
 	data = groupietrackers.SetGlobalData(groupietrackers.GetAPIData("https://groupietrackers.herokuapp.com/api"))
 	pageData.CurrentUser = groupietrackers.User{Username: ""}
 
-	go RealtimeData() /*       Permet de récuperer les artists en parallèle de la gestion de nos pages        */
+	go RealtimeData()  // ! Execute the fonction "RealtimeData()" in parallele to the other. Like that we can display page without delay and api data are currently update.
+
 	fs := http.FileServer(http.Dir("./server"))
 	http.Handle("/server/", http.StripPrefix("/server/", fs))
 
@@ -52,8 +49,7 @@ func AllArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, pageData)
 }
 
-func RealtimeData() {
-	// !       Regenere les données des artistes toutes les minutes
+func RealtimeData() {  // !       Update API data every minute
 	for {
 		artistLoad = groupietrackers.SetArtist(groupietrackers.GetAPIData(data.Artist))
 		for index, artist := range artistLoad {
@@ -181,7 +177,7 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusFound)
 	}
 
-	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID)) // ? Erreur au lancement
+	currentband = groupietrackers.UpdateCurrentBand(data.Artist + "/" + strconv.Itoa(currentID))
 	pageData.Currentband = currentband
 	tmpl.Execute(w, pageData)
 }

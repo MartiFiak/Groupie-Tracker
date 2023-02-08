@@ -3,7 +3,7 @@ package groupietrackers
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 	"strings"
@@ -14,8 +14,7 @@ var FakeCurrentYear int
 var FakeCurrentMonth time.Month
 var FakeCurrentDay int
 
-func GetAPIData(apiUrl string) []byte {
-
+func GetAPIData(apiUrl string) []byte { // ! Do a request to an API and return it content
 	apiClient := http.Client{}
 	req, err := http.NewRequest(http.MethodGet, apiUrl, nil)
 	if err != nil {
@@ -26,11 +25,10 @@ func GetAPIData(apiUrl string) []byte {
 	if getErr != nil {
 		fmt.Println(getErr)
 	}
-	if res.Body != nil { // ?  Get "": unsupported protocol scheme "" 2023/01/22 23:48:26 http: panic serving [::1]:60987: runtime error: invalid memory address or nil pointer dereference
-		// ? Get "https://groupietrackers.herokuapp.com/api": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+	if res.Body != nil {
 		defer res.Body.Close()
 	}
-	body, readErr := ioutil.ReadAll(res.Body)
+	body, readErr := io.ReadAll(res.Body)
 	if readErr != nil {
 		fmt.Println(readErr)
 	}
@@ -48,7 +46,7 @@ func SetGlobalData(body []byte) ApiData {
 	return apidata
 }
 
-func GetGeoCodeData(body []byte) map[string]interface{} {
+func GetGeoCodeData(body []byte) map[string]interface{} {  // ! Convert Google Map API data for golang
 	ap := make(map[string]interface{})
 	jsonErr := json.Unmarshal(body, &ap)
 	if jsonErr != nil {
@@ -57,18 +55,18 @@ func GetGeoCodeData(body []byte) map[string]interface{} {
 	return ap
 }
 
-func GetCoord(geoCodeData map[string]interface{}) GeoCoord {
+func GetCoord(geoCodeData map[string]interface{}) GeoCoord {  // ! Get longitude and latitude in Google Map API data
 	coord := GeoCoord{}
-	test := geoCodeData["results"].([]interface{})
-	test2 := test[0].(map[string]interface{})
-	test3 := test2["geometry"].(map[string]interface{})
-	test4 := test3["location"].(map[string]interface{})
-	coord.Lat = test4["lat"].(float64)
-	coord.Long = test4["lng"].(float64)
+	x := geoCodeData["results"].([]interface{})
+	y := x[0].(map[string]interface{})
+	z := y["geometry"].(map[string]interface{})
+	y = z["location"].(map[string]interface{})
+	coord.Lat = y["lat"].(float64)
+	coord.Long = y["lng"].(float64)
 	return coord
 }
 
-func SetArtistData(body []byte) artistStruct {
+func SetArtistData(body []byte) artistStruct {  // ! Convert Artist API data for golang
 	artistdata := artistStruct{}
 	jsonErr := json.Unmarshal(body, &artistdata)
 	if jsonErr != nil {
@@ -77,7 +75,7 @@ func SetArtistData(body []byte) artistStruct {
 	return artistdata
 }
 
-func SetLocationData(body []byte) locationsStruct {
+func SetLocationData(body []byte) locationsStruct {  // ! Convert Location API data for golang
 	locationdata := locationsStruct{}
 	jsonErr := json.Unmarshal(body, &locationdata)
 	if jsonErr != nil {
@@ -86,7 +84,7 @@ func SetLocationData(body []byte) locationsStruct {
 	return locationdata
 }
 
-func SetDateData(body []byte) datesStruct {
+func SetDateData(body []byte) datesStruct {  // ! Convert Date API data for golang
 	datedata := datesStruct{}
 	jsonErr := json.Unmarshal(body, &datedata)
 	if jsonErr != nil {
@@ -95,7 +93,7 @@ func SetDateData(body []byte) datesStruct {
 	return datedata
 }
 
-func SetRelationData(body []byte) relationStruct {
+func SetRelationData(body []byte) relationStruct {  // ! Convert Relation API data for golang
 	relationdata := relationStruct{}
 	jsonErr := json.Unmarshal(body, &relationdata)
 	if jsonErr != nil {
@@ -104,7 +102,7 @@ func SetRelationData(body []byte) relationStruct {
 	return relationdata
 }
 
-func SetArtist(body []byte) []Artist {
+func SetArtist(body []byte) []Artist {  // ! Convert Artist API data for golang
 	artistd := []Artist{}
 	jsonErr := json.Unmarshal(body, &artistd)
 	if jsonErr != nil {
@@ -113,9 +111,9 @@ func SetArtist(body []byte) []Artist {
 	return artistd
 }
 
-func UpdateCurrentBand(apiArtist string) CurrentBand {
+func UpdateCurrentBand(apiArtist string) CurrentBand {  // ! Get data of band select by user and format them
 	dataartist := SetArtistData(GetAPIData(apiArtist))
-	datadatelocation := SetRelationData(GetAPIData(dataartist.Relations)) // ? Erreur au lancement   Get "": unsupported protocol scheme "" 2023/01/22 23:48:26 http: panic serving [::1]:60989: runtime error: invalid memory address or nil pointer dereference
+	datadatelocation := SetRelationData(GetAPIData(dataartist.Relations))
 
 	cb := CurrentBand{
 		Id:           dataartist.Id,
@@ -130,7 +128,7 @@ func UpdateCurrentBand(apiArtist string) CurrentBand {
 	return cb
 }
 
-func ChangeDateFormat(date map[string][]string) map[string][][][]string {
+func ChangeDateFormat(date map[string][]string) map[string][][][]string { // ! Format date for a readable format
 	nDate := make(map[string][][][]string)
 
 	for location, ldate := range date {
@@ -194,7 +192,7 @@ func ChangeDateFormat(date map[string][]string) map[string][][][]string {
 	return nDate
 }
 
-func SetCoordToEvent(event map[string][]Event) map[string][]Event {
+func SetCoordToEvent(event map[string][]Event) map[string][]Event {  // ! Get long and lat of a location to be use in Google Map API
 	for pays := range event {
 		for i, e := range event[pays] {
 			e.Coord = GetCoord(GetGeoCodeData(GetAPIData("https://maps.googleapis.com/maps/api/geocode/json?address=" + e.City + "+" + e.Country + "&key=AIzaSyBq9H9P3Jazc6tUoqQ8fwBdMbgLhm0QSe4")))
@@ -204,7 +202,7 @@ func SetCoordToEvent(event map[string][]Event) map[string][]Event {
 	return event
 }
 
-func FormatFLocation(event Event) Event {
+func FormatFLocation(event Event) Event {  // ! Format location to be readable
 	city := strings.Split(event.City, "_")
 	for i, value := range city {
 		ncity := ""
@@ -236,7 +234,7 @@ func FormatFLocation(event Event) Event {
 	return event
 }
 
-func CheckRelationTime(date map[string][][][]string) (map[string][]Event, [][]string) {
+func CheckRelationTime(date map[string][][][]string) (map[string][]Event, [][]string) {  // ! Check if the relation is passed
 
 	FakeCurrentYear, FakeCurrentMonth, FakeCurrentDay = time.Now().Date()
 	FakeCurrentYear -= 3

@@ -6,8 +6,7 @@ import (
 	"strings"
 )
 
-func GetFilterUse(r *http.Request, artistFiltered []Artist, artistLoad []Artist) []Artist {
-	// ! Checks and applies the filters used for the search
+func GetFilterUse(r *http.Request, artistFiltered []Artist, artistLoad []Artist) []Artist { // ! Checks and applies the filters used for the search
 	shearchFilter := r.FormValue("shearch")
 	creationdateFilter := r.FormValue("creationdate")
 	firstalbumdateFilte := r.FormValue("firstalbumdate")
@@ -61,18 +60,17 @@ func GetFilterUse(r *http.Request, artistFiltered []Artist, artistLoad []Artist)
 	return artistFiltered
 }
 
-func WhichContainsString(content string, listToCheck []Artist) []Artist { // ? Here we search in the names of the artists/groups
-	// ! Check if a string contains a similarity
+func WhichContainsString(content string, listToCheck []Artist) []Artist { // ! Check if a string contains a similarity
 	containsString := []Artist{}
 	for _, element := range listToCheck {
-		if strings.Contains(TurnStringToShearch(element.Name), TurnStringToShearch(content)) {
+		if strings.Contains(TurnStringToShearch(element.Name), TurnStringToShearch(content)) { // ? Here we search in the names of the artists/groups
 			containsString = append(containsString, element)
-		} else if strconv.Itoa(element.CreationDate) == content || strings.Split(element.FirstAlbum, "-")[2] == content {
+		} else if strconv.Itoa(element.CreationDate) == content || strings.Split(element.FirstAlbum, "-")[2] == content { // ? Here we search in the creation date and the date of the first album
 			containsString = append(containsString, element)
-		}else {
-			if len(FiltredByLocations([]Artist{element}, content)) != 0 {
+		} else {
+			if len(FiltredByLocations([]Artist{element}, content)) != 0 { // ? Here we search by concert location
 				containsString = append(containsString, element)
-			} else if SearchMembers(element, content){
+			} else if SearchMembers(element, content) { // ? Here we search by member's name
 				containsString = append(containsString, element)
 			}
 		}
@@ -81,16 +79,16 @@ func WhichContainsString(content string, listToCheck []Artist) []Artist { // ? H
 	return containsString
 }
 
-func SearchMembers(artist Artist, search string) bool{
+func SearchMembers(artist Artist, search string) bool {  // ! Search by members name
 	for _, member := range artist.Member {
-		if strings.Contains(TurnStringToShearch(member), TurnStringToShearch(search)){
+		if strings.Contains(TurnStringToShearch(member), TurnStringToShearch(search)) {
 			return true
 		}
 	}
 	return false
 }
 
-func FiltredByMembersNumber(artistLoad []Artist, n []string) []Artist {
+func FiltredByMembersNumber(artistLoad []Artist, n []string) []Artist {  // ! Filtre by number of member
 	artistFiltered := []Artist{}
 	for _, artist := range artistLoad {
 		for _, nmembre := range n {
@@ -102,7 +100,7 @@ func FiltredByMembersNumber(artistLoad []Artist, n []string) []Artist {
 	return artistFiltered
 }
 
-func FiltredByLocations(artistLoad []Artist, locationSearch string) []Artist {
+func FiltredByLocations(artistLoad []Artist, locationSearch string) []Artist {  // ! Filtre by concert's location
 	artistFiltered := []Artist{}
 	for _, artist := range artistLoad {
 		locations := artist.FormatLocations
@@ -116,7 +114,7 @@ func FiltredByLocations(artistLoad []Artist, locationSearch string) []Artist {
 	return artistFiltered
 }
 
-func FiltredByCreationDate(artistLoad []Artist, mindate, maxdate string) []Artist {
+func FiltredByCreationDate(artistLoad []Artist, mindate, maxdate string) []Artist {  // ! Filtre by creation date
 	artistFiltered := []Artist{}
 	for _, artist := range artistLoad {
 		if AtoiWithoutErr(mindate) <= artist.CreationDate && artist.CreationDate <= AtoiWithoutErr(maxdate) {
@@ -127,7 +125,7 @@ func FiltredByCreationDate(artistLoad []Artist, mindate, maxdate string) []Artis
 	return artistFiltered
 }
 
-func FiltredByFirstAlbum(artistLoad []Artist, mindate, maxdate string) []Artist {
+func FiltredByFirstAlbum(artistLoad []Artist, mindate, maxdate string) []Artist {  // ! Filtre by artist name
 	artistFiltered := []Artist{}
 	for _, artist := range artistLoad {
 		if (AtoiWithoutErr(mindate) <= AtoiWithoutErr(strings.Split(artist.FirstAlbum, "-")[2])) && (AtoiWithoutErr(strings.Split(artist.FirstAlbum, "-")[2]) <= AtoiWithoutErr(maxdate)) {
@@ -138,7 +136,7 @@ func FiltredByFirstAlbum(artistLoad []Artist, mindate, maxdate string) []Artist 
 	return artistFiltered
 }
 
-func CheckNumberSelect(n []string) []string {
+func CheckNumberSelect(n []string) []string {  // ! Check which checkbox number are checked
 	newn := []string{}
 	for _, nc := range n {
 		if nc != "" {
@@ -148,8 +146,7 @@ func CheckNumberSelect(n []string) []string {
 	return newn
 }
 
-func TurnStringToShearch(str string) string {
-	// ! Changes the "special" character string (which may contain " " and capital letters) into a "simple" character string (no spaces or capital letters)
+func TurnStringToShearch(str string) string { // ! Changes the "special" character string (which may contain " " and capital letters) into a "simple" character string (no spaces or capital letters)
 	var nstr string
 	for _, car := range str {
 		switch {
