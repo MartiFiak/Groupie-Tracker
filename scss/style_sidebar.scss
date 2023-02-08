@@ -278,6 +278,7 @@
             scrollbar-width: none;
 
             .artists {
+                overflow-x: hidden;
                 overflow-y: scroll;
                 -ms-overflow-style: none;
                 scrollbar-width: none;

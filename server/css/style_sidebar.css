@@ -244,6 +244,7 @@
   scrollbar-width: none;
 }
 .sidebar .sidecontent #artist_band .artists, .sidebar .sidecontent #members .artists, .sidebar .sidecontent #creation_date .artists, .sidebar .sidecontent #firstalbumdate_date .artists, .sidebar .sidecontent #locations .artists {
+  overflow-x: hidden;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
